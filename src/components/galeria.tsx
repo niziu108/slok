@@ -4,20 +4,21 @@
 import { useCallback, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
 // 5 zdjęć (1600x1200)
-const BASE = ['/galeria1.webp','/galeria2.webp','/galeria3.webp','/galeria4.webp','/galeria5.webp'];
+const BASE = ['/galeria1.webp', '/galeria2.webp', '/galeria3.webp', '/galeria4.webp', '/galeria5.webp'];
 
 // Potrójna sekwencja dla płynnej pętli (środkowa = „prawdziwa”)
 const TRIPLE = [...BASE, ...BASE, ...BASE];
 
 /** Wejście nagłówka od dołu (spójne z KONTAKT) */
-const headlineRise = {
+const headlineRise: Variants = {
   hidden: { opacity: 0, y: 60 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
@@ -70,11 +71,14 @@ export default function Galeria() {
   }, [getMetrics]);
 
   // Normalizacja do środkowej sekwencji
-  const normalizeToMiddle = useCallback((idxTriple: number) => {
-    const { n } = getMetrics();
-    const within = ((idxTriple % n) + n) % n; // 0..n-1
-    return n + within;                        // n..2n-1
-  }, [getMetrics]);
+  const normalizeToMiddle = useCallback(
+    (idxTriple: number) => {
+      const { n } = getMetrics();
+      const within = ((idxTriple % n) + n) % n; // 0..n-1
+      return n + within; // n..2n-1
+    },
+    [getMetrics]
+  );
 
   // Przejście o 1 slajd (strzałki)
   const go = (dir: -1 | 1) => {
@@ -86,20 +90,23 @@ export default function Galeria() {
   };
 
   // Snap po puszczeniu gestu
-  const snapToNearest = useCallback((preferDir: -1 | 0 | 1 = 0) => {
-    const { row, step, centerOffset } = getMetrics();
-    const raw = (row.scrollLeft + centerOffset) / step;
-    let target = Math.round(raw);
+  const snapToNearest = useCallback(
+    (preferDir: -1 | 0 | 1 = 0) => {
+      const { row, step, centerOffset } = getMetrics();
+      const raw = (row.scrollLeft + centerOffset) / step;
+      let target = Math.round(raw);
 
-    if (preferDir !== 0) {
-      const floor = Math.floor(raw);
-      const ceil = Math.ceil(raw);
-      target = preferDir > 0 ? ceil : floor;
-    }
+      if (preferDir !== 0) {
+        const floor = Math.floor(raw);
+        const ceil = Math.ceil(raw);
+        target = preferDir > 0 ? ceil : floor;
+      }
 
-    const mid = normalizeToMiddle(target);
-    centerIndex(mid, 'smooth');
-  }, [centerIndex, getMetrics, normalizeToMiddle]);
+      const mid = normalizeToMiddle(target);
+      centerIndex(mid, 'smooth');
+    },
+    [centerIndex, getMetrics, normalizeToMiddle]
+  );
 
   // Start + pętla + resize + gesty
   useEffect(() => {
