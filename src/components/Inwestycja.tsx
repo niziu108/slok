@@ -1,31 +1,35 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import React from 'react';
-
-// Animacja dla liter
-const letter = {
-  hidden: { opacity: 0, y: 40 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const, delay: i * 0.12 },
-  }),
-};
-
-// Animacja dla reszty elementów (logo, opis, zdjęcia)
-const riseSlow = {
-  hidden: { opacity: 0, y: 60 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } },
-};
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import type { Variants, Easing } from 'framer-motion';
 
 const BG = '#131313';
 const TXT = '#d9d9d9';
 
+// ✅ Type-safe easing dla Framer Motion (Vercel/Linux/TS nie marudzi)
+const EASE: Easing = [0.22, 1, 0.36, 1];
+
+// ✅ Animacja dla liter (Variants + custom)
+const letter: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: EASE, delay: i * 0.12 },
+  }),
+};
+
+// ✅ Animacja dla reszty elementów (logo, opis, zdjęcia)
+const riseSlow: Variants = {
+  hidden: { opacity: 0, y: 60 },
+  show: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
+};
+
 export default function Idea() {
   const title = 'OSADA SŁOK';
-  const words = title.split(' '); // ⬅️ dzielimy na słowa (może się łamać w przerwach)
+  const words = title.split(' ');
 
   return (
     <section className="relative w-full overflow-hidden" style={{ backgroundColor: BG, color: TXT }}>
@@ -56,7 +60,7 @@ export default function Idea() {
           />
         </motion.div>
 
-        {/* TYTUŁ — animacja liter, ale łamanie MIĘDZY SŁOWAMI */}
+        {/* TYTUŁ — animacja liter, łamanie między słowami */}
         <h1
           className="
             font-evalinor uppercase text-center mx-auto max-w-[92vw]
@@ -86,7 +90,7 @@ export default function Idea() {
           ))}
         </h1>
 
-        {/* OPIS — PODMIENIONE */}
+        {/* OPIS */}
         <motion.p
           initial="hidden"
           whileInView="show"
@@ -95,9 +99,9 @@ export default function Idea() {
           className="mt-8 md:mt-10 text-lg md:text-2xl max-w-[75ch] mx-auto"
         >
           Oferujemy działki budowlane, inwestycyjne i rekreacyjne położone wśród lasów, w bezpośrednim sąsiedztwie
-          zalewu Słok, dla tych, którzy chcą ciszy, przestrzeni i natury, bez rezygnacji z wygody.
-          Dla inwestycji podpisane są umowy na przyłącza energetyczne z PGE, a warunki przyłączenia do sieci
-          wodociągowej zostały wydane przez Urząd Gminy Bełchatów.
+          zalewu Słok, dla tych, którzy chcą ciszy, przestrzeni i natury, bez rezygnacji z wygody. Dla inwestycji
+          podpisane są umowy na przyłącza energetyczne z PGE, a warunki przyłączenia do sieci wodociągowej zostały
+          wydane przez Urząd Gminy Bełchatów.
         </motion.p>
 
         {/* ZDJĘCIE — MOBILE */}
