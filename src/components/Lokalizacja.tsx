@@ -14,20 +14,20 @@ const SPACING = {
 };
 
 const cards = [
-  { icon: "/autostrady.png",   title: "SZYBKIE POŁĄCZENIA", desc: "Węzeł dróg ekspresowych i autostrad tuż obok. Dojedziesz wszędzie, wygodnie i szybko." },
-  { icon: "/lasiwoda.webp",    title: "OTOCZENIE NATURY",   desc: "Zalew Słok, pachnące lasy i cisza, wszystko na wyciągnięcie ręki." },
-  { icon: "/belchatow.webp",   title: "MIASTO POD RĘKĄ",    desc: "Zakupy, szkoły, rozrywka, wszystko 10 minut drogi od domu." },
-  { icon: "/centrumpolski.webp", title: "CENTRUM POLSKI",  desc: "Idealny punkt na mapie, z każdego kierunku tu blisko." },
-  { icon: "/rowery.webp",      title: "ŚCIEŻKI ROWEROWE",   desc: "Aktywny wypoczynek w naturalnym otoczeniu, liczne ścieżki rowerowe." },
-  { icon: "/lotniska.webp",    title: "BRAMA NA ŚWIAT",     desc: "Wygodny dojazd do lotnisk, idealna baza wypadowa w każdy zakątek globu." },
+  { icon: '/autostrady.png', title: 'SZYBKIE POŁĄCZENIA', desc: 'Węzeł dróg ekspresowych i autostrad tuż obok. Dojedziesz wszędzie, wygodnie i szybko.' },
+  { icon: '/lasiwoda.webp', title: 'OTOCZENIE NATURY', desc: 'Zalew Słok, pachnące lasy i cisza, wszystko na wyciągnięcie ręki.' },
+  { icon: '/belchatow.webp', title: 'MIASTO POD RĘKĄ', desc: 'Zakupy, szkoły, rozrywka, wszystko 10 minut drogi od domu.' },
+  { icon: '/centrumpolski.webp', title: 'CENTRUM POLSKI', desc: 'Idealny punkt na mapie, z każdego kierunku tu blisko.' },
+  { icon: '/rowery.webp', title: 'ŚCIEŻKI ROWEROWE', desc: 'Aktywny wypoczynek w naturalnym otoczeniu, liczne ścieżki rowerowe.' },
+  { icon: '/lotniska.webp', title: 'BRAMA NA ŚWIAT', desc: 'Wygodny dojazd do lotnisk, idealna baza wypadowa w każdy zakątek globu.' },
 ];
 
 const points = [
-  { dist: '25 M', label: 'ZALEW SŁOK',         img: '/zalew.webp' },
-  { dist: '50 M', label: 'KORTY TENISOWE',     img: '/tenis.webp' },
-  { dist: '1 KM', label: 'ŚCIEŻKI ROWEROWE',   img: '/rowery1.webp' },
-  { dist: '12 KM', label: 'CENTRUM BEŁCHATOWA',img: '/belchatow1.webp' },
-  { dist: '15 KM', label: 'GÓRA KAMIEŃSK',     img: '/kamiensk.webp' },
+  { dist: '25 M', label: 'ZALEW SŁOK', img: '/zalew.webp' },
+  { dist: '50 M', label: 'KORTY TENISOWE', img: '/tenis.webp' },
+  { dist: '1 KM', label: 'ŚCIEŻKI ROWEROWE', img: '/rowery1.webp' },
+  { dist: '12 KM', label: 'CENTRUM BEŁCHATOWA', img: '/belchatow1.webp' },
+  { dist: '15 KM', label: 'GÓRA KAMIEŃSK', img: '/kamiensk.webp' },
   { dist: '18 KM', label: 'SOLPARK KLESZCZÓW', img: '/aquapark.webp' },
 ];
 
@@ -41,7 +41,7 @@ export default function Lokalizacja() {
             <motion.h2
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-bungee mb-6"
             >
@@ -51,13 +51,14 @@ export default function Lokalizacja() {
             <motion.p
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
               viewport={{ once: true }}
               className="text-lg md:text-xl mb-8"
             >
-              Położona w samym sercu Polski, w otoczeniu lasów i czystej przyrody, Osada SŁOK łączy spokój natury z wygodą lokalizacji. Codzienne dojazdy stają się proste, a wypoczynek naturalny.
-              Dzięki bliskości autostrad, lotnisk i dużych miast, to idealna baza wypadowa zarówno na spontaniczne wyjazdy, jak i codzienne życie z dala od zgiełku.
-              Tu centrum Polski spotyka się z centrum spokoju.
+              Położona w samym sercu Polski, w otoczeniu lasów i czystej przyrody, Osada SŁOK łączy spokój natury z
+              wygodą lokalizacji. Codzienne dojazdy stają się proste, a wypoczynek naturalny. Dzięki bliskości autostrad,
+              lotnisk i dużych miast, to idealna baza wypadowa zarówno na spontaniczne wyjazdy, jak i codzienne życie z
+              dala od zgiełku. Tu centrum Polski spotyka się z centrum spokoju.
             </motion.p>
 
             <motion.a
@@ -84,13 +85,7 @@ export default function Lokalizacja() {
                 viewport={{ once: true }}
                 className="flex items-center gap-4"
               >
-                <Image
-                  src={card.icon}
-                  alt={card.title}
-                  width={48}
-                  height={48}
-                  className="min-w-[48px] mt-1"
-                />
+                <Image src={card.icon} alt={card.title} width={48} height={48} className="min-w-[48px] mt-1" />
                 <p className="text-base md:text-[15px] leading-snug">{card.desc}</p>
               </motion.div>
             ))}
@@ -123,7 +118,9 @@ export default function Lokalizacja() {
 function DistancesTimeline() {
   const [active, setActive] = useState(0);
   const controls = useAnimation();
-  const { ref, inView } = useInView({ once: true });
+
+  // ✅ react-intersection-observer: poprawne opcje (Vercel/TS)
+  const { ref, inView } = useInView({ threshold: 0.4, triggerOnce: true });
 
   const progress = useMemo(() => {
     if (points.length <= 1) return '0%';
@@ -131,17 +128,17 @@ function DistancesTimeline() {
   }, [active]);
 
   useEffect(() => {
-    if (inView) {
-      controls.start({ width: progress, transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] } });
-    }
+    if (!inView) return;
+    controls.start({
+      width: progress,
+      transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] as const },
+    });
   }, [inView, progress, controls]);
 
   return (
     <section ref={ref} className="w-full bg-[#131313] text-[#d9d9d9] px-4 py-20">
       <div className="max-w-7xl mx-auto">
-        <h3 className="font-bungee text-3xl md:text-5xl text-left md:text-center">
-          ODLEGŁOŚĆ OD OSADY SŁOK
-        </h3>
+        <h3 className="font-bungee text-3xl md:text-5xl text-left md:text-center">ODLEGŁOŚĆ OD OSADY SŁOK</h3>
         <DesktopAxis active={active} setActive={setActive} controls={controls} />
         <MobileSliderStatic />
       </div>
@@ -150,13 +147,26 @@ function DistancesTimeline() {
 }
 
 /* ---------- Desktop Axis ---------- */
-function DesktopAxis({ active, setActive, controls }: { active: number; setActive: (i: number) => void; controls: ReturnType<typeof useAnimation> }) {
+function DesktopAxis({
+  active,
+  setActive,
+  controls,
+}: {
+  active: number;
+  setActive: (i: number) => void;
+  controls: ReturnType<typeof useAnimation>;
+}) {
   return (
     <div className="hidden md:block">
       <div className="relative h-[460px]">
         <motion.div className={`absolute inset-x-0 top-0 flex justify-between ${SPACING.headerToNumbers}`}>
           {points.map((p, i) => (
-            <div key={i} className="flex flex-col items-center cursor-pointer select-none" onMouseEnter={() => setActive(i)} tabIndex={0}>
+            <div
+              key={i}
+              className="flex flex-col items-center cursor-pointer select-none"
+              onMouseEnter={() => setActive(i)}
+              tabIndex={0}
+            >
               <motion.div className={`font-bold text-4xl lg:text-3xl leading-none ${SPACING.numbersToLabels}`}>
                 {p.dist}
               </motion.div>
@@ -166,10 +176,12 @@ function DesktopAxis({ active, setActive, controls }: { active: number; setActiv
             </div>
           ))}
         </motion.div>
+
         <div className="absolute left-0 right-0 top-1/3 -translate-y-1/2">
           <div className="h-[6px] bg-[#F3EFF5]/25" />
           <motion.div initial={{ width: 0 }} animate={controls} className="h-[6px] -mt-[6px] bg-[#F3EFF5]" />
         </div>
+
         <div className={`absolute inset-x-0 bottom-30 flex justify-between ${SPACING.axisToPhotos}`}>
           {points.map((p, i) => (
             <motion.div key={i} animate={{ opacity: i === active ? 1 : 0 }} className="w-[240px] h-[160px]">
@@ -187,6 +199,7 @@ function DesktopAxis({ active, setActive, controls }: { active: number; setActiv
 /* ---------- Mobile Slider ---------- */
 function MobileSliderStatic() {
   const N = points.length;
+
   return (
     <div className="md:hidden mt-8 relative">
       <div className="overflow-x-auto snap-x snap-mandatory flex gap-6 pb-10 [&::-webkit-scrollbar]:hidden">
@@ -198,10 +211,12 @@ function MobileSliderStatic() {
                 <span className="block text-4xl font-bold">{p.dist}</span>
                 <span className="block text-xs tracking-wide opacity-80">{p.label}</span>
               </div>
+
               <div className={SPACING.mobileBlockGap}>
                 <div className="h-[6px] bg-[#F3EFF5]/25" />
                 <div className="h-[6px] -mt-[6px] bg-[#F3EFF5]" style={{ width: `${Math.round(fraction * 100)}%` }} />
               </div>
+
               <div className={SPACING.mobileBlockGap}>
                 <div className="relative w-full aspect-[4/3] overflow-hidden">
                   <Image src={p.img} alt={p.label} fill className="object-cover" />
