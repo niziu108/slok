@@ -123,7 +123,7 @@ export default function Lokalizacja() {
 function DistancesTimeline() {
   const [active, setActive] = useState(0);
   const controls = useAnimation();
-  const { ref, inView } = useInView({ amount: 0.4, triggerOnce: true });
+  const { ref, inView } = useInView({ once: true });
 
   const progress = useMemo(() => {
     if (points.length <= 1) return '0%';
