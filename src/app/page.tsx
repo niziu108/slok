@@ -4,10 +4,10 @@ import GlobalMenu from "@/components/GlobalMenu";
 import HeroDesktop from "@/components/HeroDesktop";
 import Inwestycja from "@/components/Inwestycja";
 import Lokalizacja from "@/components/Lokalizacja";
-import OSloku from "@/components/OSloku";
-import Galeria from "@/components/Galeria";
-import DlaInwestora from "@/components/DlaInwestora";
-import Kontakt from "@/components/Kontakt";
+import OSloku from "@/components/Osloku";
+import Galeria from "@/components/galeria";
+import DlaInwestora from "@/components/dlainwestora";
+import Kontakt from "@/components/kontakt";
 
 import SectionHashOnScroll from "@/components/SectionHashOnScroll";
 import FAQSchema from "@/components/FAQSchema";

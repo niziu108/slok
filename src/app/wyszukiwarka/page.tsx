@@ -1,7 +1,7 @@
 // src/app/wyszukiwarka/page.tsx
 import GlobalMenu from "../../components/GlobalMenu";
 import WyszukiwarkaClient from "../../components/WyszukiwarkaClient";
-import Kontakt from "../../components/Kontakt"; // ⬅️ import formularza
+import Kontakt from "../../components/kontakt"; // ⬅️ import formularza
 
 export const metadata = {
   title: "Wyszukiwarka — SŁOK",
