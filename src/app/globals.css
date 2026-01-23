@@ -1,0 +1,103 @@
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* (opcjonalnie) webfont do zwykłego tekstu */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap");
+
+/* DARK as default */
+:root {
+  --background: #131313;
+  --foreground: #d9d9d9;
+  --font-sans: "Manrope", sans-serif;
+  color-scheme: dark;
+}
+
+/* Powiązania z fontami Next.js (Geist / Mono) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #131313;
+    --foreground: #d9d9d9;
+  }
+}
+
+/* Reset bazowy */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* === EVALINOR (kuloodpornie) === */
+@font-face {
+  font-family: "Evalinor";
+  src: url("/fonts/Evalinor/evalinor-regular-webfont.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility do ręcznego użycia gdziekolwiek */
+.font-evalinor { font-family: "Evalinor", serif !important; }
+
+/* ===========================
+   Nagłówki (Evalinor + rozmiary)
+   =========================== */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Evalinor", serif;
+    font-weight: 400;
+    margin-bottom: 0.6em;
+    color: var(--foreground);
+  }
+
+  /* H1: duży, ale nie „wyjedzie” – płynny clamp + sensowny max */
+  h1 {
+    font-size: clamp(3.25rem, 8.5vw, 11rem); /* ~52px → max ~176px */
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-wrap: balance; /* ładniejsze łamanie, gdy przejdzie w 2 linie */
+  }
+
+  /* H2–H6: identyczna skala jak „DLA INWESTORA”
+     ~30px na tel → ~60px na desktopie */
+  h2, h3, h4, h5, h6 {
+    font-size: clamp(1.875rem, 4.8vw, 3.75rem); /* 30px → 60px */
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Ukrywanie scrollbarów */
+.hide-scrollbar::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Kursor podczas drag w galerii */
+.dragging { cursor: grabbing !important; }
+
+/* Media – ładne zachowanie */
+img, svg, video, canvas { display: block; max-width: 100%; height: auto; }
+
+/* Tekst zaznaczenia */
+::selection { background: #ffffff20; color: #ffffff; }
