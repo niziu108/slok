@@ -1,21 +1,29 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { Bungee } from 'next/font/google';
 import { motion } from 'framer-motion';
 
 const bungee = Bungee({ subsets: ['latin-ext'], weight: '400' });
 
-// Animacje
+// Animacje (TS-safe dla Framer Motion + Next 15)
 const stagger = {
   hidden: { opacity: 1 },
-  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
-};
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+} as const;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-};
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
+} as const;
 
 // STRZAŁKA LEWA
 function ArrowLeft(props: React.SVGProps<SVGSVGElement>) {
@@ -26,6 +34,7 @@ function ArrowLeft(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
 // STRZAŁKA PRAWA
 function ArrowRight(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -44,11 +53,12 @@ export default function SlokGlowna() {
 
   const prev = useCallback(
     () => setCurrent((i) => (i === 0 ? imagesDesktop.length - 1 : i - 1)),
-    []
+    [imagesDesktop.length]
   );
+
   const next = useCallback(
     () => setCurrent((i) => (i === imagesDesktop.length - 1 ? 0 : i + 1)),
-    []
+    [imagesDesktop.length]
   );
 
   // Klawiatura (desktop)
@@ -101,12 +111,7 @@ export default function SlokGlowna() {
         />
 
         {/* Tekst na obrazie (jak w mobile) */}
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="absolute left-10 top-16 z-10"
-        >
+        <motion.div variants={stagger} initial="hidden" animate="show" className="absolute left-10 top-16 z-10">
           <motion.p variants={fadeUp} className={`${bungee.className} text-7xl leading-[0.9]`}>
             PRZYSZŁOŚĆ
           </motion.p>
