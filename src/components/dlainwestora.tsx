@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 import Image from 'next/image';
 
 type Item = {
@@ -44,12 +45,15 @@ To solidna baza pod przyszłe przedsięwzięcia komercyjne związane z rekreacj�
   },
 ];
 
-const riseOnce = {
+const riseOnce: Variants = {
   hidden: { opacity: 0, y: 40 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   },
 };
 
