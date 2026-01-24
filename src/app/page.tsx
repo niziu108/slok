@@ -12,7 +12,6 @@ import Kontakt from "@/components/kontakt";
 import SectionHashOnScroll from "@/components/SectionHashOnScroll";
 import FAQSchema from "@/components/FAQSchema";
 import SeoSiteSchema from "@/components/SeoSiteSchema";
-import CookieBar from "@/components/CookieBar"; // ⬅️ import tutaj
 
 export default function Home() {
   return (
@@ -65,9 +64,6 @@ export default function Home() {
       />
 
       <SeoSiteSchema />
-
-      {/* Pasek cookie (fixed, więc i tak przyklei się na dole) */}
-      <CookieBar />
     </main>
   );
 }

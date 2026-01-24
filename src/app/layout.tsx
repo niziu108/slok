@@ -71,7 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased min-h-dvh flex flex-col bg-[#131313] text-[#d9d9d9]">
         {/* GA4 (ładuje się dopiero po zgodzie z CookieBar) */}
         <Analytics />
-        <CookieBar />
 
         <main className="flex-1 bg-[#131313]">{children}</main>
 
@@ -84,6 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           fadeMs={900}
           maxTotalMs={7000}
         />
+
+        {/* ✅ CookieBar tylko raz i na końcu body */}
+        <CookieBar />
       </body>
     </html>
   );
