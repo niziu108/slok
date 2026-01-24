@@ -9,6 +9,9 @@ import { Facebook } from 'lucide-react';
 const EMAIL = 'sprzedaz@slok.com.pl';
 const FB_URL = 'https://www.facebook.com/slokbelchatow';
 
+// ✅ Formspree endpoint
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgoarrpe';
+
 /* 🔻 Litery */
 const letter: Variants = {
   hidden: { opacity: 0, x: -20 },
@@ -80,30 +83,65 @@ export default function Kontakt() {
 
     const form = e.currentTarget;
 
-    const payload = Object.fromEntries(new FormData(form).entries());
+    // Pobierz dane z formy
+    const payload = Object.fromEntries(new FormData(form).entries()) as Record<string, any>;
+
+    // Anti-spam: jeśli honeypot wypełniony -> udaj sukces i nie wysyłaj
+    if (website && website.trim().length > 0) {
+      setStatus('ok');
+      setMsg('Wiadomość wysłana. Skontaktujemy się z Tobą.');
+      form.reset();
+      setWebsite('');
+      return;
+    }
+
+    // Anti-spam: jeśli wysłane zbyt szybko (np. < 1200ms) -> udaj sukces
+    const elapsed = Date.now() - startedAt;
+    if (elapsed < 1200) {
+      setStatus('ok');
+      setMsg('Wiadomość wysłana. Skontaktujemy się z Tobą.');
+      form.reset();
+      setWebsite('');
+      return;
+    }
+
+    // Przygotuj body pod Formspree (zostawiamy Twoje pola + metadata)
     const body = {
-      ...payload,
+      firstName: payload.firstName ?? '',
+      lastName: payload.lastName ?? '',
+      email: payload.email ?? '',
+      phone: payload.phone ?? '',
+      message: payload.message ?? '',
+      // dodatkowe info (Formspree przyjmie to jako pola)
       startedAt,
-      website,
+      // website celowo nie wysyłamy (honeypot) – już sprawdziliśmy wyżej
     };
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
         body: JSON.stringify(body),
       });
 
-      const data = await res.json().catch(() => ({}));
+      const data = await res.json().catch(() => ({} as any));
 
-      if (res.ok && data?.ok) {
+      if (res.ok) {
         setStatus('ok');
         setMsg('Wiadomość wysłana. Skontaktujemy się z Tobą.');
         form.reset();
         setWebsite('');
       } else {
+        // Formspree zwykle zwraca errors[]
+        const nice =
+          (Array.isArray(data?.errors) && data.errors[0]?.message) ||
+          data?.error ||
+          'Błąd wysyłki. Spróbuj ponownie.';
         setStatus('err');
-        setMsg(data?.error || 'Błąd wysyłki. Spróbuj ponownie.');
+        setMsg(nice);
       }
     } catch {
       setStatus('err');
