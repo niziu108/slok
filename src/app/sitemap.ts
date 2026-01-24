@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-const BASE = "https://slok.pl";
+const BASE = "https://slok.com.pl";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
