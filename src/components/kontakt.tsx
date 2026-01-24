@@ -1,7 +1,7 @@
-// src/app/kontakt/page.tsx  (lub src/components/Kontakt.tsx)
+// src/app/kontakt/page.tsx (lub src/components/Kontakt.tsx)
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
@@ -64,6 +64,11 @@ export default function Kontakt() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
   const [msg, setMsg] = useState<string>('');
 
+  // Anti-spam: czas startu (boty często wysyłają „od razu”)
+  const startedAt = useMemo(() => Date.now(), []);
+  // Anti-spam: honeypot (ukryte pole)
+  const [website, setWebsite] = useState('');
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (status === 'sending') return;
@@ -72,21 +77,30 @@ export default function Kontakt() {
     setMsg('');
 
     const form = e.currentTarget;
+
+    // payload z FormData + pola antyspamowe
     const payload = Object.fromEntries(new FormData(form).entries());
+    const body = {
+      ...payload,
+      startedAt,
+      website, // honeypot
+    };
 
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(body),
       });
 
       const data = await res.json().catch(() => ({}));
 
-      if (res.ok) {
+      // ✅ ważne: sprawdzamy i HTTP, i data.ok
+      if (res.ok && data?.ok) {
         setStatus('ok');
         setMsg('Wiadomość wysłana. Skontaktujemy się z Tobą.');
         form.reset();
+        setWebsite('');
       } else {
         setStatus('err');
         setMsg(data?.error || 'Błąd wysyłki. Spróbuj ponownie.');
@@ -122,10 +136,7 @@ export default function Kontakt() {
                   Biuro sprzedaży
                 </div>
 
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="block text-lg hover:text-[#F3EFF5] transition"
-                >
+                <a href={`mailto:${EMAIL}`} className="block text-lg hover:text-[#F3EFF5] transition">
                   {EMAIL}
                 </a>
 
@@ -136,42 +147,68 @@ export default function Kontakt() {
                   Paula Matuszewska – 519&nbsp;770&nbsp;923
                 </a>
 
-                <a
-                  href="tel:530417924"
-                  className="block text-lg hover:text-[#F3EFF5] transition"
-                >
+                <a href="tel:530417924" className="block text-lg hover:text-[#F3EFF5] transition">
                   Monika Kiełbik – 530&nbsp;417&nbsp;924
                 </a>
               </div>
             </div>
 
             <p className="mt-8 max-w-md text-[clamp(15px,1.5vw,18px)]">
-              Wypełnij formularz lub skontaktuj się z biurem sprzedaży,
-              aby otrzymać indywidualną ofertę.
+              Wypełnij formularz lub skontaktuj się z biurem sprzedaży, aby otrzymać indywidualną
+              ofertę.
             </p>
           </div>
 
           {/* PRAWA */}
           <div>
             <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Honeypot (ukryte) */}
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Website
+                  <input
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </label>
+              </div>
+
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">Imię</label>
-                <input name="firstName" required className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none" />
+                <input
+                  name="firstName"
+                  required
+                  className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none"
+                />
               </div>
 
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">Nazwisko</label>
-                <input name="lastName" required className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none" />
+                <input
+                  name="lastName"
+                  required
+                  className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none"
+                />
               </div>
 
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">E-mail</label>
-                <input name="email" type="email" required className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none" />
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none"
+                />
               </div>
 
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">Numer telefonu</label>
-                <input name="phone" className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none" />
+                <input
+                  name="phone"
+                  className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none"
+                />
               </div>
 
               <div className="sm:col-span-2 flex flex-col">
@@ -200,6 +237,13 @@ export default function Kontakt() {
                   {status === 'sending' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
                 </button>
               </div>
+
+              {/* mały hint przy błędzie */}
+              {status === 'err' && (
+                <div className="sm:col-span-2 text-xs text-[#d9d9d9]/60">
+                  Jeśli problem się powtarza, napisz bezpośrednio na {EMAIL}.
+                </div>
+              )}
             </form>
           </div>
         </div>
