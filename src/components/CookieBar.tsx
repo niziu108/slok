@@ -13,12 +13,15 @@ export default function CookieBar() {
     try {
       const accepted = localStorage.getItem(LS_ACCEPT_KEY) === 'true';
       const dismissed = sessionStorage.getItem(SS_DISMISS_KEY) === 'true';
+
       if (!accepted && !dismissed) {
         setVisible(true);
 
         // auto-hide po 20 sekundach (bez zgody)
         const t = setTimeout(() => {
-          try { sessionStorage.setItem(SS_DISMISS_KEY, 'true'); } catch {}
+          try {
+            sessionStorage.setItem(SS_DISMISS_KEY, 'true');
+          } catch {}
           setVisible(false);
         }, 20_000);
 
@@ -30,14 +33,20 @@ export default function CookieBar() {
   }, []);
 
   const accept = () => {
-    try { localStorage.setItem(LS_ACCEPT_KEY, 'true'); } catch {}
+    try {
+      localStorage.setItem(LS_ACCEPT_KEY, 'true');
+    } catch {}
+
     setVisible(false);
-    // Tutaj można odpalić GA / Pixel po zgodzie:
-    // window.gtag?.('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted' });
+
+    // 🔥 KLUCZOWE: informujemy Analytics, że zgoda została udzielona
+    window.dispatchEvent(new Event('cookie-accepted'));
   };
 
   const closeForSession = () => {
-    try { sessionStorage.setItem(SS_DISMISS_KEY, 'true'); } catch {}
+    try {
+      sessionStorage.setItem(SS_DISMISS_KEY, 'true');
+    } catch {}
     setVisible(false);
   };
 
@@ -64,7 +73,6 @@ export default function CookieBar() {
           Akceptuję
         </button>
 
-        {/* Krzyżyk – większy, jasny */}
         <button
           onClick={closeForSession}
           aria-label="Zamknij pasek cookies"
