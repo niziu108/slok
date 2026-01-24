@@ -14,8 +14,8 @@ export function makeToken() {
   return crypto.createHmac('sha256', secret).update(password).digest('hex');
 }
 
-export function isAuthedViaCookies(): boolean {
-  const c = cookies().get(COOKIE_NAME)?.value;
+export async function isAuthedViaCookies(): Promise<boolean> {
+  const c = (await cookies()).get(COOKIE_NAME)?.value;
   const expected = makeToken();
   return Boolean(c && expected && c === expected);
 }
