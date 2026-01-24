@@ -26,8 +26,8 @@ const points = [
   { dist: '25 M', label: 'ZALEW SŁOK', img: '/zalew.webp' },
   { dist: '50 M', label: 'KORTY TENISOWE', img: '/tenis.webp' },
   { dist: '1 KM', label: 'ŚCIEŻKI ROWEROWE', img: '/rowery1.webp' },
-  { dist: '12 KM', label: 'CENTRUM BEŁCHATOWA', img: '/belchatow1.webp' },
-  { dist: '15 KM', label: 'GÓRA KAMIEŃSK', img: '/kamiensk.webp' },
+  { dist: '11 KM', label: 'CENTRUM BEŁCHATOWA', img: '/belchatow1.webp' },
+  { dist: '12 KM', label: 'GÓRA KAMIEŃSK', img: '/kamiensk.webp' },
   { dist: '18 KM', label: 'SOLPARK KLESZCZÓW', img: '/aquapark.webp' },
 ];
 
