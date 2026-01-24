@@ -7,7 +7,7 @@ import AdminStage2Panel from '@/components/AdminStage2Panel';
 export const dynamic = 'force-dynamic';
 
 export default async function PanelPage() {
-  const authed = isAuthedViaCookies();
+  const authed = await isAuthedViaCookies();
 
   return (
     <div className="min-h-[100svh] bg-[#131313] text-[#F3EFF5] p-6">
