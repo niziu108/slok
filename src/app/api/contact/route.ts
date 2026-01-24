@@ -1,85 +1,91 @@
-// src/app/api/contact/route.ts
-export const runtime = 'nodejs';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+type Payload = {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  message?: string;
+  company?: string; // honeypot (jeśli masz)
+};
 
-const TO = 'sprzedaz@slok.com.pl';
-// ✅ Bez weryfikacji domeny – jedziemy na resend.dev
-const FROM = 'Formularz Osada SŁOK <onboarding@resend.dev>';
-
-function badRequest(error: string) {
-  return NextResponse.json({ ok: false, error }, { status: 400 });
-}
+const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 export async function POST(req: Request) {
   try {
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json({ ok: false, error: 'Missing RESEND_API_KEY' }, { status: 500 });
+    const body = (await req.json()) as Payload;
+
+    // Honeypot
+    if (body.company && body.company.trim().length > 0) {
+      return NextResponse.json({ ok: true }, { status: 200 });
     }
 
-    const body = await req.json().catch(() => null);
-    if (!body) return badRequest('Bad body');
+    const firstName = (body.firstName || "").trim();
+    const lastName = (body.lastName || "").trim();
+    const email = (body.email || "").trim();
+    const phone = (body.phone || "").trim();
+    const message = (body.message || "").trim();
 
-    // --- anti-spam (z Twojego frontu) ---
-    const website = String(body.website || '').trim(); // honeypot
-    const startedAt = Number(body.startedAt || 0); // timestamp z frontu
-    if (website) return NextResponse.json({ ok: true }); // udajemy sukces dla botów
-
-    // boty często wysyłają od razu (np. < 1.2s)
-    if (startedAt && Date.now() - startedAt < 1200) {
-      return NextResponse.json({ ok: true });
-    }
-
-    // --- pola formularza ---
-    const firstName = String(body.firstName || '').trim();
-    const lastName = String(body.lastName || '').trim();
-    const email = String(body.email || '').trim();
-    const phone = String(body.phone || '').trim();
-    const message = String(body.message || '').trim();
-
+    // Walidacja minimum
     if (!firstName || !lastName || !email || !message) {
-      return badRequest('Missing fields');
-    }
-
-    // proste limity, żeby nikt nie wysłał ściany danych
-    if (firstName.length > 80 || lastName.length > 120 || email.length > 160 || phone.length > 40) {
-      return badRequest('Invalid fields');
-    }
-    if (message.length > 4000) {
-      return badRequest('Message too long');
-    }
-
-    const resend = new Resend(apiKey);
-
-    const subject = `SŁOK — formularz: ${firstName} ${lastName}`;
-    const text =
-      `Imię: ${firstName}\n` +
-      `Nazwisko: ${lastName}\n` +
-      `E-mail: ${email}\n` +
-      `Telefon: ${phone || '-'}\n\n` +
-      `Wiadomość:\n${message}\n`;
-
-    const { error } = await resend.emails.send({
-      from: FROM,
-      to: TO,
-      replyTo: email, // ✅ odpowiadasz “reply” i leci do klienta
-      subject,
-      text,
-    });
-
-    if (error) {
-      console.error('Resend error:', error);
       return NextResponse.json(
-        { ok: false, error: error.message || 'Email provider error' },
+        { ok: false, error: "Brak wymaganych pól." },
+        { status: 400 }
+      );
+    }
+    if (!isEmail(email)) {
+      return NextResponse.json(
+        { ok: false, error: "Nieprawidłowy email." },
+        { status: 400 }
+      );
+    }
+
+    const host = process.env.SMTP_HOST;
+    const port = Number(process.env.SMTP_PORT || 465);
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+    const to = process.env.MAIL_TO || "sprzedaz@slok.com.pl";
+
+    if (!host || !user || !pass) {
+      return NextResponse.json(
+        { ok: false, error: "Brak konfiguracji SMTP w ENV." },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ ok: true });
-  } catch (e) {
-    console.error('Contact API crash:', e);
-    return NextResponse.json({ ok: false, error: 'Server error' }, { status: 500 });
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465, // 465 = SSL/TLS
+      auth: { user, pass },
+    });
+
+    const subject = `OSADA SŁOK – Formularz kontaktowy: ${firstName} ${lastName}`;
+    const text = [
+      `Imię i nazwisko: ${firstName} ${lastName}`,
+      `Email: ${email}`,
+      `Telefon: ${phone || "-"}`,
+      "",
+      "Wiadomość:",
+      message,
+      "",
+      `IP/UA: (Vercel)`, // opcjonalne
+    ].join("\n");
+
+    await transporter.sendMail({
+      from: `Osada SŁOK <${user}>`,
+      to,
+      subject,
+      text,
+      replyTo: email, // ważne: odpisujesz bezpośrednio klientowi
+    });
+
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch (err: any) {
+    return NextResponse.json(
+      { ok: false, error: err?.message || "Błąd serwera." },
+      { status: 500 }
+    );
   }
 }
