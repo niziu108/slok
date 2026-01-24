@@ -2,9 +2,11 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
 import Stopka from "@/components/Stopka";
 import PageLoader from "@/components/PageLoader";
 import Analytics from "@/components/Analytics";
+import CookieBar from "@/components/CookieBar";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -67,11 +69,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pl" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="antialiased min-h-dvh flex flex-col bg-[#131313] text-[#d9d9d9]">
-        {/* GA4 — ustaw swój GA_ID w src/components/Analytics.tsx */}
+        {/* GA4 (ładuje się dopiero po zgodzie z CookieBar) */}
         <Analytics />
+        <CookieBar />
 
         <main className="flex-1 bg-[#131313]">{children}</main>
+
         <Stopka />
+
         <PageLoader
           logoSrc="/logo-mobile.png"
           bg="#131313"

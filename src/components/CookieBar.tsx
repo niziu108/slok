@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { loadGA } from '@/components/Analytics';
 
 const LS_ACCEPT_KEY = 'cookie-accepted-v2';
 const SS_DISMISS_KEY = 'cookie-dismissed-session-v2';
@@ -39,8 +40,8 @@ export default function CookieBar() {
 
     setVisible(false);
 
-    // 🔥 KLUCZOWE: informujemy Analytics, że zgoda została udzielona
-    window.dispatchEvent(new Event('cookie-accepted'));
+    // 🔥 odpal GA po zgodzie
+    loadGA();
   };
 
   const closeForSession = () => {
