@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
    SEO META + OG + ROBOTS
    =========================================== */
 const SITE_NAME = "Osada SŁOK";
-const SITE_URL = "https://slok.pl";
+const SITE_URL = "https://slok.com.pl";
 const SITE_DESC =
   "Osada SŁOK – działki nad wodą w Bełchatowie, uzbrojone w prąd i wodę. Sprawdź lokalizację, dostępne działki i informacje dla inwestorów.";
 

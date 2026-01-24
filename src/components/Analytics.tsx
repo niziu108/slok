@@ -1,29 +1,44 @@
 'use client';
-import { useEffect } from 'react';
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
+import Script from 'next/script';
+import { useEffect, useState } from 'react';
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
 const ACCEPT_KEY = 'cookie-accepted-v2';
 
 export default function Analytics() {
+  const [canLoad, setCanLoad] = useState(false);
+
   useEffect(() => {
     if (!GA_ID) return;
-    const accepted = typeof window !== 'undefined' && localStorage.getItem(ACCEPT_KEY) === 'true';
-    if (!accepted) return; // nie ładuj GA bez zgody
+    const accepted =
+      typeof window !== 'undefined' &&
+      localStorage.getItem(ACCEPT_KEY) === 'true';
 
-    const s = document.createElement('script');
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-    s.async = true;
-    document.head.appendChild(s);
-
-    // @ts-ignore
-    window.dataLayer = window.dataLayer || [];
-    // @ts-ignore
-    function gtag(){ window.dataLayer.push(arguments); }
-    // @ts-ignore
-    gtag('js', new Date());
-    // @ts-ignore
-    gtag('config', GA_ID);
+    if (accepted) setCanLoad(true);
   }, []);
 
-  return null;
+  if (!canLoad || !GA_ID || process.env.NODE_ENV !== 'production') {
+    return null;
+  }
+
+  return (
+    <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ga4" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}', {
+            anonymize_ip: true,
+            page_path: window.location.pathname,
+          });
+        `}
+      </Script>
+    </>
+  );
 }
