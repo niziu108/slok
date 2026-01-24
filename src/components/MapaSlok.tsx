@@ -474,8 +474,15 @@ export default function MapaSlok({ onReady }: Props) {
               {(() => {
                 const price = activeId ? priceMap[activeId] : undefined;
                 return price ? (
-                  <div className="absolute left-2 bottom-2 z-10 bg-[#0f0f0f]/90 border border-[#F3EFF5]/30 px-3 py-1.5">
-                    <span className="font-geist text-[16px] font-medium text-[#F3EFF5]">
+                  // ✅ MOBILE: mniejsze, bez obwódki, nie rozpycha szerokości
+                  <div
+                    className="absolute left-2 bottom-2 z-10 bg-[#0f0f0f]/88 px-2.5 py-1 rounded-md shadow-lg backdrop-blur-sm"
+                    style={{ maxWidth: 'calc(100% - 16px)' }}
+                  >
+                    <span
+                      className="font-geist font-medium text-[#F3EFF5] leading-tight break-words"
+                      style={{ fontSize: 'clamp(12px, 3.6vw, 15px)' }}
+                    >
                       {price}
                     </span>
                   </div>
