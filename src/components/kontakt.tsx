@@ -1,4 +1,4 @@
-// src/app/kontakt/page.tsx (lub src/components/Kontakt.tsx)
+// src/components/kontakt.tsx
 'use client';
 
 import React, { useMemo, useState } from 'react';
@@ -66,7 +66,9 @@ export default function Kontakt() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
   const [msg, setMsg] = useState<string>('');
 
+  // Anti-spam: czas startu (boty często wysyłają „od razu”)
   const startedAt = useMemo(() => Date.now(), []);
+  // Anti-spam: honeypot (ukryte pole)
   const [website, setWebsite] = useState('');
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,8 +79,13 @@ export default function Kontakt() {
     setMsg('');
 
     const form = e.currentTarget;
+
     const payload = Object.fromEntries(new FormData(form).entries());
-    const body = { ...payload, startedAt, website };
+    const body = {
+      ...payload,
+      startedAt,
+      website,
+    };
 
     try {
       const res = await fetch('/api/contact', {
@@ -151,18 +158,23 @@ export default function Kontakt() {
               ofertę.
             </p>
 
-            {/* ✅ FB pod tekstem */}
-            <a
-              href={FB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-[#d9d9d9]/80 hover:text-[#F3EFF5] transition"
-              aria-label="Facebook — Osada SŁOK"
-              title="Facebook — Osada SŁOK"
-            >
-              <Facebook className="h-5 w-5" />
-              <span className="uppercase tracking-[0.12em]">Facebook</span>
-            </a>
+            {/* ✅ MEDIA SPOŁECZNOŚCIOWE (jak "Biuro sprzedaży") */}
+            <div className="mt-8">
+              <div className="text-sm uppercase tracking-[0.18em] text-[#d9d9d9]/70 mb-3">
+                Media społecznościowe
+              </div>
+
+              <a
+                href={FB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook — Osada SŁOK"
+                title="Facebook — Osada SŁOK"
+                className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[#d9d9d9]/40 hover:border-[#F3EFF5] hover:text-[#F3EFF5] transition"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           {/* PRAWA */}
@@ -211,7 +223,10 @@ export default function Kontakt() {
 
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">Numer telefonu</label>
-                <input name="phone" className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none" />
+                <input
+                  name="phone"
+                  className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none"
+                />
               </div>
 
               <div className="sm:col-span-2 flex flex-col">
