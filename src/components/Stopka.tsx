@@ -35,7 +35,7 @@ export default function Stopka() {
               <div>Słok 97-400 Bełchatów</div>
 
               <div className="uppercase pt-1 md:pt-2 tracking-[0.035em]">KONTAKT:</div>
-              <div>666 666 666</div>
+              <div>519 770 923</div>
             </div>
           </div>
 
