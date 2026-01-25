@@ -225,6 +225,7 @@ export default function MapaSlok({ onReady }: Props) {
           setSoldIds((prev) => (sameSet(prev, nextSold) ? prev : nextSold));
           setStage2Ids((prev) => (sameSet(prev, nextStage2) ? prev : nextStage2));
 
+          // malowanie "od razu" jeśli SVG już jest
           [desktopOverlayRef.current, mobileOverlayRef.current].forEach((root) => {
             const svg = root?.querySelector('svg') as SVGSVGElement | null;
             if (svg) {
@@ -246,6 +247,23 @@ export default function MapaSlok({ onReady }: Props) {
       globalThis.__SLOK_POLL_RUNNING__ = false;
     };
   }, []);
+
+  // ✅ KLUCZOWY FIX: repaint po tym jak SVG się pojawi (mobile timing)
+  useEffect(() => {
+    if (!svgReady) return;
+
+    [desktopOverlayRef.current, mobileOverlayRef.current].forEach((root) => {
+      const svg = root?.querySelector('svg') as SVGSVGElement | null;
+      if (!svg) return;
+      paintStage2(svg, stage2Ids);
+      paintSold(svg, soldIds);
+    });
+
+    // opcjonalnie: jeśli działka stała się sprzedana/etap2, zamknij kartę
+    if (activeId && (soldIds.has(activeId) || stage2Ids.has(activeId))) {
+      setActiveId(null);
+    }
+  }, [svgReady, stage2Ids, soldIds, activeId]);
 
   useEffect(() => {
     if (bgReady && svgReady) onReady?.();
@@ -474,7 +492,6 @@ export default function MapaSlok({ onReady }: Props) {
               {(() => {
                 const price = activeId ? priceMap[activeId] : undefined;
                 return price ? (
-                  // ✅ MOBILE: mniejsze, bez obwódki, nie rozpycha szerokości
                   <div
                     className="absolute left-2 bottom-2 z-10 bg-[#0f0f0f]/88 px-2.5 py-1 rounded-md shadow-lg backdrop-blur-sm"
                     style={{ maxWidth: 'calc(100% - 16px)' }}
