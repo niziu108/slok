@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import type { Variants, Easing } from 'framer-motion';
@@ -31,24 +31,6 @@ export default function Idea() {
   const title = 'OSADA SŁOK';
   const words = title.split(' ');
 
-  // ✅ mobile = brak animacji tytułu
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const apply = () => setIsMobile(mq.matches);
-    apply();
-
-    // Safari/older fallback
-    if (typeof mq.addEventListener === 'function') {
-      mq.addEventListener('change', apply);
-      return () => mq.removeEventListener('change', apply);
-    } else {
-      mq.addListener(apply);
-      return () => mq.removeListener(apply);
-    }
-  }, []);
-
   return (
     <section className="relative w-full overflow-hidden" style={{ backgroundColor: BG, color: TXT }}>
       {/* HERO */}
@@ -78,7 +60,7 @@ export default function Idea() {
           />
         </motion.div>
 
-        {/* TYTUŁ — desktop animowany, mobile statyczny */}
+        {/* TYTUŁ — animacja liter, łamanie między słowami */}
         <h1
           className="
             font-evalinor uppercase text-center mx-auto max-w-[92vw]
@@ -91,33 +73,19 @@ export default function Idea() {
         >
           {words.map((word, wIdx) => (
             <span key={wIdx} className="inline-block mr-[0.18em] last:mr-0 align-baseline">
-              {Array.from(word).map((ch, i) => {
-                const key = `${wIdx}-${i}`;
-
-                // ✅ MOBILE: bez motion.span
-                if (isMobile) {
-                  return (
-                    <span key={key} className="inline-block">
-                      {ch}
-                    </span>
-                  );
-                }
-
-                // ✅ DESKTOP: animacja liter jak było
-                return (
-                  <motion.span
-                    key={key}
-                    custom={wIdx * 10 + i}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.7 }}
-                    variants={letter}
-                    className="inline-block"
-                  >
-                    {ch}
-                  </motion.span>
-                );
-              })}
+              {Array.from(word).map((ch, i) => (
+                <motion.span
+                  key={`${wIdx}-${i}`}
+                  custom={wIdx * 10 + i}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.7 }}
+                  variants={letter}
+                  className="inline-block"
+                >
+                  {ch}
+                </motion.span>
+              ))}
             </span>
           ))}
         </h1>
