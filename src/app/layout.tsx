@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   keywords: [
     "Osada SŁOK",
     "SŁOK",
-    "działki nad jeziorem",
-    "działki rekreacyjne Bełchatów",
+    "działki nad wodą",
+    "działki na sprzedaż Bełchatów",
     "działki budowlane Bełchatów",
     "uzbrojone działki prąd i woda",
     "inwestycja Słok",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Osada nad wodą`,
+    title: `${SITE_NAME} — działki na sprzedaż`,
     description: SITE_DESC,
     images: [
       { url: `${SITE_URL}/logo-mobile.png`, width: 800, height: 800, alt: "Logo Osada SŁOK" },
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Osada nad wodą`,
+    title: `${SITE_NAME} — działki na sprzedaż`,
     description: SITE_DESC,
     images: [`${SITE_URL}/logo-mobile.png`],
   },
