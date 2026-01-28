@@ -26,11 +26,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+
   title: {
     default: `${SITE_NAME} — Osada nad wodą`,
     template: `%s | ${SITE_NAME}`,
   },
+
   description: SITE_DESC,
+
   keywords: [
     "Osada SŁOK",
     "SŁOK",
@@ -41,7 +44,9 @@ export const metadata: Metadata = {
     "inwestycja Słok",
     "działki na sprzedaż Słok",
   ],
+
   alternates: { canonical: SITE_URL },
+
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -49,16 +54,23 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — działki na sprzedaż`,
     description: SITE_DESC,
     images: [
-      { url: `${SITE_URL}/logo-mobile.png`, width: 800, height: 800, alt: "Logo Osada SŁOK" },
+      {
+        url: `${SITE_URL}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: "Osada SŁOK – działki nad wodą",
+      },
     ],
     locale: "pl_PL",
   },
+
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — działki na sprzedaż`,
     description: SITE_DESC,
-    images: [`${SITE_URL}/logo-mobile.png`],
+    images: [`${SITE_URL}/og.png`],
   },
+
   robots: { index: true, follow: true },
 };
 
