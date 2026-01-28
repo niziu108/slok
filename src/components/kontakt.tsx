@@ -1,13 +1,10 @@
-// src/components/kontakt.tsx
 'use client';
 
 import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Facebook } from 'lucide-react';
 
 const EMAIL = 'sprzedaz@slok.com.pl';
-const FB_URL = 'https://www.facebook.com/slokbelchatow';
 
 // ✅ Formspree endpoint
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgoarrpe';
@@ -69,9 +66,8 @@ export default function Kontakt() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
   const [msg, setMsg] = useState<string>('');
 
-  // Anti-spam: czas startu (boty często wysyłają „od razu”)
+  // Anti-spam
   const startedAt = useMemo(() => Date.now(), []);
-  // Anti-spam: honeypot (ukryte pole)
   const [website, setWebsite] = useState('');
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -82,11 +78,8 @@ export default function Kontakt() {
     setMsg('');
 
     const form = e.currentTarget;
-
-    // Pobierz dane z formy
     const payload = Object.fromEntries(new FormData(form).entries()) as Record<string, any>;
 
-    // Anti-spam: jeśli honeypot wypełniony -> udaj sukces i nie wysyłaj
     if (website && website.trim().length > 0) {
       setStatus('ok');
       setMsg('Wiadomość wysłana. Skontaktujemy się z Tobą.');
@@ -95,7 +88,6 @@ export default function Kontakt() {
       return;
     }
 
-    // Anti-spam: jeśli wysłane zbyt szybko (np. < 1200ms) -> udaj sukces
     const elapsed = Date.now() - startedAt;
     if (elapsed < 1200) {
       setStatus('ok');
@@ -105,16 +97,13 @@ export default function Kontakt() {
       return;
     }
 
-    // Przygotuj body pod Formspree (zostawiamy Twoje pola + metadata)
     const body = {
       firstName: payload.firstName ?? '',
       lastName: payload.lastName ?? '',
       email: payload.email ?? '',
       phone: payload.phone ?? '',
       message: payload.message ?? '',
-      // dodatkowe info (Formspree przyjmie to jako pola)
       startedAt,
-      // website celowo nie wysyłamy (honeypot) – już sprawdziliśmy wyżej
     };
 
     try {
@@ -135,7 +124,6 @@ export default function Kontakt() {
         form.reset();
         setWebsite('');
       } else {
-        // Formspree zwykle zwraca errors[]
         const nice =
           (Array.isArray(data?.errors) && data.errors[0]?.message) ||
           data?.error ||
@@ -195,30 +183,12 @@ export default function Kontakt() {
               Wypełnij formularz lub skontaktuj się z biurem sprzedaży, aby otrzymać indywidualną
               ofertę.
             </p>
-
-            {/* ✅ MEDIA SPOŁECZNOŚCIOWE (jak "Biuro sprzedaży") */}
-            <div className="mt-8">
-              <div className="text-sm uppercase tracking-[0.18em] text-[#d9d9d9]/70 mb-3">
-                Media społecznościowe
-              </div>
-
-              <a
-                href={FB_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook — Osada SŁOK"
-                title="Facebook — Osada SŁOK"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[#d9d9d9]/40 hover:border-[#F3EFF5] hover:text-[#F3EFF5] transition"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           {/* PRAWA */}
           <div>
             <form onSubmit={onSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Honeypot (ukryte) */}
+              {/* Honeypot */}
               <div className="hidden" aria-hidden="true">
                 <label>
                   Website

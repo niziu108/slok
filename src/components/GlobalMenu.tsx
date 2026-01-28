@@ -1,7 +1,7 @@
 // src/components/GlobalMenu.tsx
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -40,8 +40,16 @@ function CrossIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Mobile button: logo ↔ krzyżyk z obrotem (Twoja poprzednia wersja 1:1) */
-function MobileLogoToggle({
+function BurgerIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" {...props}>
+      <path d="M4 7h16M4 12h16M4 17h16" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Mobile button: hamburger ↔ krzyżyk (animowany) */
+function MobileHamburgerToggle({
   open,
   onToggle,
 }: {
@@ -53,36 +61,29 @@ function MobileLogoToggle({
       aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
       onClick={onToggle}
       className="md:hidden flex items-center justify-center bg-transparent p-0"
-      animate={{ rotate: open ? -180 : 0 }}
-      transition={{ type: 'tween', duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      animate={{ rotate: open ? -90 : 0 }}
+      transition={{ type: 'tween', duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       style={{ willChange: 'transform' }}
     >
-      <div className="relative w-[56px] h-[22px] text-[#d9d9d9]">
-        {/* LOGO */}
+      <div className="relative w-10 h-10 text-[#d9d9d9]">
+        {/* BURGER */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
           initial={false}
           animate={{ opacity: open ? 0 : 1, scale: open ? 0.92 : 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.2 }}
         >
-          <Image
-            src="/herologo.webp"
-            alt="OSADA SŁOK"
-            width={56}
-            height={22}
-            className="object-contain invert"
-            priority
-          />
+          <BurgerIcon className="w-7 h-7" />
         </motion.div>
 
-        {/* KRZYŻYK */}
+        {/* X */}
         <motion.div
           className="absolute inset-0 flex items-center justify-center"
           initial={false}
           animate={{ opacity: open ? 1 : 0, scale: open ? 1 : 0.92 }}
-          transition={{ duration: 0.3, delay: open ? 0.1 : 0 }}
+          transition={{ duration: 0.2, delay: open ? 0.06 : 0 }}
         >
-          <CrossIcon className="w-6 h-6" />
+          <CrossIcon className="w-7 h-7" />
         </motion.div>
       </div>
     </motion.button>
@@ -197,15 +198,37 @@ export default function GlobalMenu() {
         </div>
       </div>
 
-      {/* MOBILE: cienki pasek tła (jak było) */}
+      {/* MOBILE: cienki pasek tła */}
       <div className="md:hidden fixed top-0 inset-x-0 h-14 bg-[#131313]/100 z-[99] border-b border-white/10 pointer-events-none" />
 
-      {/* MOBILE: wrapper z centrowaniem przycisku (jak było) */}
-      <div className="md:hidden fixed top-0 inset-x-0 h-14 z-[100] flex items-center justify-center">
-        <MobileLogoToggle open={open} onToggle={() => setOpen((s) => !s)} />
+      {/* MOBILE: pasek z logo w środku + hamburger po prawej */}
+      <div className="md:hidden fixed top-0 inset-x-0 h-14 z-[100]">
+        <div className="relative h-full flex items-center">
+          {/* Logo — zostaje jak jest (statycznie w tej pozycji) */}
+          <Link
+            href="/#hero"
+            aria-label="Powrót do sekcji hero"
+            className="absolute left-1/2 -translate-x-1/2"
+            onClick={() => setOpen(false)}
+          >
+            <Image
+              src="/herologo.webp"
+              alt="OSADA SŁOK"
+              width={56}
+              height={22}
+              className="object-contain invert"
+              priority
+            />
+          </Link>
+
+          {/* Hamburger po prawej — robi to co wcześniej logo */}
+          <div className="ml-auto pr-4">
+            <MobileHamburgerToggle open={open} onToggle={() => setOpen((s) => !s)} />
+          </div>
+        </div>
       </div>
 
-      {/* MOBILE OVERLAY (jak było) */}
+      {/* MOBILE OVERLAY */}
       <AnimatePresence>
         {open && (
           <motion.aside
