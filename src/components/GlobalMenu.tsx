@@ -189,7 +189,7 @@ export default function GlobalMenu() {
                 ))}
                 <li>
                   <Link href="/wyszukiwarka" className={linkCls}>
-                    WYSZUKIWARKA
+                    WYSZUKIWARKA DZIAŁEK
                   </Link>
                 </li>
               </ul>
@@ -297,7 +297,7 @@ export default function GlobalMenu() {
                     onClick={() => setOpen(false)}
                     className="font-evalinor w-full text-[#d9d9d9] text-3xl sm:text-4xl tracking-[0.04em] hover:opacity-85 transition-opacity"
                   >
-                    WYSZUKIWARKA
+                    WYSZUKIWARKA DZIAŁEK
                   </Link>
                 </li>
               </ul>
