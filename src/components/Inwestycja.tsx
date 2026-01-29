@@ -105,7 +105,9 @@ export default function Idea() {
           (MPZP).
         </motion.p>
 
-        {/* PRZYCISKI MPZP — desktop obok / mobile jeden pod drugim */}
+        {/* PRZYCISKI MPZP — desktop obok / mobile jeden pod drugim
+            ✅ /download/* wymusza pobieranie (Content-Disposition: attachment)
+            ✅ target=_blank żeby nie rozwalać animacji po powrocie na stronę */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -114,8 +116,9 @@ export default function Idea() {
           className="mt-6 flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4"
         >
           <a
-            href="/mpzp-slok.pdf"
-            download
+            href="/download/mpzp"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
               rounded-full
@@ -133,8 +136,9 @@ export default function Idea() {
           </a>
 
           <a
-            href="/mapa-slok-mpzp.pdf"
-            download
+            href="/download/mapa"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
               rounded-full
