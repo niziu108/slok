@@ -72,7 +72,7 @@ export default function WyszukiwarkaClient() {
                 <p className="flex items-start gap-2">
                   <BlueSquare />
                   <span>
-                    Działki oznaczone na niebiesko będą sprzedawane w drugim etapie – dostępne od 01.08.2026 r.
+                    Działki oznaczone na niebiesko będą sprzedawane w drugim etapie – dostępne od 01.08.2027 r.
                   </span>
                 </p>
               </div>
