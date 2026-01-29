@@ -11,9 +11,11 @@ const FILES: Record<string, { filename: string; downloadName: string }> = {
 
 export async function GET(
   _req: Request,
-  { params }: { params: { slug: string } }
+  context: { params: Promise<{ slug: string }> }
 ) {
-  const entry = FILES[params.slug];
+  const { slug } = await context.params;
+
+  const entry = FILES[slug];
   if (!entry) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
   const filePath = path.join(process.cwd(), 'public', entry.filename);
@@ -24,7 +26,7 @@ export async function GET(
     return new Response(buf, {
       headers: {
         'Content-Type': 'application/pdf',
-        // ✅ to wymusza pobieranie (a nie otwieranie)
+        // ✅ wymusza pobieranie na Safari iOS (attachment)
         'Content-Disposition': `attachment; filename="${entry.downloadName}"`,
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
