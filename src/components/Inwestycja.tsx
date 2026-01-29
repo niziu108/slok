@@ -134,7 +134,7 @@ export default function Inwestycja() {
           </a>
 
           <a
-            href="/mapa-slok-mpzp.pdf"
+            href="/mapa-slok-mpzp-2.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="
