@@ -27,28 +27,6 @@ const riseSlow: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
 };
 
-// ✅ Pobieranie “w tle” bez nowej karty / bez opuszczania strony
-async function downloadPdf(url: string, filename: string) {
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Download failed: ${res.status}`);
-
-  const blob = await res.blob();
-
-  // Jeśli pobiera “pusty”, to często jest HTML/404 – taki blob bywa mały.
-  if (blob.size < 5000) {
-    console.warn('PDF wygląda podejrzanie mały:', blob.size, 'bytes');
-  }
-
-  const objectUrl = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = objectUrl;
-  a.download = filename; // iOS czasem ignoruje nazwę, ale NIE NAWIGUJE z strony
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  window.URL.revokeObjectURL(objectUrl);
-}
-
 export default function Inwestycja() {
   const title = 'OSADA SŁOK';
   const words = title.split(' ');
@@ -112,7 +90,7 @@ export default function Inwestycja() {
           ))}
         </h1>
 
-        {/* OPIS — jak wcześniej + MPZP */}
+        {/* OPIS — jak wcześniej + dopisane MPZP */}
         <motion.p
           initial="hidden"
           whileInView="show"
@@ -127,7 +105,7 @@ export default function Inwestycja() {
           (MPZP).
         </motion.p>
 
-        {/* PRZYCISKI — pobieranie w tle (bez nowej karty) */}
+        {/* PRZYCISKI MPZP — otwieranie PDF w nowej karcie (bez route) */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -135,9 +113,10 @@ export default function Inwestycja() {
           variants={riseSlow}
           className="mt-6 flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4"
         >
-          <button
-            type="button"
-            onClick={() => downloadPdf('/download/mpzp', 'MPZP-SLOK.pdf')}
+          <a
+            href="/mpzp-slok.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
               rounded-full
@@ -151,12 +130,13 @@ export default function Inwestycja() {
               active:scale-[0.99]
             "
           >
-            Pobierz MPZP (PDF)
-          </button>
+            Otwórz MPZP (PDF)
+          </a>
 
-          <button
-            type="button"
-            onClick={() => downloadPdf('/download/mapa', 'MAPA-SLOK-MPZP.pdf')}
+          <a
+            href="/mapa-slok-mpzp.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
               rounded-full
@@ -170,8 +150,8 @@ export default function Inwestycja() {
               active:scale-[0.99]
             "
           >
-            Pobierz mapę MPZP (PDF)
-          </button>
+            Otwórz mapę MPZP (PDF)
+          </a>
         </motion.div>
 
         {/* ZDJĘCIE — MOBILE */}
