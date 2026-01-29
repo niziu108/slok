@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const FILES: Record<string, { filename: string; downloadName: string }> = {
   mpzp: { filename: 'mpzp-slok.pdf', downloadName: 'MPZP-SLOK.pdf' },
-  mapa: { filename: 'mapa-slok-mpzp.pdf', downloadName: 'MAPA-MPZP-SLOK.pdf' },
+  mapa: { filename: 'mapa-slok-mpzp.pdf', downloadName: 'MAPA-SLOK-MPZP.pdf' },
 };
 
 export async function GET(
@@ -26,9 +26,11 @@ export async function GET(
     return new Response(buf, {
       headers: {
         'Content-Type': 'application/pdf',
-        // ✅ wymusza pobieranie na Safari iOS (attachment)
+        'Content-Length': String(buf.byteLength),
+        'X-Content-Type-Options': 'nosniff',
+        // ✅ wymuszamy pobieranie
         'Content-Disposition': `attachment; filename="${entry.downloadName}"`,
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': 'no-store',
       },
     });
   } catch {

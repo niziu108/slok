@@ -27,7 +27,29 @@ const riseSlow: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 1.1, ease: EASE } },
 };
 
-export default function Idea() {
+// ✅ Pobieranie “w tle” bez nowej karty / bez opuszczania strony
+async function downloadPdf(url: string, filename: string) {
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`Download failed: ${res.status}`);
+
+  const blob = await res.blob();
+
+  // Jeśli pobiera “pusty”, to często jest HTML/404 – taki blob bywa mały.
+  if (blob.size < 5000) {
+    console.warn('PDF wygląda podejrzanie mały:', blob.size, 'bytes');
+  }
+
+  const objectUrl = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = objectUrl;
+  a.download = filename; // iOS czasem ignoruje nazwę, ale NIE NAWIGUJE z strony
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(objectUrl);
+}
+
+export default function Inwestycja() {
   const title = 'OSADA SŁOK';
   const words = title.split(' ');
 
@@ -90,7 +112,7 @@ export default function Idea() {
           ))}
         </h1>
 
-        {/* OPIS — jak wcześniej + dopisane MPZP */}
+        {/* OPIS — jak wcześniej + MPZP */}
         <motion.p
           initial="hidden"
           whileInView="show"
@@ -105,9 +127,7 @@ export default function Idea() {
           (MPZP).
         </motion.p>
 
-        {/* PRZYCISKI MPZP — desktop obok / mobile jeden pod drugim
-            ✅ /download/* wymusza pobieranie (Content-Disposition: attachment)
-            ✅ target=_blank żeby nie rozwalać animacji po powrocie na stronę */}
+        {/* PRZYCISKI — pobieranie w tle (bez nowej karty) */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -115,10 +135,9 @@ export default function Idea() {
           variants={riseSlow}
           className="mt-6 flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4"
         >
-          <a
-            href="/download/mpzp"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => downloadPdf('/download/mpzp', 'MPZP-SLOK.pdf')}
             className="
               inline-flex items-center justify-center
               rounded-full
@@ -133,12 +152,11 @@ export default function Idea() {
             "
           >
             Pobierz MPZP (PDF)
-          </a>
+          </button>
 
-          <a
-            href="/download/mapa"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => downloadPdf('/download/mapa', 'MAPA-SLOK-MPZP.pdf')}
             className="
               inline-flex items-center justify-center
               rounded-full
@@ -153,7 +171,7 @@ export default function Idea() {
             "
           >
             Pobierz mapę MPZP (PDF)
-          </a>
+          </button>
         </motion.div>
 
         {/* ZDJĘCIE — MOBILE */}
