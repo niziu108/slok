@@ -90,7 +90,7 @@ export default function Idea() {
           ))}
         </h1>
 
-        {/* OPIS */}
+        {/* OPIS — jak wcześniej + dopisane MPZP */}
         <motion.p
           initial="hidden"
           whileInView="show"
@@ -101,8 +101,37 @@ export default function Idea() {
           Oferujemy działki budowlane, inwestycyjne i rekreacyjne położone wśród lasów, w bezpośrednim sąsiedztwie
           zalewu Słok, dla tych, którzy chcą ciszy, przestrzeni i natury, bez rezygnacji z wygody. Dla inwestycji
           podpisane są umowy na przyłącza energetyczne z PGE, a warunki przyłączenia do sieci wodociągowej zostały
-          wydane przez Urząd Gminy Bełchatów.
+          wydane przez Urząd Gminy Bełchatów. Dla terenu obowiązuje miejscowy plan zagospodarowania przestrzennego
+          (MPZP).
         </motion.p>
+
+        {/* PRZYCISK MPZP — półokrągły */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.7 }}
+          variants={riseSlow}
+          className="mt-6"
+        >
+          <a
+            href="/mpzp-slok.pdf"
+            download
+            className="
+              inline-flex items-center justify-center
+              rounded-full
+              border border-[#d9d9d9]
+              px-7 py-3
+              text-xs md:text-sm
+              uppercase tracking-[0.22em]
+              transition
+              hover:bg-[#d9d9d9]
+              hover:text-[#131313]
+              active:scale-[0.99]
+            "
+          >
+            Pobierz MPZP (PDF)
+          </a>
+        </motion.div>
 
         {/* ZDJĘCIE — MOBILE */}
         <motion.div

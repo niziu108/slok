@@ -166,16 +166,20 @@ export default function Kontakt() {
                   {EMAIL}
                 </a>
 
-                <a
-                  href="tel:519770923"
-                  className="block text-lg mt-3 hover:text-[#F3EFF5] transition"
-                >
+                <a href="tel:519770923" className="block text-lg mt-3 hover:text-[#F3EFF5] transition">
                   Paula Matuszewska – 519&nbsp;770&nbsp;923
                 </a>
 
                 <a href="tel:530417924" className="block text-lg hover:text-[#F3EFF5] transition">
                   Monika Kiełbik – 530&nbsp;417&nbsp;924
                 </a>
+
+                {/* ✅ DOPISEK: SPRZEDAŻ NA FAKTURĘ VAT (desktop lewo / mobile środek) */}
+                <div className="mt-4 text-left text-lg font-semibold sm:text-lg sm:font-semibold">
+                  <div className="mx-auto w-fit lg:mx-0 lg:w-auto text-center lg:text-left">
+                    Sprzedaż na fakturę VAT.
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -231,10 +235,7 @@ export default function Kontakt() {
 
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">Numer telefonu</label>
-                <input
-                  name="phone"
-                  className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none"
-                />
+                <input name="phone" className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none" />
               </div>
 
               <div className="sm:col-span-2 flex flex-col">
