@@ -105,13 +105,13 @@ export default function Idea() {
           (MPZP).
         </motion.p>
 
-        {/* PRZYCISK MPZP — półokrągły */}
+        {/* PRZYCISKI MPZP — desktop obok / mobile jeden pod drugim */}
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.7 }}
           variants={riseSlow}
-          className="mt-6"
+          className="mt-6 flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-4"
         >
           <a
             href="/mpzp-slok.pdf"
@@ -130,6 +130,25 @@ export default function Idea() {
             "
           >
             Pobierz MPZP (PDF)
+          </a>
+
+          <a
+            href="/mapa-slok-mpzp.pdf"
+            download
+            className="
+              inline-flex items-center justify-center
+              rounded-full
+              border border-[#d9d9d9]
+              px-7 py-3
+              text-xs md:text-sm
+              uppercase tracking-[0.22em]
+              transition
+              hover:bg-[#d9d9d9]
+              hover:text-[#131313]
+              active:scale-[0.99]
+            "
+          >
+            Pobierz mapę MPZP (PDF)
           </a>
         </motion.div>
 
