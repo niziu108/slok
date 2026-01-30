@@ -88,7 +88,7 @@ export default function WyszukiwarkaClient() {
                 </p>
                 <p className="flex items-start gap-2">
                   <BlueSquare />
-                  <span>Działki oznaczone na niebiesko to drugi etap – dostępne od 01.08.2026 r.</span>
+                  <span>Działki oznaczone na niebiesko to drugi etap – dostępne od 01.08.2027 r.</span>
                 </p>
               </div>
             </div>
