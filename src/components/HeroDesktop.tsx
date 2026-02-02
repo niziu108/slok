@@ -98,16 +98,16 @@ export default function Hero() {
       ref={wrapRef}
       className="relative w-screen overflow-hidden bg-[#131313] min-h-[100svh] min-h-[100dvh]"
     >
-      {/* WIDEO – Cloudinary */}
+      {/* WIDEO – lokalnie z /public */}
       <video
         ref={vidRef}
-        src="https://res.cloudinary.com/dr4vmuq7v/video/upload/q_auto:good/film_lgxytw.mp4"
+        src="/video/film.mp4"
         autoPlay
         loop
         muted
         playsInline
         preload="metadata"
-        poster="https://res.cloudinary.com/dr4vmuq7v/video/upload/so_0/film_lgxytw.jpg"
+        poster=""
         className="pointer-events-none"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
       />
