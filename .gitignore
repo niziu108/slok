@@ -46,3 +46,7 @@ public/*.webm
 
 public/film.mp4
 *.mp4
+
+# --- ALLOW HERO VIDEO ---
+!public/video/
+!public/video/film.mp4
