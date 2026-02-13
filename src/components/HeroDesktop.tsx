@@ -107,7 +107,6 @@ export default function Hero() {
         muted
         playsInline
         preload="metadata"
-        poster=""
         className="pointer-events-none"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
       />

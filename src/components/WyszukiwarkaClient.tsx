@@ -11,9 +11,14 @@ const MapaSlok = dynamic(() => import('@/components/MapaSlok'), { ssr: false });
 const TITLE = 'WYSZUKIWARKA DZIAŁEK';
 
 const BlueSquare = ({ className = '' }: { className?: string }) => (
+  <Square size={18} className={`mt-1 text-[#F3EFF5] fill-[#5AA0FF] ${className}`} />
+);
+
+// ✅ NOWY: kolor ośrodka (taki jak na mapie)
+const OsrodekSquare = ({ className = '' }: { className?: string }) => (
   <Square
     size={18}
-    className={`mt-1 text-[#F3EFF5] fill-[#5AA0FF] ${className}`}
+    className={`mt-1 text-[#F3EFF5] fill-[rgba(233,200,125,0.70)] ${className}`}
   />
 );
 
@@ -75,6 +80,12 @@ export default function WyszukiwarkaClient() {
                     Działki oznaczone na niebiesko będą sprzedawane w drugim etapie – dostępne od 01.08.2027 r.
                   </span>
                 </p>
+
+                {/* ✅ NOWA LINIA: ośrodek */}
+                <p className="flex items-start gap-2">
+                  <OsrodekSquare />
+                  <span>Teren oznaczony na żółto to ośrodek wypoczynkowy.</span>
+                </p>
               </div>
 
               <div className="md:hidden flex flex-col gap-2 text-[17px] leading-relaxed tracking-[0.01em] text-[#F3EFF5]/90">
@@ -89,6 +100,12 @@ export default function WyszukiwarkaClient() {
                 <p className="flex items-start gap-2">
                   <BlueSquare />
                   <span>Działki oznaczone na niebiesko to drugi etap – dostępne od 01.08.2027r.</span>
+                </p>
+
+                {/* ✅ NOWA LINIA: ośrodek */}
+                <p className="flex items-start gap-2">
+                  <OsrodekSquare />
+                  <span>Teren oznaczony na żółto to ośrodek wypoczynkowy.</span>
                 </p>
               </div>
             </div>

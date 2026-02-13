@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 
 type Props = { onReady?: () => void };
@@ -8,8 +9,28 @@ type Props = { onReady?: () => void };
 const MAP_SRC = '/slok-interaktywny.svg';
 
 /* ──────────────────────────────────────────────────────────────
-   TU DODAWAJ/EDYTUJ PRZEZNACZENIA DLA KONKRETNYCH DZIAŁEK
-   ────────────────────────────────────────────────────────────── */
+  OŚRODEK: działki zawsze podświetlone + wspólna karta
+  ────────────────────────────────────────────────────────────── */
+const OSRODEK_IDS = new Set([
+  '2138-1',
+  '2138-2',
+  '2138-3',
+  '2138-4',
+  '2138-5',
+  '2138-6',
+  '2138-8',
+  '2138-9',
+  '2138-10',
+  '2138-11',
+]);
+
+const OSRODEK_ACTIVE_ID = '__OSRODEK__';
+const OSRODEK_IMAGE = '/wypoczynek.webp';
+const OSRODEK_HREF = '/osrodek';
+
+/* ──────────────────────────────────────────────────────────────
+  TU DODAWAJ/EDYTUJ PRZEZNACZENIA DLA KONKRETNYCH DZIAŁEK
+  ────────────────────────────────────────────────────────────── */
 const PURPOSE: Record<string, string> = {
   '2138-103': 'Zabudowa mieszkaniowa jednorodzinna',
   '2138-92': 'Zabudowa budowlano usługowa',
@@ -56,16 +77,16 @@ const PURPOSE: Record<string, string> = {
   '2138-31': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-30': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-29': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-6': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-5': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-4': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-3': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-2': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-1': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-8': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-9': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-10': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
-  '2138-11': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
+  '2138-6': 'Ośrodek wypoczynkowy',
+  '2138-5': 'Ośrodek wypoczynkowy',
+  '2138-4': 'Ośrodek wypoczynkowy',
+  '2138-3': 'Ośrodek wypoczynkowy',
+  '2138-2': 'Ośrodek wypoczynkowy',
+  '2138-1': 'Ośrodek wypoczynkowy',
+  '2138-8': 'Ośrodek wypoczynkowy',
+  '2138-9': 'Ośrodek wypoczynkowy',
+  '2138-10': 'Ośrodek wypoczynkowy',
+  '2138-11': 'Ośrodek wypoczynkowy',
   '2138-45': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-46': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-47': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
@@ -102,6 +123,8 @@ declare global {
 }
 
 export default function MapaSlok({ onReady }: Props) {
+  const router = useRouter();
+
   const desktopOverlayRef = useRef<HTMLDivElement>(null);
   const mobileOverlayRef = useRef<HTMLDivElement>(null);
   const mobileWrapRef = useRef<HTMLDivElement>(null);
@@ -152,6 +175,7 @@ export default function MapaSlok({ onReady }: Props) {
             svg.removeAttribute('width');
             svg.removeAttribute('height');
             attachOverlay(svg, true);
+            paintOsrodek(svg);
           }
         }
 
@@ -163,6 +187,7 @@ export default function MapaSlok({ onReady }: Props) {
             svg.removeAttribute('width');
             svg.removeAttribute('height');
             attachOverlay(svg, false);
+            paintOsrodek(svg);
           }
         }
 
@@ -225,12 +250,12 @@ export default function MapaSlok({ onReady }: Props) {
           setSoldIds((prev) => (sameSet(prev, nextSold) ? prev : nextSold));
           setStage2Ids((prev) => (sameSet(prev, nextStage2) ? prev : nextStage2));
 
-          // malowanie "od razu" jeśli SVG już jest
           [desktopOverlayRef.current, mobileOverlayRef.current].forEach((root) => {
             const svg = root?.querySelector('svg') as SVGSVGElement | null;
             if (svg) {
               paintStage2(svg, nextStage2);
               paintSold(svg, nextSold);
+              paintOsrodek(svg);
             }
           });
         }
@@ -248,7 +273,7 @@ export default function MapaSlok({ onReady }: Props) {
     };
   }, []);
 
-  // ✅ KLUCZOWY FIX: repaint po tym jak SVG się pojawi (mobile timing)
+  // repaint po SVG
   useEffect(() => {
     if (!svgReady) return;
 
@@ -257,10 +282,14 @@ export default function MapaSlok({ onReady }: Props) {
       if (!svg) return;
       paintStage2(svg, stage2Ids);
       paintSold(svg, soldIds);
+      paintOsrodek(svg);
     });
 
-    // opcjonalnie: jeśli działka stała się sprzedana/etap2, zamknij kartę
-    if (activeId && (soldIds.has(activeId) || stage2Ids.has(activeId))) {
+    if (
+      activeId &&
+      activeId !== OSRODEK_ACTIVE_ID &&
+      (soldIds.has(activeId) || stage2Ids.has(activeId))
+    ) {
       setActiveId(null);
     }
   }, [svgReady, stage2Ids, soldIds, activeId]);
@@ -289,6 +318,13 @@ export default function MapaSlok({ onReady }: Props) {
 
       if (!isParcelId(id)) {
         setActiveId(null);
+        return;
+      }
+
+      // OŚRODEK: wspólna karta
+      if (id && OSRODEK_IDS.has(id)) {
+        svg.querySelectorAll('._active').forEach((n) => n.classList.remove('_active'));
+        setActiveId(OSRODEK_ACTIVE_ID);
         return;
       }
 
@@ -360,6 +396,36 @@ export default function MapaSlok({ onReady }: Props) {
     });
   }
 
+  // ✅ OŚRODEK: premium złoto-beż (czytelne na zieleni mapy)
+  function paintOsrodek(svg: SVGSVGElement) {
+    if (!svg.querySelector('style[data-osrodek-style]')) {
+      const st = document.createElement('style');
+      st.setAttribute('data-osrodek-style', '1');
+      st.textContent = `
+        ._osrodek {
+          fill: rgba(233, 200, 125, 0.38) !important;
+          stroke: rgba(243,239,245,0.95) !important;
+          stroke-width: 1.15;
+          filter: drop-shadow(0 0 7px rgba(233,200,125,.35));
+          transition: all .25s ease;
+        }
+        ._osrodek:hover {
+          fill: rgba(233, 200, 125, 0.56) !important;
+          filter: drop-shadow(0 0 11px rgba(233,200,125,.5));
+        }
+      `;
+      svg.appendChild(st);
+    }
+
+    OSRODEK_IDS.forEach((id) => {
+      const el = svg.getElementById(id);
+      if (!el) return;
+      el.classList.remove('_sold');
+      el.classList.remove('_stage2');
+      el.classList.add('_osrodek');
+    });
+  }
+
   return (
     <div className="mx-auto max-w-6xl">
       {/* DESKTOP */}
@@ -393,7 +459,8 @@ export default function MapaSlok({ onReady }: Props) {
         )}
 
         <AnimatePresence>
-          {activeId && (
+          {/* NORMAL CARD */}
+          {activeId && activeId !== OSRODEK_ACTIVE_ID && (
             <motion.div
               key="card-desktop"
               initial={{ translateY: '100%' }}
@@ -434,6 +501,57 @@ export default function MapaSlok({ onReady }: Props) {
                   className="w-full h-full object-contain"
                   draggable={false}
                 />
+              </div>
+            </motion.div>
+          )}
+
+          {/* OSRODEK CARD — PRZYCISK ZAWSZE WIDOCZNY (overlay na obrazku) */}
+          {activeId === OSRODEK_ACTIVE_ID && (
+            <motion.div
+              key="card-osrodek-desktop"
+              initial={{ translateY: '100%' }}
+              animate={{ translateY: 0 }}
+              exit={{ translateY: '100%' }}
+              transition={{ type: 'tween', duration: 0.35 }}
+              className="absolute inset-0 z-[60]"
+            >
+              <div
+                className="absolute inset-0 bg-[#0f1410]/98 border border-[#F3EFF5]/25"
+                onClick={() => setActiveId(null)}
+              >
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveId(null);
+                  }}
+                  aria-label="Zamknij"
+                  className="absolute top-3 right-4 text-[#F3EFF5] text-2xl z-20"
+                >
+                  ×
+                </button>
+
+                <div
+                  className="relative w-full h-full"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <img
+                    src={OSRODEK_IMAGE}
+                    alt="Ośrodek wypoczynkowy"
+                    className="absolute inset-0 w-full h-full object-contain select-none"
+                    draggable={false}
+                  />
+
+                  {/* PRZYCISK — pod tekstem (overlay) */}
+                  <button
+                    onClick={() => router.push(OSRODEK_HREF)}
+                    className="absolute left-1/2 bottom-[80px] -translate-x-1/2 px-10 py-3
+                               bg-[#F3EFF5] text-black border border-black/70
+                               shadow-[0_10px_30px_rgba(0,0,0,.45)]
+                               hover:bg-white transition"
+                  >
+                    ZOBACZ WIĘCEJ
+                  </button>
+                </div>
               </div>
             </motion.div>
           )}
@@ -485,35 +603,60 @@ export default function MapaSlok({ onReady }: Props) {
             style={{ minHeight: '100svh' }}
             onClick={() => setActiveId(null)}
           >
-            <div
-              className="relative w-[100svw] max-w-none aspect-[16/9] overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {(() => {
-                const price = activeId ? priceMap[activeId] : undefined;
-                return price ? (
-                  <div
-                    className="absolute left-2 bottom-2 z-10 bg-[#0f0f0f]/88 px-2.5 py-1 rounded-md shadow-lg backdrop-blur-sm"
-                    style={{ maxWidth: 'calc(100% - 16px)' }}
-                  >
-                    <span
-                      className="font-geist font-medium text-[#F3EFF5] leading-tight break-words"
-                      style={{ fontSize: 'clamp(12px, 3.6vw, 15px)' }}
-                    >
-                      {price}
-                    </span>
-                  </div>
-                ) : null;
-              })()}
+            {/* OSRODEK MOBILE */}
+            {activeId === OSRODEK_ACTIVE_ID ? (
+              <div
+                className="relative w-[100svw] max-w-none aspect-[16/9] overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={OSRODEK_IMAGE}
+                  alt="Ośrodek wypoczynkowy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  draggable={false}
+                />
 
-              <img
-                src={`/${activeId}.webp`}
-                alt={activeId ?? ''}
-                className="absolute inset-0 w-full h-full object-cover will-change-transform"
-                style={{ transform: `scale(${CARD_MOBILE_ZOOM})`, transformOrigin: '50% 50%' }}
-                draggable={false}
-              />
-            </div>
+                <button
+                  onClick={() => router.push(OSRODEK_HREF)}
+                  className="absolute left-1/2 bottom-3 -translate-x-1/2 px-8 py-2.5
+                             bg-[#F3EFF5] text-black border border-black/60
+                             shadow-lg"
+                >
+                  ZOBACZ WIĘCEJ
+                </button>
+              </div>
+            ) : (
+              /* NORMAL MOBILE */
+              <div
+                className="relative w-[100svw] max-w-none aspect-[16/9] overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {(() => {
+                  const price = activeId ? priceMap[activeId] : undefined;
+                  return price ? (
+                    <div
+                      className="absolute left-2 bottom-2 z-10 bg-[#0f0f0f]/88 px-2.5 py-1 rounded-md shadow-lg backdrop-blur-sm"
+                      style={{ maxWidth: 'calc(100% - 16px)' }}
+                    >
+                      <span
+                        className="font-geist font-medium text-[#F3EFF5] leading-tight break-words"
+                        style={{ fontSize: 'clamp(12px, 3.6vw, 15px)' }}
+                      >
+                        {price}
+                      </span>
+                    </div>
+                  ) : null;
+                })()}
+
+                <img
+                  src={`/${activeId}.webp`}
+                  alt={activeId ?? ''}
+                  className="absolute inset-0 w-full h-full object-cover will-change-transform"
+                  style={{ transform: `scale(${CARD_MOBILE_ZOOM})`, transformOrigin: '50% 50%' }}
+                  draggable={false}
+                />
+              </div>
+            )}
 
             <button
               onClick={(e) => {

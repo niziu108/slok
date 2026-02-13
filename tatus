@@ -1,0 +1,187 @@
+[33mcommit af98c0260db3067842f609d9ce0671b67b82a40b[m
+Author: Daniel <niziu108@gmail.com>
+Date:   Mon Feb 2 12:01:06 2026 +0100
+
+    Move hero video to local public
+
+[1mdiff --git a/src/components/HeroDesktop.tsx b/src/components/HeroDesktop.tsx[m
+[1mindex 3f61abf..3481cd1 100644[m
+[1m--- a/src/components/HeroDesktop.tsx[m
+[1m+++ b/src/components/HeroDesktop.tsx[m
+[36m@@ -98,16 +98,16 @@[m [mexport default function Hero() {[m
+       ref={wrapRef}[m
+       className="relative w-screen overflow-hidden bg-[#131313] min-h-[100svh] min-h-[100dvh]"[m
+     >[m
+[31m-      {/* WIDEO – Cloudinary */}[m
+[32m+[m[32m      {/* WIDEO – lokalnie z /public */}[m
+       <video[m
+         ref={vidRef}[m
+[31m-        src="https://res.cloudinary.com/dr4vmuq7v/video/upload/q_auto:good/film_lgxytw.mp4"[m
+[32m+[m[32m        src="/video/film.mp4"[m
+         autoPlay[m
+         loop[m
+         muted[m
+         playsInline[m
+         preload="metadata"[m
+[31m-        poster="https://res.cloudinary.com/dr4vmuq7v/video/upload/so_0/film_lgxytw.jpg"[m
+[32m+[m[32m        poster=""[m
+         className="pointer-events-none"[m
+         style={{ objectFit: 'cover', objectPosition: 'center' }}[m
+       />[m
+
+[33mcommit 8cc832a05142f16327e7056ed0cf23c2f0d8c6c1[m
+Author: Daniel <niziu108@gmail.com>
+Date:   Fri Jan 23 12:19:24 2026 +0100
+
+    initial: slok deploy-ready
+
+[1mdiff --git a/src/components/HeroDesktop.tsx b/src/components/HeroDesktop.tsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3f61abf[m
+[1m--- /dev/null[m
+[1m+++ b/src/components/HeroDesktop.tsx[m
+[36m@@ -0,0 +1,182 @@[m
+[32m+[m[32m'use client';[m
+[32m+[m
+[32m+[m[32mimport { useEffect, useRef, useState } from 'react';[m
+[32m+[m
+[32m+[m[32mexport default function Hero() {[m
+[32m+[m[32m  const wrapRef = useRef<HTMLDivElement>(null);[m
+[32m+[m[32m  const vidRef = useRef<HTMLVideoElement>(null);[m
+[32m+[m
+[32m+[m[32m  // AUDIO[m
+[32m+[m[32m  const audioRef = useRef<HTMLAudioElement>(null);[m
+[32m+[m[32m  const [playing, setPlaying] = useState(false);[m
+[32m+[m[32m  const [volume, setVolume] = useState(0.2); // start 20%[m
+[32m+[m[32m  const [progress, setProgress] = useState(0); // sekundy[m
+[32m+[m[32m  const [duration, setDuration] = useState(0); // sekundy[m
+[32m+[m
+[32m+[m[32m  const togglePlay = () => {[m
+[32m+[m[32m    const a = audioRef.current;[m
+[32m+[m[32m    if (!a) return;[m
+[32m+[m[32m    if (playing) {[m
+[32m+[m[32m      a.pause();[m
+[32m+[m[32m      setPlaying(false);[m
+[32m+[m[32m    } else {[m
+[32m+[m[32m      a.play().then(() => setPlaying(true)).catch(() => {});[m
+[32m+[m[32m    }[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  // zmiana głośności (pionowy slider)[m
+[32m+[m[32m  const changeVolume = (v: number) => {[m
+[32m+[m[32m    if (!audioRef.current) return;[m
+[32m+[m[32m    const val = Math.min(1, Math.max(0, v));[m
+[32m+[m[32m    audioRef.current.volume = val;[m
+[32m+[m[32m    setVolume(val);[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  // uaktualnianie postępu[m
+[32m+[m[32m  const onTime = () => {[m
+[32m+[m[32m    const a = audioRef.current;[m
+[32m+[m[32m    if (!a) return;[m
+[32m+[m[32m    setProgress(a.currentTime || 0);[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  const onLoaded = () => {[m
+[32m+[m[32m    const a = audioRef.current;[m
+[32m+[m[32m    if (!a) return;[m
+[32m+[m[32m    a.volume = 0.2; // start 20%[m
+[32m+[m[32m    setVolume(0.2);[m
+[32m+[m[32m    setDuration(a.duration || 0);[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  // przewijanie z dolnego paska[m
+[32m+[m[32m  const seek = (sec: number) => {[m
+[32m+[m[32m    const a = audioRef.current;[m
+[32m+[m[32m    if (!a) return;[m
+[32m+[m[32m    a.currentTime = Math.min(duration, Math.max(0, sec));[m
+[32m+[m[32m    setProgress(a.currentTime);[m
+[32m+[m[32m  };[m
+[32m+[m
+[32m+[m[32m  // dopasowanie wideo[m
+[32m+[m[32m  useEffect(() => {[m
+[32m+[m[32m    const wrap = wrapRef.current;[m
+[32m+[m[32m    const vid = vidRef.current;[m
+[32m+[m[32m    if (!wrap || !vid) return;[m
+[32m+[m
+[32m+[m[32m    const FIT = () => {[m
+[32m+[m[32m      const w = wrap.clientWidth;[m
+[32m+[m[32m      const h = wrap.clientHeight;[m
+[32m+[m[32m      const arWrap = w / h;[m
+[32m+[m[32m      const arVid = 16 / 9;[m
+[32m+[m
+[32m+[m[32m      if (arWrap < arVid) {[m
+[32m+[m[32m        vid.style.height = `${h}px`;[m
+[32m+[m[32m        vid.style.width = `${h * arVid}px`;[m
+[32m+[m[32m      } else {[m
+[32m+[m[32m        vid.style.width = `${w}px`;[m
+[32m+[m[32m        vid.style.height = `${w / arVid}px`;[m
+[32m+[m[32m      }[m
+[32m+[m
+[32m+[m[32m      vid.style.position = 'absolute';[m
+[32m+[m[32m      vid.style.top = '50%';[m
+[32m+[m[32m      vid.style.left = '50%';[m
+[32m+[m[32m      vid.style.transform = 'translate(-50%, -50%)';[m
+[32m+[m[32m    };[m
+[32m+[m
+[32m+[m[32m    const ro = new ResizeObserver(FIT);[m
+[32m+[m[32m    ro.observe(wrap);[m
+[32m+[m[32m    (window as any).visualViewport?.addEventListener('resize', FIT);[m
+[32m+[m[32m    FIT();[m
+[32m+[m
+[32m+[m[32m    return () => {[m
+[32m+[m[32m      ro.disconnect();[m
+[32m+[m[32m      (window as any).visualViewport?.removeEventListener('resize', FIT);[m
+[32m+[m[32m    };[m
+[32m+[m[32m  }, []);[m
+[32m+[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <section[m
+[32m+[m[32m      id="hero"[m
+[32m+[m[32m      ref={wrapRef}[m
+[32m+[m[32m      className="relative w-screen overflow-hidden bg-[#131313] min-h-[100svh] min-h-[100dvh]"[m
+[32m+[m[32m    >[m
+[32m+[m[32m      {/* WIDEO – Cloudinary */}[m
+[32m+[m[32m      <video[m
+[32m+[m[32m        ref={vidRef}[m
+[32m+[m[32m        src="https://res.cloudinary.com/dr4vmuq7v/video/upload/q_auto:good/film_lgxytw.mp4"[m
+[32m+[m[32m        autoPlay[m
+[32m+[m[32m        loop[m
+[32m+[m[32m        muted[m
+[32m+[m[32m        playsInline[m
+[32m+[m[32m        preload="metadata"[m
+[32m+[m[32m        poster="https://res.cloudinary.com/dr4vmuq7v/video/upload/so_0/film_lgxytw.jpg"[m
+[32m+[m[32m        className="pointer-events-none"[m
+[32m+[m[32m        style={{ objectFit: 'cover', objectPosition: 'center' }}[m
+[32m+[m[32m      />[m
+[32m+[m
+[32m+[m[32m      {/* lekki filtr */}[m
+[32m+[m[32m      <div className="absolute inset-0 bg-black/10" />[m
+[32m+[m
+[32m+[m[32m      {/* AUDIO */}[m
+[32m+[m[32m      <audio[m
+[32m+[m[32m        ref={audioRef}[m
+[32m+[m[32m        src="/slok.mp3"[m
+[32m+[m[32m        preload="none"[m
+[32m+[m[32m        onTimeUpdate={onTime}[m
+[32m+[m[32m        onLoadedMetadata={onLoaded}[m
+[32m+[m[32m        onEnded={() => setPlaying(false)}[m
+[32m+[m[32m      />[m
+[32m+[m
+[32m+[m[32m      {/* Kontrolki */}[m
+[32m+[m[32m      <div className="pointer-events-none absolute inset-x-0 bottom-0 pb-10 flex flex-col items-center justify-end">[m
+[32m+[m[32m        <div className="absolute -z-[1] inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/60 to-transparent" />[m
+[32m+[m
+[32m+[m[32m        <div className="pointer-events-auto flex items-center gap-6 px-5">[m
+[32m+[m[32m          <button[m
+[32m+[m[32m            onClick={togglePlay}[m
+[32m+[m[32m            aria-label={playing ? 'Zatrzymaj' : 'Odtwórz'}[m
+[32m+[m[32m            className="grid h-14 w-14 place-items-center rounded-full border border-[#F3EFF5] bg-[#131313]/70 backdrop-blur-sm text-[#F3EFF5] transition hover:bg-[#131313]/90"[m
+[32m+[m[32m          >[m
+[32m+[m[32m            {!playing ? ([m
+[32m+[m[32m              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">[m
+[32m+[m[32m                <path d="M8 5v14l11-7-11-7z" />[m
+[32m+[m[32m              </svg>[m
+[32m+[m[32m            ) : ([m
+[32m+[m[32m              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">[m
+[32m+[m[32m                <pat
