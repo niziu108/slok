@@ -103,7 +103,7 @@ export default function OsrodekClient() {
           <p>
             Obiekt obejmuje cztery niezależne domy oferujące łącznie 47 miejsc noclegowych.
             Każdy dom wyposażony jest w kuchnię, a pokoje posiadają prywatne łazienki.
-            Na terenie znajduje się również wydzielone camperowisko.
+            Na terenie znajduje się również wydzielone kamperowisko.
           </p>
 
           <p>
