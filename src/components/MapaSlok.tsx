@@ -77,6 +77,7 @@ const PURPOSE: Record<string, string> = {
   '2138-31': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-30': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-29': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
+
   '2138-6': 'Ośrodek wypoczynkowy',
   '2138-5': 'Ośrodek wypoczynkowy',
   '2138-4': 'Ośrodek wypoczynkowy',
@@ -87,6 +88,7 @@ const PURPOSE: Record<string, string> = {
   '2138-9': 'Ośrodek wypoczynkowy',
   '2138-10': 'Ośrodek wypoczynkowy',
   '2138-11': 'Ośrodek wypoczynkowy',
+
   '2138-45': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-46': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
   '2138-47': 'Zabudowa mieszkaniowa jednorodzinna i usługowa',
@@ -396,7 +398,7 @@ export default function MapaSlok({ onReady }: Props) {
     });
   }
 
-  // ✅ OŚRODEK: premium złoto-beż (czytelne na zieleni mapy)
+  // ✅ OŚRODEK: premium złoto-beż
   function paintOsrodek(svg: SVGSVGElement) {
     if (!svg.querySelector('style[data-osrodek-style]')) {
       const st = document.createElement('style');
@@ -505,7 +507,7 @@ export default function MapaSlok({ onReady }: Props) {
             </motion.div>
           )}
 
-          {/* OSRODEK CARD — PRZYCISK ZAWSZE WIDOCZNY (overlay na obrazku) */}
+          {/* OSRODEK CARD — DESKTOP */}
           {activeId === OSRODEK_ACTIVE_ID && (
             <motion.div
               key="card-osrodek-desktop"
@@ -541,10 +543,9 @@ export default function MapaSlok({ onReady }: Props) {
                     draggable={false}
                   />
 
-                  {/* PRZYCISK — pod tekstem (overlay) */}
                   <button
                     onClick={() => router.push(OSRODEK_HREF)}
-                    className="absolute left-1/2 bottom-[80px] -translate-x-1/2 px-10 py-3
+                    className="absolute left-1/2 bottom-[20px] -translate-x-1/2 px-10 py-3
                                bg-[#F3EFF5] text-black border border-black/70
                                shadow-[0_10px_30px_rgba(0,0,0,.45)]
                                hover:bg-white transition"
@@ -603,7 +604,7 @@ export default function MapaSlok({ onReady }: Props) {
             style={{ minHeight: '100svh' }}
             onClick={() => setActiveId(null)}
           >
-            {/* OSRODEK MOBILE */}
+            {/* OSRODEK MOBILE — PRZYCISK W MIEJSCU CENY */}
             {activeId === OSRODEK_ACTIVE_ID ? (
               <div
                 className="relative w-[100svw] max-w-none aspect-[16/9] overflow-hidden"
@@ -616,14 +617,23 @@ export default function MapaSlok({ onReady }: Props) {
                   draggable={false}
                 />
 
-                <button
-                  onClick={() => router.push(OSRODEK_HREF)}
-                  className="absolute left-1/2 bottom-3 -translate-x-1/2 px-8 py-2.5
-                             bg-[#F3EFF5] text-black border border-black/60
-                             shadow-lg"
-                >
-                  ZOBACZ WIĘCEJ
-                </button>
+                {/* ✅ zamiast na środku: mały przycisk w lewym dolnym rogu (jak cena) */}
+                <div className="absolute left-2 bottom-2 z-10">
+                  <button
+                    onClick={() => router.push(OSRODEK_HREF)}
+                    className="
+                      bg-[#F3EFF5]/95 text-black
+                      px-3 py-1.5
+                      text-[12px]
+                      tracking-[0.12em]
+                      uppercase
+                      border border-black/60
+                      shadow-lg
+                    "
+                  >
+                    ZOBACZ WIĘCEJ
+                  </button>
+                </div>
               </div>
             ) : (
               /* NORMAL MOBILE */
