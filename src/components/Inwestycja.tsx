@@ -98,7 +98,7 @@ export default function Inwestycja() {
           variants={riseSlow}
           className="mt-8 md:mt-10 text-lg md:text-2xl max-w-[75ch] mx-auto"
         >
-          Oferujemy działki budowlane, inwestycyjne i rekreacyjne położone wśród lasów, w bezpośrednim sąsiedztwie
+          Oferujemy działki budowlane, inwestycyjne i rekreacyjne z prawem wieczystego użytkowania, położone wśród lasów, w bezpośrednim sąsiedztwie
           zalewu Słok, dla tych, którzy chcą ciszy, przestrzeni i natury, bez rezygnacji z wygody. Dla inwestycji
           podpisane są umowy na przyłącza energetyczne z PGE, a warunki przyłączenia do sieci wodociągowej zostały
           wydane przez Urząd Gminy Bełchatów. Dla terenu obowiązuje miejscowy plan zagospodarowania przestrzennego
