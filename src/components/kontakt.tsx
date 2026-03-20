@@ -167,11 +167,11 @@ export default function Kontakt() {
                 </a>
 
                 <a href="tel:519770923" className="block text-lg mt-3 hover:text-[#F3EFF5] transition">
-                  Paula Matuszewska – 519&nbsp;770&nbsp;923
+                  519&nbsp;770&nbsp;923
                 </a>
 
                 <a href="tel:530417924" className="block text-lg hover:text-[#F3EFF5] transition">
-                  Monika Kiełbik – 530&nbsp;417&nbsp;924
+                  530&nbsp;417&nbsp;924
                 </a>
 
                 {/* ✅ DOPISEK: SPRZEDAŻ NA FAKTURĘ VAT (desktop lewo / mobile środek) */}
