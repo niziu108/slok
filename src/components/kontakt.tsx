@@ -171,13 +171,13 @@ export default function Kontakt() {
                 </a>
 
                 <a href="tel:530417924" className="block text-lg hover:text-[#F3EFF5] transition">
-                  530&nbsp;417&nbsp;924
+                  Monika Kiełbik -530&nbsp;417&nbsp;924
                 </a>
 
                 {/* ✅ DOPISEK: SPRZEDAŻ NA FAKTURĘ VAT (desktop lewo / mobile środek) */}
                 <div className="mt-4 text-left text-lg font-semibold sm:text-lg sm:font-semibold">
                   <div className="mx-auto w-fit lg:mx-0 lg:w-auto text-center lg:text-left">
-                    Sprzedaż (faktura 23% VAT), prawa użytkowania wieczystego do 05.12.2089 roku.
+                    Sprzedaż (faktura 23% VAT).
                   </div>
                 </div>
               </div>
