@@ -167,7 +167,7 @@ export default function Kontakt() {
                 </a>
 
                 <a href="tel:519770923" className="block text-lg mt-3 hover:text-[#F3EFF5] transition">
-                  519&nbsp;770&nbsp;923
+                  Paula Matuszewska - 519&nbsp;770&nbsp;923
                 </a>
 
                 <a href="tel:530417924" className="block text-lg hover:text-[#F3EFF5] transition">
