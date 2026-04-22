@@ -174,6 +174,10 @@ export default function Kontakt() {
                   Monika Kiełbik - 530&nbsp;417&nbsp;924
                 </a>
 
+                <a href="tel:519770923" className="block text-lg mt-3 hover:text-[#F3EFF5] transition">
+                  Marcin Rzepecki - 605&nbsp;821&nbsp;596
+                </a>
+              
                 {/* ✅ DOPISEK: SPRZEDAŻ NA FAKTURĘ VAT (desktop lewo / mobile środek) */}
                 <div className="mt-4 text-left text-lg font-semibold sm:text-lg sm:font-semibold">
                   <div className="mx-auto w-fit lg:mx-0 lg:w-auto text-center lg:text-left">
