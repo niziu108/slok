@@ -174,7 +174,7 @@ export default function Kontakt() {
                   Monika Kiełbik - 530&nbsp;417&nbsp;924
                 </a>
 
-                <a href="tel:519770923" className="block text-lg mt-3 hover:text-[#F3EFF5] transition">
+                <a href="tel:519770923" className="block text-lg hover:text-[#F3EFF5] transition">
                   Marcin Rzepecki - 605&nbsp;821&nbsp;596
                 </a>
               
