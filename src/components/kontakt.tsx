@@ -171,7 +171,7 @@ export default function Kontakt() {
                 </a>
 
                 <a href="tel:575831006" className="block text-lg hover:text-[#F3EFF5] transition">
-                  Monika Kiełbik - 530&nbsp;417&nbsp;924
+                  Monika Kiełbik - 575&nbsp;831&nbsp;006
                 </a>
 
                 <a href="tel:519770923" className="block text-lg hover:text-[#F3EFF5] transition">
