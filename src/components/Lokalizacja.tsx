@@ -103,7 +103,6 @@ export default function Lokalizacja() {
             src="/mapaslok.webp"
             alt="Mapa lokalizacji Osady SŁOK"
             fill
-            priority
             className="object-cover"
             draggable={false}
             sizes="100vw"

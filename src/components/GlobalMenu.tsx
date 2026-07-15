@@ -315,7 +315,6 @@ export default function GlobalMenu() {
                     width={120}
                     height={36}
                     className="mx-auto object-contain invert"
-                    priority
                   />
                 </Link>
               </div>

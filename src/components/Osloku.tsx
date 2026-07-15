@@ -23,7 +23,6 @@ export default function OSloku() {
         alt="Słok z lotu ptaka"
         fill
         className="object-cover z-0"
-        priority
         sizes="100vw"
       />
 

@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: SITE_DESC,
     images: [
       {
-        url: `${SITE_URL}/og-v2.png`,
+        url: `${SITE_URL}/og.jpg`,
         width: 1200,
         height: 630,
         alt: "Osada SŁOK – działki nad wodą",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_NAME} — działki na sprzedaż`,
     description: SITE_DESC,
-    images: [`${SITE_URL}/og-v2.png`],
+    images: [`${SITE_URL}/og.jpg`],
   },
 
   robots: { index: true, follow: true },
@@ -91,9 +91,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PageLoader
           logoSrc="/logo-mobile.png"
           bg="#131313"
-          minShowMs={2000}
-          fadeMs={900}
-          maxTotalMs={7000}
+          minShowMs={0}
+          fadeMs={400}
+          maxTotalMs={3000}
         />
 
         {/* ✅ CookieBar tylko raz i na końcu body */}

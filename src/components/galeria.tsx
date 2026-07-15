@@ -258,7 +258,7 @@ export default function Galeria() {
                   fill
                   sizes="100vw"
                   className="object-cover pointer-events-none"
-                  priority={i < 3}
+                  loading="lazy"
                 />
               </div>
             </div>

@@ -78,7 +78,6 @@ export default function DlaInwestora() {
               width={120}
               height={120}
               className="opacity-90"
-              priority
             />
             <span className="font-evalinor uppercase text-3xl md:text-6xl leading-[0.92] tracking-[0.035em] text-[#F3EFF5]">
               DLA INWESTORA

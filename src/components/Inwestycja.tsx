@@ -168,7 +168,6 @@ export default function Inwestycja() {
             fill
             sizes="(max-width: 768px) 100vw"
             className="object-contain select-none"
-            priority
             draggable={false}
           />
         </motion.div>
@@ -184,10 +183,9 @@ export default function Inwestycja() {
       >
         <Image
           src="/SLOK1.webp"
-          alt="SŁOK — główne ujęcie 16×9"
+          alt="Osada SŁOK z lotu ptaka: działki nad zbiornikiem Słok koło Bełchatowa"
           fill
           sizes="100vw"
-          priority
           draggable={false}
           className="object-cover"
         />

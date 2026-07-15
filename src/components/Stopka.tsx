@@ -47,7 +47,6 @@ export default function Stopka() {
               width={200}
               height={70}
               className="h-[120px] w-auto md:h-[160px] invert"
-              priority
             />
           </div>
 
