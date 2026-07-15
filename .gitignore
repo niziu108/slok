@@ -48,5 +48,7 @@ public/film.mp4
 *.mp4
 
 # --- ALLOW HERO VIDEO ---
+# Nazwa jest wersjonowana (film-hd.mp4), bo podmiana pliku pod ta sama nazwa
+# nie dociera do osob, ktore maja stara wersje w cache przegladarki.
 !public/video/
-!public/video/film.mp4
+!public/video/*.mp4

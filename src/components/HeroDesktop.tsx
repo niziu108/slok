@@ -139,7 +139,7 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
       {/* WIDEO – tło */}
       <video
         ref={vidRef}
-        src="/video/film.mp4"
+        src="/video/film-hd.mp4"
         poster="/hero-poster-hd.webp"
         autoPlay
         loop
