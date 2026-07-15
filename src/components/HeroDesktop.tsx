@@ -140,7 +140,7 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
       <video
         ref={vidRef}
         src="/video/film.mp4"
-        poster="/hero-poster.webp"
+        poster="/hero-poster-v2.webp"
         autoPlay
         loop
         muted
