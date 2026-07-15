@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { formatPLN, dostepneLabel, type HeroStats } from '@/lib/parcelFormat';
 
-const TELEFON = '519 770 923';
-
 export default function Hero({ stats }: { stats?: HeroStats | null }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const vidRef = useRef<HTMLVideoElement>(null);
@@ -142,15 +140,10 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
           </span>
         </h1>
 
-        <p className="mt-6 max-w-[52ch] text-[clamp(0.95rem,1.5vw,1.2rem)] leading-relaxed text-[#F3EFF5]/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.55)]">
-          Działki budowlane, usługowe i rekreacyjne w otoczeniu lasu, przy samej wodzie.
-          Prąd i woda, obowiązujący miejscowy plan zagospodarowania (MPZP).
-        </p>
-
         {/* Stan oferty: liczony na serwerze, więc jest w HTML dla Google.
             Gdy brak danych, nie renderujemy nic zamiast zmyślać liczbę. */}
         {stats && (
-          <p className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[clamp(0.9rem,1.4vw,1.1rem)] text-[#F3EFF5]">
+          <p className="mt-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[clamp(0.95rem,1.5vw,1.2rem)] text-[#F3EFF5] drop-shadow-[0_1px_10px_rgba(0,0,0,0.55)]">
             <span className="font-semibold">{dostepneLabel(stats.dostepne)}</span>
             {stats.cenaOd !== null && (
               <>
@@ -165,21 +158,14 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
           </p>
         )}
 
-        {/* CTA */}
-        <div className="mt-9 flex w-full max-w-md flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
+        {/* CTA — jedno. Dwa przyciski konkurowały ze sobą i rozmywały decyzję. */}
+        <div className="mt-9">
           <Link
             href="/wyszukiwarka"
-            className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-8 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] transition hover:bg-white active:scale-[0.99]"
+            className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-10 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] transition hover:bg-white active:scale-[0.99]"
           >
-            Zobacz dostępne działki
+            Zobacz działki
           </Link>
-
-          <a
-            href={`tel:${TELEFON.replace(/\s/g, '')}`}
-            className="inline-flex items-center justify-center rounded-full border border-[#F3EFF5]/70 px-8 py-4 text-sm uppercase tracking-[0.14em] text-[#F3EFF5] backdrop-blur-sm transition hover:bg-[#F3EFF5] hover:text-[#131313] active:scale-[0.99]"
-          >
-            Zadzwoń {TELEFON}
-          </a>
         </div>
       </div>
 
