@@ -151,13 +151,15 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
         aria-hidden="true"
       />
 
-      {/* Przyciemnienie pod tekst: mocniej u góry i u dołu, żeby treść była czytelna
-          na każdej klatce filmu, nie tylko na ciemnych ujęciach. */}
+      {/* Film jest bohaterem tego ekranu, więc NIE przyciemniamy go w całości.
+          Cień kładziemy tylko tam, gdzie faktycznie leży tekst: wąski pas u góry
+          i u dołu. Środek kadru zostaje czysty. Czytelność liter niesie przede
+          wszystkim text-shadow na samym tekście, nie zasłona na obrazie. */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(19,19,19,0.72) 0%, rgba(19,19,19,0.45) 42%, rgba(19,19,19,0.55) 72%, rgba(19,19,19,0.92) 100%)',
+            'linear-gradient(to bottom, rgba(19,19,19,0.50) 0%, rgba(19,19,19,0.14) 22%, rgba(19,19,19,0) 38%, rgba(19,19,19,0) 58%, rgba(19,19,19,0.20) 78%, rgba(19,19,19,0.62) 100%)',
         }}
       />
 
@@ -171,25 +173,29 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
         onEnded={() => setPlaying(false)}
       />
 
-      {/* ---------- TREŚĆ ---------- */}
-      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-5 pt-20 pb-28 text-center">
-        <h1 className="font-evalinor uppercase text-[#F3EFF5] drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
-          <span className="block leading-[0.92] tracking-tight text-[clamp(2.1rem,6.4vw,5.4rem)]">
-            Działki nad zalewem Słok
-          </span>
-          <span className="mt-3 block leading-tight tracking-[0.06em] text-[clamp(0.95rem,2vw,1.6rem)] text-[#F3EFF5]/85">
-            9 km od Bełchatowa
-          </span>
+      {/* ---------- TREŚĆ ----------
+          Układ: tekst przy górnej krawędzi, przycisk przy dolnej, środek pusty.
+          Dzięki temu środek kadru filmu nie jest niczym zasłonięty. */}
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-5 pb-3 pt-[calc(3.5rem+1.25rem)] text-center md:pt-24">
+        {/* GÓRA */}
+        <h1
+          className="font-evalinor uppercase leading-[0.92] tracking-tight text-[#F3EFF5] text-[clamp(2.1rem,6.6vw,5.4rem)]"
+          style={{ textShadow: '0 2px 22px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.5)' }}
+        >
+          Działki nad zalewem Słok
         </h1>
 
         {/* Stan oferty: liczony na serwerze, więc jest w HTML dla Google.
             Gdy brak danych, nie renderujemy nic zamiast zmyślać liczbę. */}
         {stats && (
-          <p className="mt-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[clamp(0.95rem,1.5vw,1.2rem)] text-[#F3EFF5] drop-shadow-[0_1px_10px_rgba(0,0,0,0.55)]">
+          <p
+            className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[clamp(0.95rem,1.5vw,1.2rem)] text-[#F3EFF5]"
+            style={{ textShadow: '0 1px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.55)' }}
+          >
             <span className="font-semibold">{dostepneLabel(stats.dostepne)}</span>
             {stats.cenaOd !== null && (
               <>
-                <span aria-hidden className="text-[#F3EFF5]/40">
+                <span aria-hidden className="text-[#F3EFF5]/50">
                   ·
                 </span>
                 <span>
@@ -200,20 +206,19 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
           </p>
         )}
 
-        {/* CTA — jedno. Dwa przyciski konkurowały ze sobą i rozmywały decyzję. */}
-        <div className="mt-9">
-          <Link
-            href="/wyszukiwarka"
-            className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-10 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] transition hover:bg-white active:scale-[0.99]"
-          >
-            Zobacz działki
-          </Link>
-        </div>
-      </div>
+        {/* ŚRODEK: celowo puste. Tu widać film. */}
+        <div className="flex-1" />
 
-      {/* ---------- NARRACJA (na dole, nie zabiera uwagi CTA) ---------- */}
-      <div className="absolute inset-x-0 bottom-0 z-10 pb-5">
-        <div className="mx-auto flex max-w-xl items-center gap-3 px-5">
+        {/* DÓŁ: przycisk bezpośrednio nad narracją */}
+        <Link
+          href="/wyszukiwarka"
+          className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-10 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition hover:bg-white active:scale-[0.99]"
+        >
+          Zobacz działki
+        </Link>
+
+        {/* NARRACJA — tuż pod przyciskiem */}
+        <div className="mt-4 flex w-full max-w-xl items-center gap-3">
           <button
             onClick={togglePlay}
             aria-label={playing ? 'Zatrzymaj nagranie o inwestycji' : 'Odtwórz nagranie o inwestycji'}
