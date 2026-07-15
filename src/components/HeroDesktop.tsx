@@ -45,6 +45,48 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
     setProgress(a.currentTime);
   };
 
+  // Autoodtwarzanie na telefonie.
+  // Sam atrybut autoPlay nie wystarcza: iOS i Chrome na Androidzie regularnie
+  // go ignorują i trzeba wywołać play() z kodu. Dodatkowo play() bywa odrzucone,
+  // gdy strona nie jest jeszcze widoczna, więc ponawiamy przy pierwszym dotknięciu
+  // i po powrocie do karty. Gdy mimo wszystko się nie uda (np. tryb niskiego
+  // zużycia energii na iPhonie blokuje autoplay systemowo), zostaje plakat.
+  useEffect(() => {
+    const v = vidRef.current;
+    if (!v) return;
+
+    // iOS odtworzy bez gestu użytkownika tylko materiał wyciszony.
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+
+    let done = false;
+    const tryPlay = () => {
+      if (done) return;
+      const p = v.play();
+      if (p && typeof p.then === 'function') {
+        p.then(() => { done = true; }).catch(() => { /* czekamy na gest */ });
+      }
+    };
+
+    tryPlay();
+
+    const onVisible = () => { if (document.visibilityState === 'visible') tryPlay(); };
+    const onGesture = () => tryPlay();
+
+    document.addEventListener('visibilitychange', onVisible);
+    document.addEventListener('touchstart', onGesture, { passive: true });
+    document.addEventListener('click', onGesture);
+    window.addEventListener('scroll', onGesture, { passive: true });
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisible);
+      document.removeEventListener('touchstart', onGesture);
+      document.removeEventListener('click', onGesture);
+      window.removeEventListener('scroll', onGesture);
+    };
+  }, []);
+
   // dopasowanie wideo (cover bez zniekształceń)
   useEffect(() => {
     const wrap = wrapRef.current;

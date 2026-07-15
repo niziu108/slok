@@ -13,9 +13,10 @@ import SeoSiteSchema from "@/components/SeoSiteSchema";
 import { getHeroStats } from "@/lib/parcelStats";
 
 // Stan oferty (dostępne działki, cena od) jest liczony na serwerze, więc musi się
-// odświeżać. 10 min to kompromis: liczby w HTML dla Google, bez uderzania w Redis
-// przy każdym wejściu.
-export const revalidate = 600;
+// odświeżać sam po oznaczeniu działki jako sprzedanej w panelu. 60 s = tyle samo,
+// co odpytywanie mapy, żeby licznik w hero i kolory na mapie nie rozjeżdżały się
+// w czasie. Koszt to jeden odczyt z Redisa na minutę, czyli nic.
+export const revalidate = 60;
 
 export default async function Home() {
   const stats = await getHeroStats();
