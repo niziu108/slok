@@ -1,5 +1,3 @@
-'use client';
-
 import GlobalMenu from "@/components/GlobalMenu";
 import HeroDesktop from "@/components/HeroDesktop";
 import Inwestycja from "@/components/Inwestycja";
@@ -12,7 +10,16 @@ import Kontakt from "@/components/kontakt";
 import SectionHashOnScroll from "@/components/SectionHashOnScroll";
 import SeoSiteSchema from "@/components/SeoSiteSchema";
 
-export default function Home() {
+import { getHeroStats } from "@/lib/parcelStats";
+
+// Stan oferty (dostępne działki, cena od) jest liczony na serwerze, więc musi się
+// odświeżać. 10 min to kompromis: liczby w HTML dla Google, bez uderzania w Redis
+// przy każdym wejściu.
+export const revalidate = 600;
+
+export default async function Home() {
+  const stats = await getHeroStats();
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#fbfaf5]">
       {/* Hash w adresie podczas scrolla */}
@@ -22,7 +29,7 @@ export default function Home() {
 
       {/* HERO (obsługuje mobil + desktop) */}
       <section id="hero">
-        <HeroDesktop />
+        <HeroDesktop stats={stats} />
       </section>
 
       <section id="inwestycja">

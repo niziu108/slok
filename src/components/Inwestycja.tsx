@@ -60,8 +60,9 @@ export default function Inwestycja() {
           />
         </motion.div>
 
-        {/* TYTUŁ — animacja liter, łamanie między słowami */}
-        <h1
+        {/* TYTUŁ — animacja liter, łamanie między słowami.
+            H2, nie H1: głównym nagłówkiem strony jest teraz hero. */}
+        <h2
           className="
             font-evalinor uppercase text-center mx-auto max-w-[92vw]
             leading-[0.82] tracking-[-0.035em] [word-spacing:-0.06em]
@@ -88,7 +89,7 @@ export default function Inwestycja() {
               ))}
             </span>
           ))}
-        </h1>
+        </h2>
 
         {/* OPIS — jak wcześniej + dopisane MPZP */}
         <motion.p

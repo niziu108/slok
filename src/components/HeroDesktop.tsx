@@ -1,17 +1,20 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { formatPLN, dostepneLabel, type HeroStats } from '@/lib/parcelFormat';
 
-export default function Hero() {
+const TELEFON = '519 770 923';
+
+export default function Hero({ stats }: { stats?: HeroStats | null }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const vidRef = useRef<HTMLVideoElement>(null);
 
-  // AUDIO
+  // AUDIO (narracja o inwestycji)
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.2); // start 20%
-  const [progress, setProgress] = useState(0); // sekundy
-  const [duration, setDuration] = useState(0); // sekundy
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const togglePlay = () => {
     const a = audioRef.current;
@@ -24,15 +27,6 @@ export default function Hero() {
     }
   };
 
-  // zmiana głośności (pionowy slider)
-  const changeVolume = (v: number) => {
-    if (!audioRef.current) return;
-    const val = Math.min(1, Math.max(0, v));
-    audioRef.current.volume = val;
-    setVolume(val);
-  };
-
-  // uaktualnianie postępu
   const onTime = () => {
     const a = audioRef.current;
     if (!a) return;
@@ -42,12 +36,10 @@ export default function Hero() {
   const onLoaded = () => {
     const a = audioRef.current;
     if (!a) return;
-    a.volume = 0.2; // start 20%
-    setVolume(0.2);
+    a.volume = 0.5;
     setDuration(a.duration || 0);
   };
 
-  // przewijanie z dolnego paska
   const seek = (sec: number) => {
     const a = audioRef.current;
     if (!a) return;
@@ -55,7 +47,7 @@ export default function Hero() {
     setProgress(a.currentTime);
   };
 
-  // dopasowanie wideo
+  // dopasowanie wideo (cover bez zniekształceń)
   useEffect(() => {
     const wrap = wrapRef.current;
     const vid = vidRef.current;
@@ -92,13 +84,19 @@ export default function Hero() {
     };
   }, []);
 
+  const mmss = (s: number) => {
+    const m = Math.floor(s / 60);
+    const r = Math.floor(s % 60);
+    return `${m}:${String(r).padStart(2, '0')}`;
+  };
+
   return (
     <section
       id="hero"
       ref={wrapRef}
       className="relative w-screen overflow-hidden bg-[#131313] min-h-[100svh] min-h-[100dvh]"
     >
-      {/* WIDEO – lokalnie z /public */}
+      {/* WIDEO – tło */}
       <video
         ref={vidRef}
         src="/video/film.mp4"
@@ -110,12 +108,20 @@ export default function Hero() {
         preload="metadata"
         className="pointer-events-none"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
+        aria-hidden="true"
       />
 
-      {/* lekki filtr */}
-      <div className="absolute inset-0 bg-black/10" />
+      {/* Przyciemnienie pod tekst: mocniej u góry i u dołu, żeby treść była czytelna
+          na każdej klatce filmu, nie tylko na ciemnych ujęciach. */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(19,19,19,0.72) 0%, rgba(19,19,19,0.45) 42%, rgba(19,19,19,0.55) 72%, rgba(19,19,19,0.92) 100%)',
+        }}
+      />
 
-      {/* AUDIO */}
+      {/* AUDIO (narracja) */}
       <audio
         ref={audioRef}
         src="/slok.mp3"
@@ -125,56 +131,98 @@ export default function Hero() {
         onEnded={() => setPlaying(false)}
       />
 
-      {/* Kontrolki */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 pb-10 flex flex-col items-center justify-end">
-        <div className="absolute -z-[1] inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/60 to-transparent" />
+      {/* ---------- TREŚĆ ---------- */}
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-5 pt-20 pb-28 text-center">
+        <h1 className="font-evalinor uppercase text-[#F3EFF5] drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
+          <span className="block leading-[0.92] tracking-tight text-[clamp(2.1rem,6.4vw,5.4rem)]">
+            Działki nad zalewem Słok
+          </span>
+          <span className="mt-3 block leading-tight tracking-[0.06em] text-[clamp(0.95rem,2vw,1.6rem)] text-[#F3EFF5]/85">
+            9 km od Bełchatowa
+          </span>
+        </h1>
 
-        <div className="pointer-events-auto flex items-center gap-6 px-5">
+        <p className="mt-6 max-w-[52ch] text-[clamp(0.95rem,1.5vw,1.2rem)] leading-relaxed text-[#F3EFF5]/90 drop-shadow-[0_1px_10px_rgba(0,0,0,0.55)]">
+          Działki budowlane, usługowe i rekreacyjne w otoczeniu lasu, przy samej wodzie.
+          Prąd i woda, obowiązujący miejscowy plan zagospodarowania (MPZP).
+        </p>
+
+        {/* Stan oferty: liczony na serwerze, więc jest w HTML dla Google.
+            Gdy brak danych, nie renderujemy nic zamiast zmyślać liczbę. */}
+        {stats && (
+          <p className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[clamp(0.9rem,1.4vw,1.1rem)] text-[#F3EFF5]">
+            <span className="font-semibold">{dostepneLabel(stats.dostepne)}</span>
+            {stats.cenaOd !== null && (
+              <>
+                <span aria-hidden className="text-[#F3EFF5]/40">
+                  ·
+                </span>
+                <span>
+                  ceny od <span className="font-semibold">{formatPLN(stats.cenaOd)}</span>
+                </span>
+              </>
+            )}
+          </p>
+        )}
+
+        {/* CTA */}
+        <div className="mt-9 flex w-full max-w-md flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
+          <Link
+            href="/wyszukiwarka"
+            className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-8 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] transition hover:bg-white active:scale-[0.99]"
+          >
+            Zobacz dostępne działki
+          </Link>
+
+          <a
+            href={`tel:${TELEFON.replace(/\s/g, '')}`}
+            className="inline-flex items-center justify-center rounded-full border border-[#F3EFF5]/70 px-8 py-4 text-sm uppercase tracking-[0.14em] text-[#F3EFF5] backdrop-blur-sm transition hover:bg-[#F3EFF5] hover:text-[#131313] active:scale-[0.99]"
+          >
+            Zadzwoń {TELEFON}
+          </a>
+        </div>
+      </div>
+
+      {/* ---------- NARRACJA (na dole, nie zabiera uwagi CTA) ---------- */}
+      <div className="absolute inset-x-0 bottom-0 z-10 pb-5">
+        <div className="mx-auto flex max-w-xl items-center gap-3 px-5">
           <button
             onClick={togglePlay}
-            aria-label={playing ? 'Zatrzymaj' : 'Odtwórz'}
-            className="grid h-14 w-14 place-items-center rounded-full border border-[#F3EFF5] bg-[#131313]/70 backdrop-blur-sm text-[#F3EFF5] transition hover:bg-[#131313]/90"
+            aria-label={playing ? 'Zatrzymaj nagranie o inwestycji' : 'Odtwórz nagranie o inwestycji'}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#F3EFF5]/70 bg-[#131313]/60 text-[#F3EFF5] backdrop-blur-sm transition hover:bg-[#131313]/90"
           >
             {!playing ? (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path d="M8 5v14l11-7-11-7z" />
               </svg>
             ) : (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                 <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
               </svg>
             )}
           </button>
 
-          <div className="hidden md:flex h-20 items-center">
+          <div className="flex-1">
+            <div className="text-[11px] uppercase tracking-[0.16em] text-[#F3EFF5]/75">
+              Posłuchaj o Osadzie Słok
+            </div>
             <input
               type="range"
               min={0}
-              max={1}
-              step={0.01}
-              value={volume}
-              onChange={(e) => changeVolume(parseFloat(e.target.value))}
-              className="h-20 w-4 accent-[#F3EFF5] cursor-pointer [writing-mode:vertical-rl] rotate-180"
-              aria-label="Głośność"
+              max={Math.max(duration, 0.01)}
+              step={0.1}
+              value={progress}
+              onChange={(e) => seek(parseFloat(e.target.value))}
+              className="mt-1 w-full accent-[#F3EFF5] cursor-pointer"
+              aria-label="Przewijanie nagrania"
             />
           </div>
 
-          <p className="font-evalinor tracking-wide text-[16px] md:text-[18px] text-[#F3EFF5] drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]">
-            Posłuchaj o <span className="uppercase">OSADZIE SŁOK</span>
-          </p>
-        </div>
-
-        <div className="pointer-events-auto mt-4 w-[70vw] max-w-[800px]">
-          <input
-            type="range"
-            min={0}
-            max={Math.max(duration, 0.01)}
-            step={0.1}
-            value={progress}
-            onChange={(e) => seek(parseFloat(e.target.value))}
-            className="w-full accent-[#F3EFF5] cursor-pointer"
-            aria-label="Przewijanie"
-          />
+          {duration > 0 && (
+            <span className="shrink-0 text-[11px] tabular-nums text-[#F3EFF5]/70">
+              {mmss(progress)} / {mmss(duration)}
+            </span>
+          )}
         </div>
       </div>
     </section>
