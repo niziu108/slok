@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
@@ -103,6 +104,7 @@ export default function Kontakt() {
       email: payload.email ?? '',
       phone: payload.phone ?? '',
       message: payload.message ?? '',
+      zgoda: payload.consent ? 'TAK' : 'NIE',
       startedAt,
     };
 
@@ -142,7 +144,7 @@ export default function Kontakt() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         {/* NAGŁÓWEK */}
         <div className="text-center mb-12">
-          <motion.h1
+          <motion.h2
             variants={headlineRise}
             initial="hidden"
             whileInView="show"
@@ -150,7 +152,7 @@ export default function Kontakt() {
             className="font-evalinor uppercase leading-[0.95] tracking-tight text-[clamp(32px,7vw,80px)]"
           >
             KONTAKT
-          </motion.h1>
+          </motion.h2>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -170,11 +172,7 @@ export default function Kontakt() {
                   Paula Matuszewska - 519&nbsp;770&nbsp;923
                 </a>
 
-                <a href="tel:575831006" className="block text-lg hover:text-[#F3EFF5] transition">
-                  Monika Kiełbik - 575&nbsp;831&nbsp;006
-                </a>
-
-                <a href="tel:519770923" className="block text-lg hover:text-[#F3EFF5] transition">
+                <a href="tel:605821596" className="block text-lg hover:text-[#F3EFF5] transition">
                   Marcin Rzepecki - 605&nbsp;821&nbsp;596
                 </a>
               
@@ -252,6 +250,33 @@ export default function Kontakt() {
                   className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none resize-none"
                 />
               </div>
+
+              {/* Zgoda RODO */}
+              <div className="sm:col-span-2 flex items-start gap-3">
+                <input
+                  id="consent"
+                  name="consent"
+                  type="checkbox"
+                  required
+                  className="mt-1 h-4 w-4 shrink-0 accent-[#F3EFF5] cursor-pointer"
+                />
+                <label htmlFor="consent" className="text-[13px] leading-snug text-[#d9d9d9]/80 cursor-pointer">
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych w celu udzielenia odpowiedzi na
+                  zapytanie i przedstawienia oferty.{' '}
+                  <span className="text-[#d9d9d9]/60">(wymagane)</span>
+                </label>
+              </div>
+
+              <p className="sm:col-span-2 text-[12px] leading-snug text-[#d9d9d9]/55">
+                Administratorem danych jest Słok Sp. z o.o., Słok, 97-400 Bełchatów. Dane przetwarzamy
+                wyłącznie w celu obsługi zapytania. Podanie danych jest dobrowolne, ale niezbędne, aby
+                odpowiedzieć. Masz prawo dostępu do danych, ich sprostowania, usunięcia oraz wycofania zgody
+                w dowolnym momencie, pisząc na {EMAIL}. Szczegóły w{' '}
+                <Link href="/polityka-prywatnosci" className="underline underline-offset-2 hover:text-[#F3EFF5]">
+                  Polityce prywatności
+                </Link>
+                .
+              </p>
 
               {(status === 'ok' || status === 'err') && (
                 <div className="sm:col-span-2 text-sm">
