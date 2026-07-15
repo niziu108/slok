@@ -82,7 +82,7 @@ export default function PolitykaPrywatnosci() {
           <h2 className="text-xl font-semibold">7. Kontakt</h2>
           <p>
             W sprawach dotyczących ochrony danych osobowych prosimy o kontakt pod
-            adresem e-mail: kontakt@slok.pl.
+            adresem e-mail: sprzedaz@slok.com.pl.
           </p>
         </section>
       </div>

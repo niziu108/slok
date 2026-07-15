@@ -10,7 +10,6 @@ import DlaInwestora from "@/components/dlainwestora";
 import Kontakt from "@/components/kontakt";
 
 import SectionHashOnScroll from "@/components/SectionHashOnScroll";
-import FAQSchema from "@/components/FAQSchema";
 import SeoSiteSchema from "@/components/SeoSiteSchema";
 
 export default function Home() {
@@ -52,17 +51,10 @@ export default function Home() {
         <Kontakt />
       </section>
 
-      {/* --------- SCHEMAS (SEO) --------- */}
-      <FAQSchema
-        items={[
-          { q: "Gdzie leży Osada SŁOK?", a: "Nad zbiornikiem Słok, ok. 9 km od Bełchatowa." },
-          { q: "Jakie są przybliżone odległości?", a: "Bełchatów 9 km, Częstochowa 67 km, Katowice 146 km, Wrocław 189 km, Warszawa 180 km, Radom 143 km, Lublin 275 km." },
-          { q: "Czy są dostępne media?", a: "Szczegóły mediów i uzbrojenia znajdziesz w kartach działek oraz sekcji Inwestycja." },
-          { q: "Jak sprawdzić dostępność działek?", a: "Skorzystaj z interaktywnej mapy i listy działek w sekcji Dla Inwestora/Działki." },
-          { q: "Jak dojechać do Osady SŁOK?", a: "Dojazd z Bełchatowa zajmuje ok. kilkanaście minut – szczegóły w sekcji Lokalizacja." },
-        ]}
-      />
-
+      {/* --------- SCHEMAS (SEO) ---------
+          FAQSchema celowo wyłączony: Google wymaga, aby dane strukturalne
+          odzwierciedlały treść widoczną na stronie, a tych pytań na stronie nie ma.
+          Włączyć ponownie dopiero razem z widoczną sekcją FAQ. */}
       <SeoSiteSchema />
     </main>
   );

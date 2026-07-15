@@ -1,22 +1,14 @@
 import type { MetadataRoute } from "next";
+
 const BASE = "https://slok.com.pl";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes = [
-    "",
-    "/inwestycja",
-    "/lokalizacja",
-    "/dzialki",
-    "/dla-inwestora",
-    "/galeria",
-    "/kontakt",
-  ];
+export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return staticRoutes.map((p) => ({
-    url: `${BASE}${p}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: p === "" ? 1 : 0.7,
-  }));
+  return [
+    { url: `${BASE}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    { url: `${BASE}/wyszukiwarka`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE}/osrodek`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/polityka-prywatnosci`, lastModified: now, changeFrequency: "yearly", priority: 0.1 },
+  ];
 }
