@@ -1,0 +1,2733 @@
+[
+ {
+  "id": "2138-1",
+  "numery": [
+   "2138/1"
+  ],
+  "powierzchnia": 1515,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1515
+   }
+  ],
+  "wymiary": [
+   "15,70 m",
+   "58 m",
+   "24 m",
+   "26,50 m",
+   "50,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-2",
+  "numery": [
+   "2138/2"
+  ],
+  "powierzchnia": 696,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 696
+   }
+  ],
+  "wymiary": [
+   "20 m",
+   "26,60 m",
+   "34,70 m",
+   "26,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-3",
+  "numery": [
+   "2138/3"
+  ],
+  "powierzchnia": 750,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 750
+   }
+  ],
+  "wymiary": [
+   "18,80 m",
+   "34,60 m",
+   "40 m",
+   "21,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-4",
+  "numery": [
+   "2138/4"
+  ],
+  "powierzchnia": 824,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 824
+   }
+  ],
+  "wymiary": [
+   "20,58 m",
+   "40 m",
+   "42,50 m",
+   "19,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-5",
+  "numery": [
+   "2138/5"
+  ],
+  "powierzchnia": 830,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 830
+   }
+  ],
+  "wymiary": [
+   "16 m",
+   "43 m",
+   "40 m",
+   "18,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-6",
+  "numery": [
+   "2138/6"
+  ],
+  "powierzchnia": 783,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 783
+   }
+  ],
+  "wymiary": [
+   "16 m",
+   "3,60 m",
+   "43 m",
+   "40 m",
+   "18,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-8",
+  "numery": [
+   "2138/8"
+  ],
+  "powierzchnia": 519,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 519
+   }
+  ],
+  "wymiary": [
+   "30 m",
+   "11 m",
+   "28 m",
+   "31 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-9",
+  "numery": [
+   "2138/9",
+   "2138/142"
+  ],
+  "powierzchnia": 811,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 729
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 82
+   }
+  ],
+  "wymiary": [
+   "30 m",
+   "11 m",
+   "27 m",
+   "26,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-10",
+  "numery": [
+   "2138/10",
+   "2138/143"
+  ],
+  "powierzchnia": 590,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 515
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 75
+   }
+  ],
+  "wymiary": [
+   "20 m",
+   "30 m",
+   "29 m",
+   "20 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-11",
+  "numery": [
+   "2138/11"
+  ],
+  "powierzchnia": 628,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 587
+   },
+   {
+    "nazwa": "Tył działki - leśna",
+    "m2": 41
+   }
+  ],
+  "wymiary": [
+   "21,80 m",
+   "29 m",
+   "25 m",
+   "23,68 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-12",
+  "numery": [
+   "2138/12"
+  ],
+  "powierzchnia": 862,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 862
+   }
+  ],
+  "wymiary": [
+   "45 m",
+   "25,60 m",
+   "20 m",
+   "36,70 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-15",
+  "numery": [
+   "2138/15",
+   "2138/145"
+  ],
+  "powierzchnia": 1105,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 928
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 177
+   }
+  ],
+  "wymiary": [
+   "23,58 m",
+   "47,51 m",
+   "39 m",
+   "30,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-16",
+  "numery": [
+   "2138/16",
+   "2138/146"
+  ],
+  "powierzchnia": 937,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 890
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 47
+   }
+  ],
+  "wymiary": [
+   "25,50 m",
+   "39 m",
+   "3,80 m",
+   "25 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-17",
+  "numery": [
+   "2138/17"
+  ],
+  "powierzchnia": 863,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 863
+   }
+  ],
+  "wymiary": [
+   "25 m",
+   "36 m",
+   "33 m",
+   "25,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-18",
+  "numery": [
+   "2138/18"
+  ],
+  "powierzchnia": 1025,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1025
+   }
+  ],
+  "wymiary": [
+   "25,50 m",
+   "33,30 m",
+   "33,50 m",
+   "32,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-21",
+  "numery": [
+   "2138/21"
+  ],
+  "powierzchnia": 1693,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1693
+   }
+  ],
+  "wymiary": [
+   "48,60 m",
+   "20,52 m",
+   "46,89 m",
+   "49,10 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-22",
+  "numery": [
+   "2138/22",
+   "2138/147"
+  ],
+  "powierzchnia": 1403,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1188
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 215
+   }
+  ],
+  "wymiary": [
+   "18,06 m",
+   "46,89 m",
+   "47,96 m",
+   "45,22 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-23",
+  "numery": [
+   "2138/23"
+  ],
+  "powierzchnia": 1468,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1468
+   }
+  ],
+  "wymiary": [
+   "43,76 m",
+   "32 m",
+   "7,72 m",
+   "38,53 m",
+   "29,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-25",
+  "numery": [
+   "2138/25",
+   "2138/148"
+  ],
+  "powierzchnia": 1209,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1039
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 170
+   }
+  ],
+  "wymiary": [
+   "47,68 m",
+   "37 m",
+   "43,78 m",
+   "28,16 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-27",
+  "numery": [
+   "2138/27"
+  ],
+  "powierzchnia": 1795,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1795
+   }
+  ],
+  "wymiary": [
+   "55,50 m",
+   "39 m",
+   "50 m",
+   "26,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-29",
+  "numery": [
+   "2138/29"
+  ],
+  "powierzchnia": 801,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 801
+   }
+  ],
+  "wymiary": [
+   "12,80 m",
+   "8,40 m",
+   "35 m",
+   "36,90 m",
+   "25,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-30",
+  "numery": [
+   "2138/30"
+  ],
+  "powierzchnia": 667,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 667
+   }
+  ],
+  "wymiary": [
+   "16,70 m",
+   "36,45 m",
+   "34,20 m",
+   "21,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-31",
+  "numery": [
+   "2138/31"
+  ],
+  "powierzchnia": 678,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 678
+   }
+  ],
+  "wymiary": [
+   "19,40 m",
+   "34,70 m",
+   "45 m",
+   "20 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-32",
+  "numery": [
+   "2138/32"
+  ],
+  "powierzchnia": 1040,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1040
+   }
+  ],
+  "wymiary": [
+   "33,80 m",
+   "45,70 m",
+   "71 m",
+   "20,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-33",
+  "numery": [
+   "2138/33"
+  ],
+  "powierzchnia": 1872,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1872
+   }
+  ],
+  "wymiary": [
+   "8,52 m",
+   "21,52 m",
+   "61,52 m",
+   "27,22 m",
+   "71,20 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-34",
+  "numery": [
+   "2138/34"
+  ],
+  "powierzchnia": 1510,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1510
+   }
+  ],
+  "wymiary": [
+   "30,30 m",
+   "43,60 m",
+   "30 m",
+   "61,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-35",
+  "numery": [
+   "2138/35"
+  ],
+  "powierzchnia": 949,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 949
+   }
+  ],
+  "wymiary": [
+   "31,50 m",
+   "32,20 m",
+   "20 m",
+   "43,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-36",
+  "numery": [
+   "2138/36"
+  ],
+  "powierzchnia": 890,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 890
+   }
+  ],
+  "wymiary": [
+   "26,70 m",
+   "33,20 m",
+   "27,30 m",
+   "32,60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-37",
+  "numery": [
+   "2138/37"
+  ],
+  "powierzchnia": 911,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 911
+   }
+  ],
+  "wymiary": [
+   "27,30 m",
+   "34 m",
+   "27,20 m",
+   "33,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-38",
+  "numery": [
+   "2138/38"
+  ],
+  "powierzchnia": 939,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 939
+   }
+  ],
+  "wymiary": [
+   "26,50 m",
+   "35,60 m",
+   "35,70 m",
+   "26,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-39",
+  "numery": [
+   "2138/39"
+  ],
+  "powierzchnia": 774,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 774
+   }
+  ],
+  "wymiary": [
+   "27,80 m",
+   "31 m",
+   "20 m",
+   "35 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-40",
+  "numery": [
+   "2138/40"
+  ],
+  "powierzchnia": 807,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 807
+   }
+  ],
+  "wymiary": [
+   "30 m",
+   "24,20 m",
+   "29 m",
+   "31,20 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "Na działce stoi dom wolnostojący do remontu o powierzchni ok. 130 m2 (oznaczenie D na rysunku). To zabudowa, nie część gruntu."
+ },
+ {
+  "id": "2138-41",
+  "numery": [
+   "2138/41"
+  ],
+  "powierzchnia": 674,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 674
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "31 m",
+   "20,60 m",
+   "30,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-42",
+  "numery": [
+   "2138/42"
+  ],
+  "powierzchnia": 793,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 793
+   }
+  ],
+  "wymiary": [
+   "20,60 m",
+   "40,60 m",
+   "29 m",
+   "30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-43",
+  "numery": [
+   "2138/43"
+  ],
+  "powierzchnia": 1043,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1043
+   }
+  ],
+  "wymiary": [
+   "28,30 m",
+   "41,50 m",
+   "42,80 m",
+   "32,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-44",
+  "numery": [
+   "2138/44"
+  ],
+  "powierzchnia": 2164,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 2164
+   }
+  ],
+  "wymiary": [
+   "42,30 m",
+   "34 m",
+   "79,80 m",
+   "45,60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-45",
+  "numery": [
+   "2138/45",
+   "2138/149"
+  ],
+  "powierzchnia": 1555,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 675
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 880
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "50,17 m",
+   "56,10 m",
+   "8,56 m",
+   "22,01 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-46",
+  "numery": [
+   "2138/46",
+   "2138/150"
+  ],
+  "powierzchnia": 1568,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 697
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 871
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "56,10 m",
+   "55,88 m",
+   "28 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-47",
+  "numery": [
+   "2138/47",
+   "2138/151"
+  ],
+  "powierzchnia": 1562,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 700
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 862
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "55,88 m",
+   "55,35 m",
+   "28 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-48",
+  "numery": [
+   "2138/48",
+   "2138/152"
+  ],
+  "powierzchnia": 1555,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 702
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 853
+   }
+  ],
+  "wymiary": [
+   "28,01 m",
+   "55,66 m",
+   "55,45 m",
+   "28 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-49",
+  "numery": [
+   "2138/49",
+   "2138/153"
+  ],
+  "powierzchnia": 1549,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 705
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 844
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "55,45 m",
+   "55,24 m",
+   "28 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-50",
+  "numery": [
+   "2138/50",
+   "2138/154"
+  ],
+  "powierzchnia": 1486,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 667
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 819
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "55,24 m",
+   "55,07 m",
+   "25,92 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-51",
+  "numery": [
+   "2138/51",
+   "2138/155"
+  ],
+  "powierzchnia": 1435,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 627
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 808
+   }
+  ],
+  "wymiary": [
+   "32,60 m",
+   "55,07 m",
+   "50,61 m",
+   "23 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-52",
+  "numery": [
+   "2138/52",
+   "2138/156"
+  ],
+  "powierzchnia": 1154,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 553
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 601
+   }
+  ],
+  "wymiary": [
+   "24,13 m",
+   "50,57 m",
+   "49,82 m",
+   "22,11 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-53",
+  "numery": [
+   "2138/53"
+  ],
+  "powierzchnia": 1157,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1157
+   }
+  ],
+  "wymiary": [
+   "24,13 m",
+   "49,82 m",
+   "50,20 m",
+   "22,17 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-54",
+  "numery": [
+   "2138/200"
+  ],
+  "powierzchnia": 1449,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1449
+   }
+  ],
+  "wymiary": [
+   "50,20 m",
+   "59,63 m",
+   "45,14 m",
+   "13 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "UWAGA: na karcie widnieje numer 2138/200, nie 2138/54. Nazwa pliku nie zgadza sie z grafika. Do weryfikacji."
+ },
+ {
+  "id": "2138-56",
+  "numery": [
+   "2138/56",
+   "2138/157"
+  ],
+  "powierzchnia": 1478,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 983
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 495
+   }
+  ],
+  "wymiary": [
+   "23,00 m",
+   "7,07 m",
+   "47,89 m",
+   "52,77 m",
+   "28 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-57",
+  "numery": [
+   "2138/57",
+   "2138/158"
+  ],
+  "powierzchnia": 1478,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 983
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 495
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "52,77 m",
+   "52,81 m",
+   "28 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-58",
+  "numery": [
+   "2138/58",
+   "2138/159"
+  ],
+  "powierzchnia": 1480,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 985
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 495
+   }
+  ],
+  "wymiary": [
+   "28,50 m",
+   "52,95 m",
+   "28 m",
+   "52,81 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-59",
+  "numery": [
+   "2138/59",
+   "2138/160"
+  ],
+  "powierzchnia": 1480,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 985
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 495
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "52,90 m",
+   "28,01 m",
+   "52,95 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-60",
+  "numery": [
+   "2138/60",
+   "2138/161"
+  ],
+  "powierzchnia": 1483,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 987
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 496
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "52,95 m",
+   "28 m",
+   "52,90 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-61",
+  "numery": [
+   "2138/61",
+   "2138/62"
+  ],
+  "powierzchnia": 1483,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 987
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 496
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "53 m",
+   "28 m",
+   "52,95 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "KONFLIKT NUMERU: na karcie widnieje '2138/61 + 2138/62', ale 2138/62 jest numerem glownym wlasnej karty 2138-62 (inna powierzchnia). Sasiedzi maja wzorzec 60+161, 62+163, wiec prawdopodobnie powinno byc 2138/162. Do weryfikacji u zrodla."
+ },
+ {
+  "id": "2138-62",
+  "numery": [
+   "2138/62",
+   "2138/163"
+  ],
+  "powierzchnia": 1456,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1312
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 144
+   }
+  ],
+  "wymiary": [
+   "54,84 m",
+   "51,64 m",
+   "53 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "ATUT: na dzialce budynek przepompowni z mozliwoscia adaptacji na schron/piwnice."
+ },
+ {
+  "id": "2138-63",
+  "numery": [
+   "2138/63",
+   "2138/164"
+  ],
+  "powierzchnia": 1607,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1451
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 156
+   }
+  ],
+  "wymiary": [
+   "51,64 m",
+   "62,22 m",
+   "80,86 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-65",
+  "numery": [
+   "2138/65"
+  ],
+  "powierzchnia": 1412,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1412
+   }
+  ],
+  "wymiary": [
+   "6,67 m",
+   "50 m",
+   "46,05 m",
+   "3,16 m",
+   "62,57 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-66",
+  "numery": [
+   "2138/66"
+  ],
+  "powierzchnia": 1300,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1300
+   }
+  ],
+  "wymiary": [
+   "26 m",
+   "50 m",
+   "26 m",
+   "50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-67",
+  "numery": [
+   "2138/67",
+   "2138/165"
+  ],
+  "powierzchnia": 1351,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 944
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 407
+   }
+  ],
+  "wymiary": [
+   "27 m",
+   "50 m",
+   "27 m",
+   "50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-68",
+  "numery": [
+   "2138/68",
+   "2138/166"
+  ],
+  "powierzchnia": 1350,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 950
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 400
+   }
+  ],
+  "wymiary": [
+   "27 m",
+   "50 m",
+   "27 m",
+   "50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-69",
+  "numery": [
+   "2138/69",
+   "2138/167"
+  ],
+  "powierzchnia": 1350,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 956
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 394
+   }
+  ],
+  "wymiary": [
+   "27 m",
+   "50 m",
+   "27 m",
+   "50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-70",
+  "numery": [
+   "2138/70",
+   "2138/168"
+  ],
+  "powierzchnia": 1506,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1242
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 264
+   }
+  ],
+  "wymiary": [
+   "13,61 m",
+   "59,93 m",
+   "46,55 m",
+   "50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-72",
+  "numery": [
+   "2138/72",
+   "2138/169",
+   "1/2 z 2138/73"
+  ],
+  "powierzchnia": 1543,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1464
+   },
+   {
+    "nazwa": "Przynależne działki leśne",
+    "m2": 79
+   }
+  ],
+  "wymiary": [
+   "9,46 m",
+   "71,35 m",
+   "43,09 m",
+   "56,44 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "Do dzialki nalezy udzial 1/2 w dzialce wjazdowej 2138/73 (47 m2), wspolnej z 2138-74. Wjazd nie wchodzi do sumy powierzchni."
+ },
+ {
+  "id": "2138-74",
+  "numery": [
+   "2138/74",
+   "2138/170",
+   "1/2 z 2138/73"
+  ],
+  "powierzchnia": 2217,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 2050
+   },
+   {
+    "nazwa": "Przynależne działki leśne",
+    "m2": 167
+   }
+  ],
+  "wymiary": [
+   "52,30 m",
+   "36,15 m",
+   "70,85 m",
+   "43,09 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "Do dzialki nalezy udzial 1/2 w dzialce wjazdowej 2138/73 (47 m2), wspolnej z 2138-72. Wjazd nie wchodzi do sumy powierzchni."
+ },
+ {
+  "id": "2138-76",
+  "numery": [
+   "2138/76",
+   "2138/171"
+  ],
+  "powierzchnia": 1381,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 883
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 498
+   }
+  ],
+  "wymiary": [
+   "59 m",
+   "25 m",
+   "51 m",
+   "27 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-77",
+  "numery": [
+   "2138/77",
+   "2138/172"
+  ],
+  "powierzchnia": 1187,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 889
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 298
+   }
+  ],
+  "wymiary": [
+   "51 m",
+   "25 m",
+   "44 m",
+   "27,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-78",
+  "numery": [
+   "2138/78",
+   "2138/173"
+  ],
+  "powierzchnia": 994,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 895
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 99
+   }
+  ],
+  "wymiary": [
+   "44 m",
+   "25,30 m",
+   "35,80 m",
+   "27 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-79",
+  "numery": [
+   "2138/79"
+  ],
+  "powierzchnia": 1413,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa",
+    "m2": 1413
+   }
+  ],
+  "wymiary": [
+   "36 m",
+   "50 m",
+   "20 m",
+   "55 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-83",
+  "numery": [
+   "2138/83",
+   "2138/174"
+  ],
+  "powierzchnia": 1680,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 973
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 707
+   }
+  ],
+  "wymiary": [
+   "60 m",
+   "27 m",
+   "58,40 m",
+   "27,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-84",
+  "numery": [
+   "2138/84",
+   "2138/175"
+  ],
+  "powierzchnia": 1661,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 966
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 695
+   }
+  ],
+  "wymiary": [
+   "60 m",
+   "27 m",
+   "58,40 m",
+   "27,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-85",
+  "numery": [
+   "2138/85",
+   "2138/176"
+  ],
+  "powierzchnia": 1659,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 965
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 694
+   }
+  ],
+  "wymiary": [
+   "60 m",
+   "27 m",
+   "58,40 m",
+   "27,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-86",
+  "numery": [
+   "2138/86",
+   "2138/177"
+  ],
+  "powierzchnia": 1647,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 965
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 682
+   }
+  ],
+  "wymiary": [
+   "60 m",
+   "27 m",
+   "58,40 m",
+   "27,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-87",
+  "numery": [
+   "2138/87",
+   "2138/178"
+  ],
+  "powierzchnia": 1550,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 964
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 586
+   }
+  ],
+  "wymiary": [
+   "58,50 m",
+   "27 m",
+   "54 m",
+   "27,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-88",
+  "numery": [
+   "2138/88"
+  ],
+  "powierzchnia": 1428,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1428
+   }
+  ],
+  "wymiary": [
+   "54,50 m",
+   "26,90 m",
+   "38,90 m",
+   "23,70 m",
+   "12 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-89",
+  "numery": [
+   "2138/89",
+   "2138/179"
+  ],
+  "powierzchnia": 1878,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 998
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 880
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "61 m",
+   "61 m",
+   "28,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-90",
+  "numery": [
+   "2138/90",
+   "2138/180"
+  ],
+  "powierzchnia": 1769,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 997
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 772
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "61 m",
+   "61 m",
+   "28,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-91",
+  "numery": [
+   "2138/91",
+   "2138/181"
+  ],
+  "powierzchnia": 1709,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 983
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 726
+   }
+  ],
+  "wymiary": [
+   "28 m",
+   "61 m",
+   "61 m",
+   "28,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-92",
+  "numery": [
+   "2138/92",
+   "2138/182"
+  ],
+  "powierzchnia": 2444,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1400
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 1044
+   }
+  ],
+  "wymiary": [
+   "40 m",
+   "55 m",
+   "7 m",
+   "35 m",
+   "61 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-94",
+  "numery": [
+   "2138/94",
+   "2138/183"
+  ],
+  "powierzchnia": 1454,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 832
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 622
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "19,30 m",
+   "7,30 m",
+   "55,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-95",
+  "numery": [
+   "2138/95",
+   "2138/184"
+  ],
+  "powierzchnia": 1463,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 843
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 620
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-96",
+  "numery": [
+   "2138/96",
+   "2138/185"
+  ],
+  "powierzchnia": 1460,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 842
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 618
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-97",
+  "numery": [
+   "2138/97",
+   "2138/186"
+  ],
+  "powierzchnia": 1457,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 841
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 616
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-98",
+  "numery": [
+   "2138/98",
+   "2138/187"
+  ],
+  "powierzchnia": 1457,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 843
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 614
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-99",
+  "numery": [
+   "2138/99",
+   "2138/188"
+  ],
+  "powierzchnia": 1455,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 843
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 612
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-100",
+  "numery": [
+   "2138/100",
+   "2138/189"
+  ],
+  "powierzchnia": 1455,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 844
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 611
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-101",
+  "numery": [
+   "2138/101",
+   "2138/190"
+  ],
+  "powierzchnia": 1454,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 845
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 609
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "24,50 m",
+   "60 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-102",
+  "numery": [
+   "2138/102",
+   "2138/191"
+  ],
+  "powierzchnia": 1451,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 845
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 606
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "60 m",
+   "60 m",
+   "24,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-103",
+  "numery": [
+   "2138/103",
+   "2138/192"
+  ],
+  "powierzchnia": 1347,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 759
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 588
+   }
+  ],
+  "wymiary": [
+   "24 m",
+   "54 m",
+   "60 m",
+   "7 m",
+   "16 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-106",
+  "numery": [
+   "2138/106"
+  ],
+  "powierzchnia": 38863,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa wielorodzinna",
+    "m2": 38863
+   }
+  ],
+  "wymiary": [
+   "79 m",
+   "235 m",
+   "170 m",
+   "140 m",
+   "360 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "Na karcie powierzchnia podana w hektarach: 3,8863 ha. Wymiar 140 m to linia przerywana (szerokosc dzialki), nie bok obrysu."
+ },
+ {
+  "id": "2138-108",
+  "numery": [
+   "2138/108"
+  ],
+  "powierzchnia": 5742,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa",
+    "m2": 5742
+   }
+  ],
+  "wymiary": [
+   "81 m",
+   "78,60 m",
+   "74 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-110",
+  "numery": [
+   "2138/110"
+  ],
+  "powierzchnia": 6115,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa",
+    "m2": 6115
+   }
+  ],
+  "wymiary": [
+   "8,30 m",
+   "70 m",
+   "78,60 m",
+   "81 m",
+   "74 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-111",
+  "numery": [
+   "2138/111"
+  ],
+  "powierzchnia": 6432,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa",
+    "m2": 6432
+   }
+  ],
+  "wymiary": [
+   "74,50 m",
+   "100 m",
+   "74,40 m",
+   "77,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-114",
+  "numery": [
+   "2138/114"
+  ],
+  "powierzchnia": 1187,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1187
+   }
+  ],
+  "wymiary": [
+   "20,70 m",
+   "8 m",
+   "50,80 m",
+   "47 m",
+   "19,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-115",
+  "numery": [
+   "2138/115"
+  ],
+  "powierzchnia": 1288,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1288
+   }
+  ],
+  "wymiary": [
+   "26 m",
+   "48,30 m",
+   "50,80 m",
+   "19,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-116",
+  "numery": [
+   "2138/116"
+  ],
+  "powierzchnia": 1349,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1349
+   }
+  ],
+  "wymiary": [
+   "36,40 m",
+   "46,50 m",
+   "47,90 m",
+   "22 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-117",
+  "numery": [
+   "2138/117"
+  ],
+  "powierzchnia": 1965,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1965
+   }
+  ],
+  "wymiary": [
+   "28,69 m",
+   "68 m",
+   "72,30 m",
+   "27,80 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-118",
+  "numery": [
+   "2138/118",
+   "2138/194"
+  ],
+  "powierzchnia": 2090,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 965
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 1125
+   }
+  ],
+  "wymiary": [
+   "28,30 m",
+   "72 m",
+   "76,50 m",
+   "28,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-119",
+  "numery": [
+   "2138/119",
+   "2138/195"
+  ],
+  "powierzchnia": 2215,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 966
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 1249
+   }
+  ],
+  "wymiary": [
+   "28,50 m",
+   "77 m",
+   "81,80 m",
+   "28,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-120",
+  "numery": [
+   "2138/120",
+   "2138/196"
+  ],
+  "powierzchnia": 2340,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 967
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 1373
+   }
+  ],
+  "wymiary": [
+   "28,50 m",
+   "86 m",
+   "27,50 m",
+   "81,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-121",
+  "numery": [
+   "2138/121",
+   "2138/197"
+  ],
+  "powierzchnia": 2958,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna",
+    "m2": 1042
+   },
+   {
+    "nazwa": "Przynależna działka leśna",
+    "m2": 1916
+   }
+  ],
+  "wymiary": [
+   "23 m",
+   "99 m",
+   "24 m",
+   "85 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-123",
+  "numery": [
+   "2138/123"
+  ],
+  "powierzchnia": 9796,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa i rekreacyjna",
+    "m2": 9796
+   }
+  ],
+  "wymiary": [
+   "45 m",
+   "115 m",
+   "121 m",
+   "135 m",
+   "46 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-125",
+  "numery": [
+   "2138/125"
+  ],
+  "powierzchnia": 1281,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1281
+   }
+  ],
+  "wymiary": [
+   "27,40 m",
+   "43 m",
+   "23,80 m",
+   "47,40 m",
+   "7,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-126",
+  "numery": [
+   "2138/126"
+  ],
+  "powierzchnia": 787,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 787
+   }
+  ],
+  "wymiary": [
+   "25,50 m",
+   "34,80 m",
+   "16,80 m",
+   "43 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-127",
+  "numery": [
+   "2138/127"
+  ],
+  "powierzchnia": 1029,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1029
+   }
+  ],
+  "wymiary": [
+   "32 m",
+   "29 m",
+   "47,80 m",
+   "30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-128",
+  "numery": [
+   "2138/128"
+  ],
+  "powierzchnia": 1340,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1340
+   }
+  ],
+  "wymiary": [
+   "24,70 m",
+   "57 m",
+   "20 m",
+   "64 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-129",
+  "numery": [
+   "2138/129"
+  ],
+  "powierzchnia": 1238,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1238
+   }
+  ],
+  "wymiary": [
+   "26,50 m",
+   "49,20 m",
+   "21 m",
+   "56,90 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-130",
+  "numery": [
+   "2138/130"
+  ],
+  "powierzchnia": 1019,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1019
+   }
+  ],
+  "wymiary": [
+   "25 m",
+   "43 m",
+   "20,25 m",
+   "49,65 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "Wymiary identyczne jak na karcie 2138-131, mimo innej powierzchni (1019 vs 972 m2). Do weryfikacji u zrodla."
+ },
+ {
+  "id": "2138-131",
+  "numery": [
+   "2138/131"
+  ],
+  "powierzchnia": 972,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 972
+   }
+  ],
+  "wymiary": [
+   "25 m",
+   "43 m",
+   "20,25 m",
+   "49,65 m"
+  ],
+  "sumaOk": true,
+  "uwaga": "Wymiary identyczne jak na karcie 2138-130, mimo innej powierzchni (972 vs 1019 m2). Do weryfikacji u zrodla."
+ },
+ {
+  "id": "2138-132",
+  "numery": [
+   "2138/132"
+  ],
+  "powierzchnia": 1047,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1047
+   }
+  ],
+  "wymiary": [
+   "32,20 m",
+   "16 m",
+   "25,70 m",
+   "19,30 m",
+   "34,50 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-133",
+  "numery": [
+   "2138/133"
+  ],
+  "powierzchnia": 917,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 917
+   }
+  ],
+  "wymiary": [
+   "7,20 m",
+   "25 m",
+   "36 m",
+   "16,50 m",
+   "38 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-134",
+  "numery": [
+   "2138/134"
+  ],
+  "powierzchnia": 982,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 982
+   }
+  ],
+  "wymiary": [
+   "34,80 m",
+   "31,70 m",
+   "34,20 m",
+   "25,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-135",
+  "numery": [
+   "2138/135"
+  ],
+  "powierzchnia": 1738,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1738
+   }
+  ],
+  "wymiary": [
+   "20 m",
+   "47,80 m",
+   "26,30 m",
+   "18 m",
+   "65,30 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-136",
+  "numery": [
+   "2138/136"
+  ],
+  "powierzchnia": 1335,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1335
+   }
+  ],
+  "wymiary": [
+   "40 m",
+   "15,70 m",
+   "11,66 m",
+   "35,70 m",
+   "48 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-137",
+  "numery": [
+   "2138/137"
+  ],
+  "powierzchnia": 1354,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1354
+   }
+  ],
+  "wymiary": [
+   "25,45 m",
+   "51,50 m",
+   "24,85 m",
+   "59,40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-138",
+  "numery": [
+   "2138/138"
+  ],
+  "powierzchnia": 1213,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 1213
+   }
+  ],
+  "wymiary": [
+   "26 m",
+   "42 m",
+   "27,50 m",
+   "51 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-139",
+  "numery": [
+   "2138/139"
+  ],
+  "powierzchnia": 801,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa mieszkaniowa jednorodzinna i usługowa",
+    "m2": 801
+   }
+  ],
+  "wymiary": [
+   "18,40 m",
+   "34 m",
+   "32,60 m",
+   "41,20 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ },
+ {
+  "id": "2138-140",
+  "numery": [
+   "2138/140"
+  ],
+  "powierzchnia": 778,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa",
+    "m2": 788
+   }
+  ],
+  "wymiary": [
+   "5 m",
+   "21,50 m",
+   "23 m",
+   "25 m",
+   "28 m"
+  ],
+  "sumaOk": false,
+  "uwaga": "BLAD W GRAFICE ZRODLOWEJ: powierzchnia calkowita 778 m2, a jedyna czesc 788 m2. Rozbieznosc 10 m2 pochodzi z karty, nie z odczytu (zweryfikowane powiekszeniem). Do wyjasnienia ktora liczba jest poprawna."
+ },
+ {
+  "id": "2138-141",
+  "numery": [
+   "2138/141"
+  ],
+  "powierzchnia": 925,
+  "czesci": [
+   {
+    "nazwa": "Zabudowa usługowa",
+    "m2": 925
+   }
+  ],
+  "wymiary": [
+   "24,50 m",
+   "26,50 m",
+   "32,50 m",
+   "40 m"
+  ],
+  "sumaOk": true,
+  "uwaga": null
+ }
+]
