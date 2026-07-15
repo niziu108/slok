@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { formatPLN, dostepneLabel, type HeroStats } from '@/lib/parcelFormat';
+import { dostepneLabel, type HeroStats } from '@/lib/parcelFormat';
 
 export default function Hero({ stats }: { stats?: HeroStats | null }) {
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -45,12 +45,18 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
     setProgress(a.currentTime);
   };
 
-  // Autoodtwarzanie na telefonie.
-  // Sam atrybut autoPlay nie wystarcza: iOS i Chrome na Androidzie regularnie
-  // go ignorują i trzeba wywołać play() z kodu. Dodatkowo play() bywa odrzucone,
-  // gdy strona nie jest jeszcze widoczna, więc ponawiamy przy pierwszym dotknięciu
-  // i po powrocie do karty. Gdy mimo wszystko się nie uda (np. tryb niskiego
-  // zużycia energii na iPhonie blokuje autoplay systemowo), zostaje plakat.
+  // Film ma chodzić w kółko, bez przerwy.
+  //
+  // Dwie rzeczy stoją temu na drodze. Po pierwsze, sam atrybut autoPlay bywa
+  // ignorowany na iOS i w Chrome na Androidzie, więc play() trzeba wywołać z kodu.
+  // Po drugie, przeglądarka pauzuje wideo za każdym razem, gdy karta idzie w tło,
+  // gdy użytkownik przełączy aplikację albo przy oszczędzaniu energii, i sama go
+  // potem nie wznawia.
+  //
+  // Żadna kontrolka na stronie nie zatrzymuje tego filmu, więc KAŻDA pauza jest
+  // niepożądana i zawsze próbujemy wznowić. Wznawiamy tylko przy widocznej karcie,
+  // bo w tle przeglądarka i tak odrzuci play(). Gdy autoplay jest zablokowany
+  // systemowo (tryb niskiego zużycia energii na iPhonie), zostaje plakat.
   useEffect(() => {
     const v = vidRef.current;
     if (!v) return;
@@ -60,30 +66,35 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
     v.defaultMuted = true;
     v.setAttribute('muted', '');
 
-    let done = false;
-    const tryPlay = () => {
-      if (done) return;
+    const resume = () => {
+      if (!v.paused) return;
+      if (document.visibilityState !== 'visible') return;
       const p = v.play();
-      if (p && typeof p.then === 'function') {
-        p.then(() => { done = true; }).catch(() => { /* czekamy na gest */ });
-      }
+      if (p && typeof p.then === 'function') p.catch(() => { /* czekamy na gest */ });
     };
 
-    tryPlay();
+    resume();
 
-    const onVisible = () => { if (document.visibilityState === 'visible') tryPlay(); };
-    const onGesture = () => tryPlay();
+    // Nasłuch zostaje na stałe: film musi wrócić po każdym powrocie do karty,
+    // nie tylko za pierwszym razem.
+    document.addEventListener('visibilitychange', resume);
+    document.addEventListener('touchstart', resume, { passive: true });
+    document.addEventListener('click', resume);
+    window.addEventListener('scroll', resume, { passive: true });
+    v.addEventListener('pause', resume);
+    v.addEventListener('stalled', resume);
 
-    document.addEventListener('visibilitychange', onVisible);
-    document.addEventListener('touchstart', onGesture, { passive: true });
-    document.addEventListener('click', onGesture);
-    window.addEventListener('scroll', onGesture, { passive: true });
+    // Siatka bezpieczeństwa na wypadek pauzy, która nie wyemitowała zdarzenia.
+    const tick = setInterval(resume, 3000);
 
     return () => {
-      document.removeEventListener('visibilitychange', onVisible);
-      document.removeEventListener('touchstart', onGesture);
-      document.removeEventListener('click', onGesture);
-      window.removeEventListener('scroll', onGesture);
+      document.removeEventListener('visibilitychange', resume);
+      document.removeEventListener('touchstart', resume);
+      document.removeEventListener('click', resume);
+      window.removeEventListener('scroll', resume);
+      v.removeEventListener('pause', resume);
+      v.removeEventListener('stalled', resume);
+      clearInterval(tick);
     };
   }, []);
 
@@ -176,49 +187,41 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
       {/* ---------- TREŚĆ ----------
           Układ: tekst przy górnej krawędzi, przycisk przy dolnej, środek pusty.
           Dzięki temu środek kadru filmu nie jest niczym zasłonięty. */}
-      <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-5 pb-3 pt-[calc(3.5rem+1.25rem)] text-center md:pt-24">
-        {/* GÓRA */}
-        <h1
-          className="font-evalinor uppercase leading-[0.92] tracking-tight text-[#F3EFF5] text-[clamp(2.1rem,6.6vw,5.4rem)]"
-          style={{ textShadow: '0 2px 22px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.5)' }}
-        >
-          Działki nad zalewem Słok
-        </h1>
-
-        {/* Stan oferty: liczony na serwerze, więc jest w HTML dla Google.
-            Gdy brak danych, nie renderujemy nic zamiast zmyślać liczbę. */}
-        {stats && (
-          <p
-            className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[clamp(0.95rem,1.5vw,1.2rem)] text-[#F3EFF5]"
-            style={{ textShadow: '0 1px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.55)' }}
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-5 pb-6 pt-20 text-center md:pt-24">
+        {/* GÓRA: nagłówek i liczba trzymają się razem, jako jeden blok */}
+        <div className="flex flex-col items-center gap-2">
+          <h1
+            className="font-evalinor uppercase leading-[0.92] tracking-tight text-[#F3EFF5] text-[clamp(2.1rem,6.6vw,5.4rem)]"
+            style={{ textShadow: '0 2px 22px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.5)' }}
           >
-            <span className="font-semibold">{dostepneLabel(stats.dostepne)}</span>
-            {stats.cenaOd !== null && (
-              <>
-                <span aria-hidden className="text-[#F3EFF5]/50">
-                  ·
-                </span>
-                <span>
-                  ceny od <span className="font-semibold">{formatPLN(stats.cenaOd)}</span>
-                </span>
-              </>
-            )}
-          </p>
-        )}
+            Działki nad zalewem Słok
+          </h1>
+
+          {/* Stan oferty: liczony na serwerze, więc jest w HTML dla Google.
+              Gdy brak danych, nie renderujemy nic zamiast zmyślać liczbę. */}
+          {stats && (
+            <p
+              className="text-[clamp(0.95rem,1.5vw,1.2rem)] tracking-[0.02em] text-[#F3EFF5]"
+              style={{ textShadow: '0 1px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.55)' }}
+            >
+              {dostepneLabel(stats.dostepne)}
+            </p>
+          )}
+        </div>
 
         {/* ŚRODEK: celowo puste. Tu widać film. */}
         <div className="flex-1" />
 
-        {/* DÓŁ: przycisk bezpośrednio nad narracją */}
-        <Link
-          href="/wyszukiwarka"
-          className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-10 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition hover:bg-white active:scale-[0.99]"
-        >
-          Zobacz działki
-        </Link>
+        {/* DÓŁ: przycisk i narracja też jako jeden blok, z tym samym rytmem */}
+        <div className="flex w-full flex-col items-center gap-5">
+          <Link
+            href="/wyszukiwarka"
+            className="inline-flex items-center justify-center rounded-full bg-[#F3EFF5] px-10 py-4 text-sm uppercase tracking-[0.14em] text-[#131313] shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition hover:bg-white active:scale-[0.99]"
+          >
+            Zobacz działki
+          </Link>
 
-        {/* NARRACJA — tuż pod przyciskiem */}
-        <div className="mt-4 flex w-full max-w-xl items-center gap-3">
+          <div className="flex w-full max-w-xl items-center gap-3">
           <button
             onClick={togglePlay}
             aria-label={playing ? 'Zatrzymaj nagranie o inwestycji' : 'Odtwórz nagranie o inwestycji'}
@@ -251,11 +254,12 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
             />
           </div>
 
-          {duration > 0 && (
-            <span className="shrink-0 text-[11px] tabular-nums text-[#F3EFF5]/70">
-              {mmss(progress)} / {mmss(duration)}
-            </span>
-          )}
+            {duration > 0 && (
+              <span className="shrink-0 text-[11px] tabular-nums text-[#F3EFF5]/70">
+                {mmss(progress)} / {mmss(duration)}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </section>
