@@ -221,44 +221,47 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
             Zobacz działki
           </Link>
 
-          <div className="flex w-full max-w-xl items-center gap-3">
-          <button
-            onClick={togglePlay}
-            aria-label={playing ? 'Zatrzymaj nagranie o inwestycji' : 'Odtwórz nagranie o inwestycji'}
-            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#F3EFF5]/70 bg-[#131313]/60 text-[#F3EFF5] backdrop-blur-sm transition hover:bg-[#131313]/90"
-          >
-            {!playing ? (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M8 5v14l11-7-11-7z" />
-              </svg>
-            ) : (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
-              </svg>
-            )}
-          </button>
-
-          <div className="flex-1">
+          {/* Narracja: podpis wyśrodkowany w osobnej linii nad odtwarzaczem,
+              więc nie jest już przesunięty względem przycisku wyżej. */}
+          <div className="flex w-full max-w-xl flex-col items-center gap-2">
             <div className="text-[11px] uppercase tracking-[0.16em] text-[#F3EFF5]/75">
               Posłuchaj o Osadzie Słok
             </div>
-            <input
-              type="range"
-              min={0}
-              max={Math.max(duration, 0.01)}
-              step={0.1}
-              value={progress}
-              onChange={(e) => seek(parseFloat(e.target.value))}
-              className="mt-1 w-full accent-[#F3EFF5] cursor-pointer"
-              aria-label="Przewijanie nagrania"
-            />
-          </div>
 
-            {duration > 0 && (
-              <span className="shrink-0 text-[11px] tabular-nums text-[#F3EFF5]/70">
-                {mmss(progress)} / {mmss(duration)}
-              </span>
-            )}
+            <div className="flex w-full items-center gap-3">
+              <button
+                onClick={togglePlay}
+                aria-label={playing ? 'Zatrzymaj nagranie o inwestycji' : 'Odtwórz nagranie o inwestycji'}
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[#F3EFF5]/70 bg-[#131313]/60 text-[#F3EFF5] backdrop-blur-sm transition hover:bg-[#131313]/90"
+              >
+                {!playing ? (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M8 5v14l11-7-11-7z" />
+                  </svg>
+                ) : (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+                  </svg>
+                )}
+              </button>
+
+              <input
+                type="range"
+                min={0}
+                max={Math.max(duration, 0.01)}
+                step={0.1}
+                value={progress}
+                onChange={(e) => seek(parseFloat(e.target.value))}
+                className="flex-1 accent-[#F3EFF5] cursor-pointer"
+                aria-label="Przewijanie nagrania"
+              />
+
+              {duration > 0 && (
+                <span className="shrink-0 text-[11px] tabular-nums text-[#F3EFF5]/70">
+                  {mmss(progress)} / {mmss(duration)}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
