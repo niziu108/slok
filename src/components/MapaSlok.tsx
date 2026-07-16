@@ -486,30 +486,32 @@ export default function MapaSlok({ onReady }: Props) {
                   ×
                 </button>
 
-                {(() => {
-                  const price = activeId ? priceMap[activeId] : undefined;
-                  return price ? (
-                    <div className="absolute left-3 bottom-3 z-10 bg-[#0f0f0f]/90 border border-[#F3EFF5]/30 px-4 py-2">
-                      <span className="font-geist text-[22px] font-medium text-[#F3EFF5]">
-                        {price}
-                      </span>
-                    </div>
-                  ) : null;
-                })()}
-
-                {activeId && isParcelId(activeId) && (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      router.push(`/dzialki/${activeId}#zapytaj`);
-                    }}
-                    // wyśrodkowany na dole: nie zachodzi na kompas (prawy róg)
-                    // ani na cenę (lewy róg)
-                    className="absolute left-1/2 bottom-3 z-10 -translate-x-1/2 rounded-full bg-[#F3EFF5] px-6 py-2 text-sm font-medium text-[#131313] transition hover:bg-white"
-                  >
-                    Zapytaj o działkę
-                  </button>
-                )}
+                {/* Cena + przycisk razem w lewym dolnym rogu: przycisk nad ceną.
+                    Trzymamy się lewej krawędzi, żeby nie zachodzić na legendę
+                    (środek) ani na kompas (prawy róg) wpisane w grafikę. */}
+                <div className="absolute left-3 bottom-3 z-10 flex flex-col items-start gap-2">
+                  {activeId && isParcelId(activeId) && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/dzialki/${activeId}#zapytaj`);
+                      }}
+                      className="rounded-full bg-[#F3EFF5] px-6 py-2 text-sm font-medium text-[#131313] transition hover:bg-white"
+                    >
+                      Zapytaj o działkę
+                    </button>
+                  )}
+                  {(() => {
+                    const price = activeId ? priceMap[activeId] : undefined;
+                    return price ? (
+                      <div className="bg-[#0f0f0f]/90 border border-[#F3EFF5]/30 px-4 py-2">
+                        <span className="font-geist text-[22px] font-medium text-[#F3EFF5]">
+                          {price}
+                        </span>
+                      </div>
+                    ) : null;
+                  })()}
+                </div>
 
                 <img
                   src={`/${activeId}.webp`}
