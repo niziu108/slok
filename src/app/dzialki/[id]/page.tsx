@@ -174,7 +174,6 @@ export default async function DzialkaPage({ params }: { params: Promise<{ id: st
               {p.wymiary.length > 0 && (
                 <Fakt etykieta="Wymiary boków" wartosc={p.wymiary.join(' · ')} />
               )}
-              <Fakt etykieta="Numer ewidencyjny" wartosc={nr} />
             </div>
 
             <p className="mt-6 max-w-prose text-[15px] leading-relaxed text-[#d9d9d9]/80">

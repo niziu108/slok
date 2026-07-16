@@ -2,9 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { dostepneLabel, type HeroStats } from '@/lib/parcelFormat';
 
-export default function Hero({ stats }: { stats?: HeroStats | null }) {
+export default function Hero() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const vidRef = useRef<HTMLVideoElement>(null);
 
@@ -197,17 +196,6 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
           >
             Działki nad zalewem Słok
           </h1>
-
-          {/* Stan oferty: liczony na serwerze, więc jest w HTML dla Google.
-              Gdy brak danych, nie renderujemy nic zamiast zmyślać liczbę. */}
-          {stats && (
-            <p
-              className="text-[clamp(0.95rem,1.5vw,1.2rem)] tracking-[0.02em] text-[#F3EFF5]"
-              style={{ textShadow: '0 1px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.55)' }}
-            >
-              {dostepneLabel(stats.dostepne)}
-            </p>
-          )}
         </div>
 
         {/* ŚRODEK: celowo puste. Tu widać film. */}

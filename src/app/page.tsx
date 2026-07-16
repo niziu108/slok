@@ -10,17 +10,7 @@ import Kontakt from "@/components/kontakt";
 import SectionHashOnScroll from "@/components/SectionHashOnScroll";
 import SeoSiteSchema from "@/components/SeoSiteSchema";
 
-import { getHeroStats } from "@/lib/parcelStats";
-
-// Stan oferty (dostępne działki, cena od) jest liczony na serwerze, więc musi się
-// odświeżać sam po oznaczeniu działki jako sprzedanej w panelu. 60 s = tyle samo,
-// co odpytywanie mapy, żeby licznik w hero i kolory na mapie nie rozjeżdżały się
-// w czasie. Koszt to jeden odczyt z Redisa na minutę, czyli nic.
-export const revalidate = 60;
-
-export default async function Home() {
-  const stats = await getHeroStats();
-
+export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#fbfaf5]">
       {/* Hash w adresie podczas scrolla */}
@@ -30,7 +20,7 @@ export default async function Home() {
 
       {/* HERO (obsługuje mobil + desktop) */}
       <section id="hero">
-        <HeroDesktop stats={stats} />
+        <HeroDesktop />
       </section>
 
       <section id="inwestycja">

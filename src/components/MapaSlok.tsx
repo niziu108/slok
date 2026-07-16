@@ -501,11 +501,13 @@ export default function MapaSlok({ onReady }: Props) {
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      router.push(`/dzialki/${activeId}`);
+                      router.push(`/dzialki/${activeId}#zapytaj`);
                     }}
-                    className="absolute right-3 bottom-3 z-10 rounded-full bg-[#F3EFF5] px-5 py-2 text-sm font-medium text-[#131313] transition hover:bg-white"
+                    // wyśrodkowany na dole: nie zachodzi na kompas (prawy róg)
+                    // ani na cenę (lewy róg)
+                    className="absolute left-1/2 bottom-3 z-10 -translate-x-1/2 rounded-full bg-[#F3EFF5] px-6 py-2 text-sm font-medium text-[#131313] transition hover:bg-white"
                   >
-                    Zobacz szczegóły
+                    Zapytaj o działkę
                   </button>
                 )}
 
@@ -684,11 +686,11 @@ export default function MapaSlok({ onReady }: Props) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  router.push(`/dzialki/${activeId}`);
+                  router.push(`/dzialki/${activeId}#zapytaj`);
                 }}
                 className="mt-4 w-full rounded-full bg-[#F3EFF5] px-6 py-3 text-sm font-medium text-[#131313] transition hover:bg-white"
               >
-                Zobacz szczegóły działki
+                Zapytaj o działkę
               </button>
             )}
 
