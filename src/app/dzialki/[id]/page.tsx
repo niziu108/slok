@@ -37,7 +37,8 @@ export async function generateMetadata({
   const cena = p.cena ? `, cena ${formatPLN(p.cena)}` : '';
   const url = `${SITE}/dzialki/${id}`;
 
-  const title = `Działka nr ${nr}, ${area} — Osada SŁOK`;
+  // Bez sufiksu „Osada SŁOK": layout dokłada go szablonem „%s | Osada SŁOK”.
+  const title = `Działka nr ${nr}, ${area}`;
   const description =
     `${p.przeznaczenie}, ${area}${cena}. Działka nad zalewem Słok, 9 km od Bełchatowa. ` +
     `Prąd i woda, obowiązujący MPZP. Zobacz szczegóły i zapytaj o ofertę.`;
