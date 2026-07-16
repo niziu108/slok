@@ -188,10 +188,11 @@ export default function Hero({ stats }: { stats?: HeroStats | null }) {
           Układ: tekst przy górnej krawędzi, przycisk przy dolnej, środek pusty.
           Dzięki temu środek kadru filmu nie jest niczym zasłonięty. */}
       <div className="relative z-10 flex min-h-[100svh] flex-col items-center px-5 pb-6 pt-20 text-center md:pt-24">
-        {/* GÓRA: nagłówek i liczba trzymają się razem, jako jeden blok */}
-        <div className="flex flex-col items-center gap-2">
+        {/* GÓRA: nagłówek i liczba trzymają się razem, jako jeden blok.
+            leading zbite i mała przerwa, żeby liczba była tuż pod tytułem. */}
+        <div className="flex flex-col items-center gap-1">
           <h1
-            className="font-evalinor uppercase leading-[0.92] tracking-tight text-[#F3EFF5] text-[clamp(2.1rem,6.6vw,5.4rem)]"
+            className="font-evalinor uppercase leading-[0.82] tracking-tight text-[#F3EFF5] text-[clamp(2.1rem,6.6vw,5.4rem)]"
             style={{ textShadow: '0 2px 22px rgba(0,0,0,0.65), 0 1px 4px rgba(0,0,0,0.5)' }}
           >
             Działki nad zalewem Słok

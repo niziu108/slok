@@ -497,6 +497,18 @@ export default function MapaSlok({ onReady }: Props) {
                   ) : null;
                 })()}
 
+                {activeId && isParcelId(activeId) && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(`/dzialki/${activeId}`);
+                    }}
+                    className="absolute right-3 bottom-3 z-10 rounded-full bg-[#F3EFF5] px-5 py-2 text-sm font-medium text-[#131313] transition hover:bg-white"
+                  >
+                    Zobacz szczegóły
+                  </button>
+                )}
+
                 <img
                   src={`/${activeId}.webp`}
                   alt={activeId ?? ''}
@@ -668,13 +680,25 @@ export default function MapaSlok({ onReady }: Props) {
               </div>
             )}
 
+            {activeId && isParcelId(activeId) && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  router.push(`/dzialki/${activeId}`);
+                }}
+                className="mt-4 w-full rounded-full bg-[#F3EFF5] px-6 py-3 text-sm font-medium text-[#131313] transition hover:bg-white"
+              >
+                Zobacz szczegóły działki
+              </button>
+            )}
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setActiveId(null);
               }}
               aria-label="Zamknij"
-              className="mt-4 text-[#F3EFF5] text-2xl"
+              className="mt-3 text-[#F3EFF5] text-2xl"
             >
               ×
             </button>

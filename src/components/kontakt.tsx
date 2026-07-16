@@ -63,9 +63,24 @@ function Stagger({
   );
 }
 
-export default function Kontakt() {
+export type DzialkaKontekst = {
+  id: string;
+  numer: string;     // np. "2138/103 + 2138/192"
+  powierzchnia: string; // np. "1347 m²"
+  cena?: string;     // np. "235 000 zł" albo undefined
+  url: string;       // pełny link do oferty
+};
+
+export default function Kontakt({ dzialka }: { dzialka?: DzialkaKontekst } = {}) {
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
   const [msg, setMsg] = useState<string>('');
+
+  // Gdy przychodzimy ze strony działki, wiadomość jest wstępnie wypełniona,
+  // a numer i link lecą w ukrytych polach, żeby biuro od razu wiedziało,
+  // której działki dotyczy zapytanie.
+  const domyslnaWiadomosc = dzialka
+    ? `Dzień dobry, proszę o kontakt w sprawie działki nr ${dzialka.numer} (${dzialka.powierzchnia}).`
+    : '';
 
   // Anti-spam
   const startedAt = useMemo(() => Date.now(), []);
@@ -105,6 +120,9 @@ export default function Kontakt() {
       phone: payload.phone ?? '',
       message: payload.message ?? '',
       zgoda: payload.consent ? 'TAK' : 'NIE',
+      // Kontekst działki (puste, gdy formularz jest ogólny)
+      dzialka: payload.dzialkaNumer ?? '',
+      dzialkaLink: payload.dzialkaLink ?? '',
       startedAt,
     };
 
@@ -207,6 +225,19 @@ export default function Kontakt() {
                 </label>
               </div>
 
+              {/* Kontekst działki: widoczny dla klienta (wie, o co pyta) oraz
+                  w ukrytych polach dla biura (wie, której działki dotyczy lead). */}
+              {dzialka && (
+                <div className="sm:col-span-2 flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-[#d9d9d9]/25 pb-4 text-sm">
+                  <span className="uppercase tracking-[0.12em] text-[#d9d9d9]/60">Zapytanie o działkę</span>
+                  <span className="font-semibold text-[#F3EFF5]">nr {dzialka.numer}</span>
+                  <span className="text-[#d9d9d9]/70">{dzialka.powierzchnia}</span>
+                  {dzialka.cena && <span className="text-[#d9d9d9]/70">{dzialka.cena}</span>}
+                  <input type="hidden" name="dzialkaNumer" value={dzialka.numer} />
+                  <input type="hidden" name="dzialkaLink" value={dzialka.url} />
+                </div>
+              )}
+
               <div className="flex flex-col">
                 <label className="mb-1 text-xs uppercase tracking-[0.12em]">Imię</label>
                 <input
@@ -246,6 +277,8 @@ export default function Kontakt() {
                   name="message"
                   required
                   rows={5}
+                  defaultValue={domyslnaWiadomosc}
+                  key={dzialka?.id ?? 'ogolny'}
                   placeholder="Napisz do nas parę słów..."
                   className="bg-transparent border-b border-[#d9d9d9]/40 px-0 py-2 outline-none resize-none"
                 />
