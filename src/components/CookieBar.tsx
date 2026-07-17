@@ -3,60 +3,65 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { loadGA } from '@/components/Analytics';
-
-const LS_ACCEPT_KEY = 'cookie-accepted-v2';
-const SS_DISMISS_KEY = 'cookie-dismissed-session-v2';
+import { readConsent, writeConsent } from '@/lib/cookieConsent';
 
 export default function CookieBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const accepted = localStorage.getItem(LS_ACCEPT_KEY) === 'true';
-    const dismissed = sessionStorage.getItem(SS_DISMISS_KEY) === 'true';
+    // Pytamy tylko, gdy użytkownik nie podjął jeszcze decyzji.
+    if (readConsent() === null) setVisible(true);
 
-    if (!accepted && !dismissed) {
-      setVisible(true);
-    }
+    // Wycofanie zgody ze stopki: pokaż pasek ponownie bez przeładowania strony.
+    const onRevoke = () => setVisible(true);
+    window.addEventListener('slok:cookies-revoked', onRevoke);
+    return () => window.removeEventListener('slok:cookies-revoked', onRevoke);
   }, []);
 
   const accept = () => {
-    localStorage.setItem(LS_ACCEPT_KEY, 'true');
-    sessionStorage.setItem(SS_DISMISS_KEY, 'true'); // 🔑 ważne
+    writeConsent('granted');
     setVisible(false);
     loadGA();
   };
 
-  const closeForSession = () => {
-    sessionStorage.setItem(SS_DISMISS_KEY, 'true');
+  const reject = () => {
+    writeConsent('denied');
     setVisible(false);
   };
 
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[60] bg-[#131313] text-[#fbfaf5] border-t border-[#fbfaf5]/20">
-      <div className="mx-auto max-w-6xl px-3 sm:px-6 py-3 flex items-center gap-4">
-        <p className="flex-1 text-[12px] sm:text-[13px] leading-snug">
-          Ta strona korzysta z plików cookie w celu poprawy działania i analizy ruchu. Więcej w&nbsp;
+    <div
+      role="dialog"
+      aria-label="Zgoda na pliki cookie"
+      className="fixed inset-x-0 bottom-0 z-[60] border-t border-[#fbfaf5]/20 bg-[#131313] text-[#fbfaf5]"
+    >
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-3 py-3 sm:flex-row sm:items-center sm:gap-4 sm:px-6">
+        <p className="flex-1 text-[12px] leading-snug sm:text-[13px]">
+          Używamy plików cookie do analizy ruchu, aby wiedzieć, co poprawiać. To dobrowolne, strona
+          działa tak samo bez nich. Więcej w{' '}
           <Link href="/polityka-prywatnosci" className="underline underline-offset-2">
             Polityce prywatności
-          </Link>.
+          </Link>
+          .
         </p>
 
-        <button
-          onClick={accept}
-          className="h-8 px-3 rounded-md text-[12px] font-medium bg-[#fbfaf5] text-[#131313]"
-        >
-          Akceptuję
-        </button>
-
-        <button
-          onClick={closeForSession}
-          aria-label="Zamknij"
-          className="h-8 w-8 text-[20px]"
-        >
-          ×
-        </button>
+        {/* Odmowa musi być tak samo łatwa jak zgoda: te same rozmiary i waga. */}
+        <div className="flex shrink-0 gap-2">
+          <button
+            onClick={reject}
+            className="h-9 flex-1 rounded-md border border-[#fbfaf5]/50 px-4 text-[12px] font-medium text-[#fbfaf5] transition hover:bg-[#fbfaf5]/10 sm:flex-none"
+          >
+            Odrzuć
+          </button>
+          <button
+            onClick={accept}
+            className="h-9 flex-1 rounded-md bg-[#fbfaf5] px-4 text-[12px] font-medium text-[#131313] transition hover:bg-white sm:flex-none"
+          >
+            Akceptuję
+          </button>
+        </div>
       </div>
     </div>
   );

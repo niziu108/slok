@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
+import { revokeConsent } from "@/lib/cookieConsent";
 
 export default function Stopka() {
   const pathname = usePathname();
@@ -116,14 +117,27 @@ export default function Stopka() {
             wyłącznie poglądowy, a przedstawione w nich modele budynków oraz zagospodarowanie terenu mogą
             podlegać zmianom na etapie realizacji.
           </p>
-          <Link
-            href="/polityka-prywatnosci"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[12px] underline-offset-4 hover:underline whitespace-nowrap text-center sm:text-right"
-          >
-            Polityka prywatności
-          </Link>
+          <div className="flex flex-col items-center gap-1 sm:items-end">
+            <Link
+              href="/polityka-prywatnosci"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[12px] underline-offset-4 hover:underline whitespace-nowrap"
+            >
+              Polityka prywatności
+            </Link>
+
+            {/* RODO: zgodę na cookies trzeba dać się wycofać w każdej chwili. */}
+            <button
+              onClick={() => {
+                revokeConsent();
+                window.dispatchEvent(new Event('slok:cookies-revoked'));
+              }}
+              className="text-[12px] underline-offset-4 hover:underline whitespace-nowrap"
+            >
+              Ustawienia cookies
+            </button>
+          </div>
         </div>
 
         {/* Podpis na samym dole */}

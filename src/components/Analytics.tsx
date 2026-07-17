@@ -2,8 +2,9 @@
 
 import { useEffect } from 'react';
 
+import { readConsent } from '@/lib/cookieConsent';
+
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
-const ACCEPT_KEY = 'cookie-accepted-v2';
 
 declare global {
   interface Window {
@@ -17,9 +18,8 @@ export function loadGA() {
   if (!GA_ID) return;
   if (typeof window === 'undefined') return;
 
-  // tylko po zgodzie
-  const accepted = localStorage.getItem(ACCEPT_KEY) === 'true';
-  if (!accepted) return;
+  // Tylko po wyraźnej zgodzie. Odmowa albo brak decyzji = nie ładujemy GA.
+  if (readConsent() !== 'granted') return;
 
   // nie ładuj drugi raz
   if (window.__ga_loaded__) return;
