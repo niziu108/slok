@@ -48,6 +48,15 @@ export function loadGA() {
   });
 }
 
+/** Wysyła zdarzenie do GA4.
+ *  Cicho nic nie robi, gdy nie ma zgody na cookies (wtedy gtag nie istnieje)
+ *  albo gdy GA nie jest skonfigurowane. To celowe: bez zgody nie mierzymy. */
+export function track(name: string, params?: Record<string, unknown>) {
+  if (typeof window === 'undefined') return;
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('event', name, params ?? {});
+}
+
 export default function Analytics() {
   useEffect(() => {
     // przy wejściu na stronę (jeśli ktoś już wcześniej zaakceptował)

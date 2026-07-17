@@ -4,11 +4,13 @@ import React, { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
+import { track } from '@/components/Analytics';
 
 const EMAIL = 'sprzedaz@slok.com.pl';
 
-// ✅ Formspree endpoint
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xgoarrpe';
+// Własny endpoint zamiast Formspree: dane osobowe nie wychodzą już
+// z przeglądarki do zewnętrznego serwisu w USA.
+const KONTAKT_ENDPOINT = '/api/kontakt';
 
 /* 🔻 Litery */
 const letter: Variants = {
@@ -127,7 +129,7 @@ export default function Kontakt({ dzialka }: { dzialka?: DzialkaKontekst } = {})
     };
 
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch(KONTAKT_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,13 +143,18 @@ export default function Kontakt({ dzialka }: { dzialka?: DzialkaKontekst } = {})
       if (res.ok) {
         setStatus('ok');
         setMsg('Wiadomość wysłana. Skontaktujemy się z Tobą.');
+
+        // Konwersja: to jest lead, nie samo wejście na stronę.
+        track('generate_lead', {
+          method: 'formularz',
+          dzialka: dzialka?.numer ?? '(zapytanie ogólne)',
+          strona: typeof window !== 'undefined' ? window.location.pathname : '',
+        });
+
         form.reset();
         setWebsite('');
       } else {
-        const nice =
-          (Array.isArray(data?.errors) && data.errors[0]?.message) ||
-          data?.error ||
-          'Błąd wysyłki. Spróbuj ponownie.';
+        const nice = data?.error || 'Błąd wysyłki. Spróbuj ponownie.';
         setStatus('err');
         setMsg(nice);
       }
@@ -182,15 +189,39 @@ export default function Kontakt({ dzialka }: { dzialka?: DzialkaKontekst } = {})
                   Biuro sprzedaży
                 </div>
 
-                <a href={`mailto:${EMAIL}`} className="block text-lg hover:text-[#F3EFF5] transition">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  onClick={() => track('click_to_email', { adres: EMAIL, dzialka: dzialka?.numer ?? '' })}
+                  className="block text-lg hover:text-[#F3EFF5] transition"
+                >
                   {EMAIL}
                 </a>
 
-                <a href="tel:519770923" className="block text-lg mt-3 hover:text-[#F3EFF5] transition">
+                <a
+                  href="tel:519770923"
+                  onClick={() =>
+                    track('click_to_call', {
+                      numer: '519770923',
+                      osoba: 'Paula Matuszewska',
+                      dzialka: dzialka?.numer ?? '',
+                    })
+                  }
+                  className="block text-lg mt-3 hover:text-[#F3EFF5] transition"
+                >
                   Paula Matuszewska - 519&nbsp;770&nbsp;923
                 </a>
 
-                <a href="tel:605821596" className="block text-lg hover:text-[#F3EFF5] transition">
+                <a
+                  href="tel:605821596"
+                  onClick={() =>
+                    track('click_to_call', {
+                      numer: '605821596',
+                      osoba: 'Marcin Rzepecki',
+                      dzialka: dzialka?.numer ?? '',
+                    })
+                  }
+                  className="block text-lg hover:text-[#F3EFF5] transition"
+                >
                   Marcin Rzepecki - 605&nbsp;821&nbsp;596
                 </a>
               

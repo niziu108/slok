@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
+import { track } from '@/components/Analytics';
 
 type Props = { onReady?: () => void };
 
@@ -494,6 +495,7 @@ export default function MapaSlok({ onReady }: Props) {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
+                        track('zapytaj_z_mapy', { dzialka: activeId, widok: 'desktop' });
                         router.push(`/dzialki/${activeId}#zapytaj`);
                       }}
                       className="rounded-full bg-[#F3EFF5] px-6 py-2 text-sm font-medium text-[#131313] transition hover:bg-white"
@@ -688,6 +690,7 @@ export default function MapaSlok({ onReady }: Props) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
+                  track('zapytaj_z_mapy', { dzialka: activeId, widok: 'mobile' });
                   router.push(`/dzialki/${activeId}#zapytaj`);
                 }}
                 className="mt-4 w-full rounded-full bg-[#F3EFF5] px-6 py-3 text-sm font-medium text-[#131313] transition hover:bg-white"
