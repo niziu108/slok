@@ -22,7 +22,15 @@ const OsrodekSquare = ({ className = '' }: { className?: string }) => (
   />
 );
 
-export default function WyszukiwarkaClient() {
+type OfferStats = {
+  wSprzedazy: number;
+  sprzedane: number;
+  dostepne: number;
+  procentSprzedanych: number;
+  etap2: number;
+};
+
+export default function WyszukiwarkaClient({ stats }: { stats?: OfferStats | null }) {
   const [ready, setReady] = useState(false);
 
   return (
@@ -54,6 +62,33 @@ export default function WyszukiwarkaClient() {
             </motion.span>
           ))}
         </h1>
+
+        {/* Stan sprzedaży wobec I etapu, czyli tego, co realnie można kupić.
+            Liczenie wobec wszystkich 116 działek wrzucałoby do mianownika
+            II etap (dostępny dopiero od 08.2027) i zaniżało wynik. */}
+        {stats && (
+          <div className="mx-auto mt-5 max-w-md">
+            <div className="flex items-baseline justify-between gap-4 text-sm">
+              <span>
+                Sprzedane <strong>{stats.sprzedane}</strong> z {stats.wSprzedazy} działek I etapu
+              </span>
+              <span className="tabular-nums text-[#F3EFF5]/60">{stats.procentSprzedanych}%</span>
+            </div>
+            <div
+              className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[#F3EFF5]/15"
+              role="img"
+              aria-label={`Sprzedane ${stats.sprzedane} z ${stats.wSprzedazy} działek I etapu`}
+            >
+              <div
+                className="h-full rounded-full bg-[#F3EFF5]"
+                style={{ width: `${stats.procentSprzedanych}%` }}
+              />
+            </div>
+            <p className="mt-2 text-[13px] text-[#F3EFF5]/60">
+              Zostało {stats.dostepne} działek do kupienia teraz.
+            </p>
+          </div>
+        )}
 
         <div className="mx-auto mt-4 grid grid-cols-1 md:grid-cols-[6px_1fr] gap-4 md:gap-6 items-start">
           <div className="hidden md:block h-full w-[6px] bg-[#F3EFF5]/70" />

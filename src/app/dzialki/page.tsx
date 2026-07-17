@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import GlobalMenu from '@/components/GlobalMenu';
-import { getAllParcels } from '@/lib/parcels';
+import { getAllParcels, getOfferStats } from '@/lib/parcels';
 import { formatPLN, formatM2, STATUS_LABEL, type ParcelStatus } from '@/lib/parcelFormat';
 
 const SITE = 'https://slok.com.pl';
@@ -27,13 +27,11 @@ export const metadata: Metadata = {
 const RANK: Record<ParcelStatus, number> = { dostepna: 0, etap2: 1, osrodek: 2, sprzedana: 3 };
 
 export default async function DzialkiPage() {
-  const parcels = await getAllParcels();
+  const [parcels, stats] = await Promise.all([getAllParcels(), getOfferStats()]);
   const sorted = [...parcels].sort((a, b) => {
     if (RANK[a.status] !== RANK[b.status]) return RANK[a.status] - RANK[b.status];
     return a.powierzchnia - b.powierzchnia;
   });
-
-  const dostepne = parcels.filter((p) => p.status === 'dostepna').length;
 
   return (
     <main className="min-h-screen bg-[#131313] text-[#d9d9d9]">
@@ -50,12 +48,38 @@ export default async function DzialkiPage() {
           Działki nad zalewem Słok
         </h1>
         <p className="mt-3 max-w-prose text-[15px] leading-relaxed text-[#d9d9d9]/80">
-          {dostepne > 0
-            ? `${dostepne} działek dostępnych z ${parcels.length} w Osadzie SŁOK. `
-            : ''}
           Działki budowlane, usługowe i rekreacyjne nad zbiornikiem Słok, 9 km od Bełchatowa. Prąd i
           woda, obowiązujący miejscowy plan zagospodarowania (MPZP).
         </p>
+
+        {/* Stan sprzedaży liczony wobec I etapu, czyli tego, co realnie można
+            kupić. Wrzucanie do mianownika 54 działek II etapu (dostępnych od
+            08.2027) zaniżałoby wynik i wprowadzało w błąd. */}
+        {stats && (
+          <div className="mt-6 max-w-prose">
+            <div className="flex items-baseline justify-between gap-4 text-sm">
+              <span className="text-[#F3EFF5]">
+                Sprzedane <strong>{stats.sprzedane}</strong> z {stats.wSprzedazy} działek I etapu
+              </span>
+              <span className="tabular-nums text-[#d9d9d9]/60">{stats.procentSprzedanych}%</span>
+            </div>
+
+            <div
+              className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[#d9d9d9]/15"
+              role="img"
+              aria-label={`Sprzedane ${stats.sprzedane} z ${stats.wSprzedazy} działek I etapu`}
+            >
+              <div
+                className="h-full rounded-full bg-[#F3EFF5]"
+                style={{ width: `${stats.procentSprzedanych}%` }}
+              />
+            </div>
+
+            <p className="mt-2 text-[13px] text-[#d9d9d9]/60">
+              Zostało {stats.dostepne} działek. Kolejne {stats.etap2} w II etapie, od sierpnia 2027.
+            </p>
+          </div>
+        )}
 
         <ul className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-lg bg-[#d9d9d9]/10 sm:grid-cols-2 lg:grid-cols-3">
           {sorted.map((p) => {

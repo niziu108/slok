@@ -87,3 +87,43 @@ export async function getAllParcels(): Promise<Parcel[]> {
   const t = new Set(stage2);
   return RAW.map((d) => build(d, pricing, s, t));
 }
+
+export type OfferStats = {
+  /** Działki, które realnie są albo były w sprzedaży (I etap). */
+  wSprzedazy: number;
+  sprzedane: number;
+  dostepne: number;
+  procentSprzedanych: number;
+  /** Poza I etapem, dla kontekstu. */
+  etap2: number;
+  osrodek: number;
+  wszystkie: number;
+};
+
+/** Stan sprzedaży liczony UCZCIWIE, czyli w odniesieniu do I etapu.
+ *
+ *  Liczenie „sprzedane X ze 116" byłoby mylące: wrzucałoby do jednego worka
+ *  54 działki II etapu, których nie można kupić przed 08.2027, oraz teren
+ *  ośrodka sprzedawany jako całość. Mianownikiem jest więc to, co realnie
+ *  jest na sprzedaż: sprzedane + dostępne. */
+export async function getOfferStats(): Promise<OfferStats | null> {
+  try {
+    const parcels = await getAllParcels();
+    const sprzedane = parcels.filter((p) => p.status === 'sprzedana').length;
+    const dostepne = parcels.filter((p) => p.status === 'dostepna').length;
+    const wSprzedazy = sprzedane + dostepne;
+    if (!wSprzedazy) return null;
+
+    return {
+      wSprzedazy,
+      sprzedane,
+      dostepne,
+      procentSprzedanych: Math.round((sprzedane / wSprzedazy) * 100),
+      etap2: parcels.filter((p) => p.status === 'etap2').length,
+      osrodek: parcels.filter((p) => p.status === 'osrodek').length,
+      wszystkie: parcels.length,
+    };
+  } catch {
+    return null;
+  }
+}
